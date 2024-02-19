@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   build: {
+    assetsDir: "assets",
     rollupOptions: {
       output: {
         entryFileNames: "assets/[name].js",

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import Spinner from "../Spinner/Spinner";
 import { Post } from "../types";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
-import Spinner from "./Spinner/Spinner";
 
 function Blog() {
   const [posts, setPosts] = useState<Post[] | null>(null);
@@ -13,11 +13,12 @@ function Blog() {
       .then((json) => setPosts(json));
   }, []);
 
-  console.log(posts);
-
-  if (!posts) {
-    return <Spinner />;
-  }
+  if (!posts)
+    return (
+      <div className={styles.spinnerBox}>
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className={styles.blog}>
