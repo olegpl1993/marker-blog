@@ -1,0 +1,39 @@
+.category {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .category {
+    justify-content: flex-start;
+    height: 70px;
+  }
+}
+
+.item {
+  width: 150px;
+  min-width: 150px;
+  height: 40px;
+  border: 1px solid var(--divider-color);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.item:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
