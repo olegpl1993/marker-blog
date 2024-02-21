@@ -3,6 +3,7 @@ import Spinner from "../Spinner/Spinner";
 import { Post } from "../types";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
+import Category from "./Category/Category";
 
 function Blog() {
   const [posts, setPosts] = useState<Post[] | null>(null);
@@ -13,6 +14,8 @@ function Blog() {
       .then((json) => setPosts(json));
   }, []);
 
+  console.log(posts);
+
   if (!posts)
     return (
       <div className={styles.spinnerBox}>
@@ -22,6 +25,7 @@ function Blog() {
 
   return (
     <div className={styles.blog}>
+      <Category />
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
           <Card post={post} />
