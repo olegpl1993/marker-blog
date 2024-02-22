@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import { Post } from "../types";
 import styles from "./Blog.module.css";
+import { fetchData, fetchDataByCategory } from "./Blog.utils";
 import Card from "./Card/Card";
 import Category from "./Category/Category";
 
 function Blog() {
   const [posts, setPosts] = useState<Post[] | null>(null);
+  const { category } = useParams();
 
   useEffect(() => {
-    fetch("http://marker.cx.ua/wp-json/wp/v2/posts")
-      .then((response) => response.json())
-      .then((json) => setPosts(json));
-  }, []);
-
-  console.log(posts);
+    const fetchPost = async () => {
+      setPosts(
+        category ? await fetchDataByCategory(category) : await fetchData()
+      );
+    };
+    fetchPost();
+  }, [category]);
 
   if (!posts)
     return (
