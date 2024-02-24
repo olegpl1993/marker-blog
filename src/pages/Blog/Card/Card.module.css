@@ -40,6 +40,9 @@
   border-bottom-left-radius: 10px;
   cursor: pointer;
 }
+.image:hover {
+  opacity: 0.8;
+}
 
 @media screen and (max-width: 768px) {
   .image {

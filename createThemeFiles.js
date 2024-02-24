@@ -23,5 +23,12 @@ const phpContent = `<!DOCTYPE html>
 </body>
 </html>`;
 
+const functionPHP = `<?php
+if ( function_exists( 'add_theme_support' ) ) { 
+	add_theme_support( 'post-thumbnails' ); 
+}
+?>`;
+
 writeFileSync("dist/index.php", phpContent);
 writeFileSync("dist/style.css", "");
+writeFileSync("dist/function.php", functionPHP);
