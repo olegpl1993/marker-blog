@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
 
-const phpContent = `<!DOCTYPE html>
+const indexPHP = `<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -23,12 +23,13 @@ const phpContent = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const functionPHP = `<?php
-if ( function_exists( 'add_theme_support' ) ) { 
-	add_theme_support( 'post-thumbnails' ); 
+const functionsPHP = `<?php
+function setup() {
+	add_theme_support( 'post-thumbnails' );
 }
+add_action( 'after_setup_theme', 'setup' );
 ?>`;
 
-writeFileSync("dist/index.php", phpContent);
+writeFileSync("dist/index.php", indexPHP);
 writeFileSync("dist/style.css", "");
-writeFileSync("dist/function.php", functionPHP);
+writeFileSync("dist/functions.php", functionsPHP);
