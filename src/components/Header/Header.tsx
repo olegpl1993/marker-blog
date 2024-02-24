@@ -1,5 +1,6 @@
-import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
+import Category from "./Category/Category";
+import styles from "./Header.module.css";
 
 function Header() {
   return (
@@ -7,7 +8,7 @@ function Header() {
       <Link to="/" className={styles.logo}>
         MARKER
       </Link>
-      <div className={styles.menu}>MENU</div>
+      <Category />
     </header>
   );
 }

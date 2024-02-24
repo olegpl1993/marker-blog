@@ -60,10 +60,10 @@
 
 .title {
   font-size: 25px;
-  color: var(--text-color);
+  color: var(--primary-color);
 }
 .title:hover {
-  color: var(--primary-color);
+  color: var(--primary-active-color);
 }
 
 .content {

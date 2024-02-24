@@ -5,7 +5,6 @@ import { PostType } from "../../types/post.types";
 import styles from "./Blog.module.css";
 import { fetchData, fetchDataByCategory } from "./Blog.utils";
 import Card from "./Card/Card";
-import Category from "./Category/Category";
 
 function Blog() {
   const { category } = useParams();
@@ -29,7 +28,6 @@ function Blog() {
 
   return (
     <div className={styles.blog}>
-      <Category />
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
           <Card post={post} />
