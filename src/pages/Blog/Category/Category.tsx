@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CategoryType } from "../../../types/category.types";
 import styles from "./Category.module.css";
-import { CategoryType } from "./types";
+import { fetchCategories } from "./Category.utils";
 
 function Category() {
   const [categorys, setCategorys] = useState<CategoryType[] | null>(null);
@@ -12,9 +13,10 @@ function Category() {
   };
 
   useEffect(() => {
-    fetch("http://marker.cx.ua/wp-json/wp/v2/categories")
-      .then((response) => response.json())
-      .then((json) => setCategorys(json));
+    const getCategories = async () => {
+      setCategorys(await fetchCategories());
+    };
+    getCategories();
   }, []);
 
   if (!categorys) return null;
