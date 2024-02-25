@@ -19,6 +19,7 @@ const indexPHP = `<!DOCTYPE html>
 </head>
 <body <?php body_class(); ?>>
   <div id="root"></div>
+  <div id="modal"></div>
   <?php wp_footer(); ?>
 </body>
 </html>`;

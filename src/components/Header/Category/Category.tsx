@@ -1,29 +1,24 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CategoryType } from "../../../types/category.types";
 import styles from "./Category.module.css";
-import { fetchCategories } from "./Category.utils";
 
-function Category() {
-  const [categorys, setCategorys] = useState<CategoryType[] | null>(null);
+interface Props {
+  categories: CategoryType[] | null;
+}
+
+function Category(props: Props) {
+  const { categories } = props;
   const navigate = useNavigate();
 
   const handleClick = (route: string) => {
     navigate(`/${route}`);
   };
 
-  useEffect(() => {
-    const getCategories = async () => {
-      setCategorys(await fetchCategories());
-    };
-    getCategories();
-  }, []);
-
-  if (!categorys) return null;
+  if (!categories) return null;
 
   return (
     <ul className={styles.category}>
-      {categorys.map((category) => (
+      {categories.map((category) => (
         <li
           className={styles.item}
           key={category.id}
