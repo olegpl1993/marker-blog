@@ -1,25 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Spinner from "../Spinner/Spinner";
-import { Post } from "../types";
+import Spinner from "../../components/Spinner/Spinner";
+import { PostType } from "../../types/post.types";
 import styles from "./Topic.module.css";
+import { fetchMediaLink, fetchPostById } from "./Topic.utils";
 
 function Topic() {
   const { id } = useParams();
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<PostType | null>(null);
   const [image, setImage] = useState<string | null>(null);
 
   useEffect(() => {
-    post?.featured_media &&
-      fetch(`http://marker.cx.ua/wp-json/wp/v2/media/${post.featured_media}`)
-        .then((response) => response.json())
-        .then((json) => setImage(json.source_url));
+    if (!post?.featured_media) return;
+    const getImageLink = async () => {
+      setImage(await fetchMediaLink(post.featured_media));
+    };
+    getImageLink();
   }, [post, post?.featured_media]);
 
   useEffect(() => {
-    fetch("http://marker.cx.ua/wp-json/wp/v2/posts/" + id)
-      .then((response) => response.json())
-      .then((json) => setPost(json));
+    if (!id) return;
+    const getPost = async () => {
+      setPost(await fetchPostById(id));
+    };
+    getPost();
   }, [id]);
 
   if (!post)

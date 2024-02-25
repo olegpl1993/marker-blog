@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Post } from "../../types";
+import { PostType } from "../../../types/post.types";
 import styles from "./Card.module.css";
+import { fetchMediaLink } from "./Card.utils";
 
 interface Props {
-  post: Post;
+  post: PostType;
 }
 
 function Card(props: Props) {
@@ -13,9 +14,10 @@ function Card(props: Props) {
   const [image, setImage] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://marker.cx.ua/wp-json/wp/v2/media/${post.featured_media}`)
-      .then((response) => response.json())
-      .then((json) => setImage(json.source_url));
+    const getImageLink = async () => {
+      setImage(await fetchMediaLink(post.featured_media));
+    };
+    getImageLink();
   }, [post.featured_media]);
 
   const imageClick = () => {

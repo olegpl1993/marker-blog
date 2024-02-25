@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
 
-const phpContent = `<!DOCTYPE html>
+const indexPHP = `<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -19,9 +19,18 @@ const phpContent = `<!DOCTYPE html>
 </head>
 <body <?php body_class(); ?>>
   <div id="root"></div>
+  <div id="modal"></div>
   <?php wp_footer(); ?>
 </body>
 </html>`;
 
-writeFileSync("dist/index.php", phpContent);
+const functionsPHP = `<?php
+function setup() {
+	add_theme_support( 'post-thumbnails' );
+}
+add_action( 'after_setup_theme', 'setup' );
+?>`;
+
+writeFileSync("dist/index.php", indexPHP);
 writeFileSync("dist/style.css", "");
+writeFileSync("dist/functions.php", functionsPHP);

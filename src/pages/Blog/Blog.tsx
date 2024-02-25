@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Spinner from "../Spinner/Spinner";
-import { Post } from "../types";
+import Spinner from "../../components/Spinner/Spinner";
+import { PostType } from "../../types/post.types";
 import styles from "./Blog.module.css";
 import { fetchData, fetchDataByCategory } from "./Blog.utils";
 import Card from "./Card/Card";
-import Category from "./Category/Category";
 
 function Blog() {
-  const [posts, setPosts] = useState<Post[] | null>(null);
   const { category } = useParams();
+  const [posts, setPosts] = useState<PostType[] | null>(null);
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const getPosts = async () => {
       setPosts(
         category ? await fetchDataByCategory(category) : await fetchData()
       );
     };
-    fetchPost();
+    getPosts();
   }, [category]);
 
   if (!posts)
@@ -29,7 +28,6 @@ function Blog() {
 
   return (
     <div className={styles.blog}>
-      <Category />
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
           <Card post={post} />
