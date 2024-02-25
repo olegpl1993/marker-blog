@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchMediaLink } from "../../../api/mediaLink";
 import { PostType } from "../../../types/post.types";
 import styles from "./Card.module.css";
-import { fetchMediaLink } from "./Card.utils";
 
 interface Props {
   post: PostType;

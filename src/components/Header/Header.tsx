@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { fetchCategories } from "../../api/categories";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import Category from "./Category/Category";
 import styles from "./Header.module.css";
-import { fetchCategories } from "./Header.utils";
 
 function Header() {
   const query = useQuery({

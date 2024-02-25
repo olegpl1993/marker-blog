@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { fetchPosts } from "../../api/posts";
+import { fetchPostsByCategory } from "../../api/postsByCategory";
 import Spinner from "../../components/Spinner/Spinner";
 import styles from "./Blog.module.css";
-import { fetchData, fetchDataByCategory } from "./Blog.utils";
 import Card from "./Card/Card";
 
 function Blog() {
@@ -10,7 +11,9 @@ function Blog() {
 
   const query = useQuery({
     queryKey: ["posts", category],
-    queryFn: category ? () => fetchDataByCategory(category) : () => fetchData(),
+    queryFn: category
+      ? () => fetchPostsByCategory(category)
+      : () => fetchPosts(),
   });
 
   if (query.isLoading)

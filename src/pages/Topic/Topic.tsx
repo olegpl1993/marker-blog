@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { fetchMediaLink } from "../../api/mediaLink";
+import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
 import styles from "./Topic.module.css";
-import { fetchMediaLink, fetchPostById } from "./Topic.utils";
 
 function Topic() {
   const { id } = useParams();
