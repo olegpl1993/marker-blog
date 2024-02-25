@@ -3,7 +3,7 @@ import { CategoryType } from "../../../types/category.types";
 import styles from "./Category.module.css";
 
 interface Props {
-  categories: CategoryType[] | null;
+  categories: CategoryType[] | undefined;
 }
 
 function Category(props: Props) {

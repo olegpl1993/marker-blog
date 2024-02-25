@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { CategoryType } from "../../types/category.types";
+import { fetchCategories } from "../../api/categories";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import Category from "./Category/Category";
 import styles from "./Header.module.css";
-import { fetchCategories } from "./Header.utils";
 
 function Header() {
-  const [categories, setCategories] = useState<CategoryType[] | null>(null);
-
-  useEffect(() => {
-    const getCategories = async () => {
-      setCategories(await fetchCategories());
-    };
-    getCategories();
-  }, []);
+  const query = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => fetchCategories(),
+  });
 
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logo}>
         MARKER
       </Link>
-      <Category categories={categories} />
-      <BurgerMenu categories={categories} />
+      <Category categories={query.data} />
+      <BurgerMenu categories={query.data} />
     </header>
   );
 }
