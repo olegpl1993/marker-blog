@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
-import { PostType } from "../../types/post.types";
 import styles from "./Topic.module.css";
 import { fetchMediaLink, fetchPostById } from "./Topic.utils";
 
 function Topic() {
   const { id } = useParams();
-  const [post, setPost] = useState<PostType | null>(null);
-  const [image, setImage] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!post?.featured_media) return;
-    const getImageLink = async () => {
-      setImage(await fetchMediaLink(post.featured_media));
-    };
-    getImageLink();
-  }, [post, post?.featured_media]);
+  const queryPost = useQuery({
+    queryKey: ["postById", id],
+    queryFn: () => fetchPostById(id as string),
+    enabled: !!id,
+  });
 
-  useEffect(() => {
-    if (!id) return;
-    const getPost = async () => {
-      setPost(await fetchPostById(id));
-    };
-    getPost();
-  }, [id]);
+  const query = useQuery({
+    queryKey: ["image", queryPost.data?.featured_media],
+    queryFn: () => fetchMediaLink(queryPost.data?.featured_media as number),
+    enabled: !!queryPost.data?.featured_media,
+  });
 
-  if (!post)
+  if (queryPost.isLoading)
     return (
       <div className={styles.spinnerBox}>
         <Spinner />
@@ -35,19 +28,19 @@ function Topic() {
 
   return (
     <div className={styles.topic}>
-      <div className={styles.title}>{post?.title.rendered}</div>
+      <div className={styles.title}>{queryPost.data?.title.rendered}</div>
       <div className={styles.imageBox}>
-        {image ? (
+        {!query.isLoading ? (
           <img
             className={styles.image}
-            src={image}
-            alt={post?.title.rendered}
+            src={query.data?.source_url}
+            alt={queryPost.data?.title.rendered}
           />
         ) : (
           <p>Loading...</p>
         )}
       </div>
-      <div className={styles.content}>{post?.content.rendered}</div>
+      <div className={styles.content}>{queryPost.data?.content.rendered}</div>
     </div>
   );
 }

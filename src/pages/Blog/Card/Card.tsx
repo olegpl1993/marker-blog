@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { PostType } from "../../../types/post.types";
 import styles from "./Card.module.css";
@@ -11,14 +11,11 @@ interface Props {
 function Card(props: Props) {
   const { post } = props;
   const navigate = useNavigate();
-  const [image, setImage] = useState<string | null>(null);
 
-  useEffect(() => {
-    const getImageLink = async () => {
-      setImage(await fetchMediaLink(post.featured_media));
-    };
-    getImageLink();
-  }, [post.featured_media]);
+  const query = useQuery({
+    queryKey: ["image", post.featured_media],
+    queryFn: () => fetchMediaLink(post.featured_media),
+  });
 
   const imageClick = () => {
     navigate(`/topic/${post.id}`);
@@ -27,10 +24,10 @@ function Card(props: Props) {
   return (
     <div className={styles.card}>
       <div className={styles.imageBox}>
-        {image ? (
+        {!query.isLoading ? (
           <img
             className={styles.image}
-            src={image}
+            src={query.data?.source_url}
             alt={post.title.rendered}
             onClick={imageClick}
           />

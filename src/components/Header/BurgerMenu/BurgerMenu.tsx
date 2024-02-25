@@ -7,7 +7,7 @@ import Modal from "../../Modal/Modal";
 import styles from "./BurgerMenu.module.css";
 
 interface Props {
-  categories: CategoryType[] | null;
+  categories: CategoryType[] | undefined;
 }
 
 function BurgerMenu(props: Props) {
