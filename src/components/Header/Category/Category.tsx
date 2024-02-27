@@ -11,7 +11,7 @@ function Category(props: Props) {
   const navigate = useNavigate();
 
   const handleClick = (route: string) => {
-    navigate(`/${route}`);
+    navigate(`blog/${route}`);
   };
 
   if (!categories) return null;

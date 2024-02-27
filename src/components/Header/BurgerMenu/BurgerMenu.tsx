@@ -21,7 +21,7 @@ function BurgerMenu(props: Props) {
 
   const handleClick = (route: string) => {
     setIsOpen(false);
-    navigate(`/${route}`);
+    navigate(`blog/${route}`);
   };
 
   if (!categories) return null;
