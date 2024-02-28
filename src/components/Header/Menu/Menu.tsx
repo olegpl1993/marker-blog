@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { CategoryType } from "../../../types/category.types";
-import styles from "./Category.module.css";
+import styles from "./Menu.module.css";
 
 interface Props {
   categories: CategoryType[] | undefined;
 }
 
-function Category(props: Props) {
+function Menu(props: Props) {
   const { categories } = props;
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function Category(props: Props) {
   if (!categories) return null;
 
   return (
-    <ul className={styles.category}>
+    <ul className={styles.menu}>
       {categories.map((category) => (
         <li
           className={styles.item}
@@ -31,4 +31,4 @@ function Category(props: Props) {
   );
 }
 
-export default Category;
+export default Menu;

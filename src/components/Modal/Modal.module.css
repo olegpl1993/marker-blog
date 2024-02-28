@@ -53,7 +53,7 @@
   height: 20px;
   --weight: 0.5px;
   --aa: 1px;
-  --color: rgb(0, 0, 0);
+  --color: var(--primary-color);
   cursor: pointer;
   background: linear-gradient(
       45deg,
@@ -69,4 +69,8 @@
       var(--color) calc(50% + var(--weight)),
       transparent calc(50% + var(--weight) + var(--aa))
     );
+}
+
+.modalClose:hover {
+  --color: var(--primary-active-color);
 }

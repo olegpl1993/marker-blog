@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { fetchCategories } from "../../api/categories";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
-import Category from "./Category/Category";
 import styles from "./Header.module.css";
+import Menu from "./Menu/Menu";
 
 function Header() {
   const query = useQuery({
@@ -16,7 +16,7 @@ function Header() {
       <Link to="/" className={styles.logo}>
         MARKER
       </Link>
-      <Category categories={query.data} />
+      <Menu categories={query.data} />
       <BurgerMenu categories={query.data} />
     </header>
   );
