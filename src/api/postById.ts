@@ -1,6 +1,6 @@
-import { URL_WP } from "../utils/constants";
+import { WORDPRESS_BASE_URL } from "../constants/urls";
 
 export const fetchPostById = async (id: string) => {
-  const res = await fetch(`${URL_WP}wp-json/wp/v2/posts/${id}`);
+  const res = await fetch(`${WORDPRESS_BASE_URL}wp-json/wp/v2/posts/${id}`);
   return await res.json();
 };
