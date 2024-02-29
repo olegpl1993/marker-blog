@@ -31,7 +31,7 @@ function BurgerMenu(props: Props) {
       <IconButton onClick={handleOpen}>
         <MenuIcon fontSize="large" className={styles.burgerIcon} />
       </IconButton>
-      <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <ul className={styles.categories}>
           {categories.map((category) => (
             <li

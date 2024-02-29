@@ -6,8 +6,8 @@
   width: 100%;
   min-width: 100%;
   min-height: calc(100dvh - 100px - 50px);
-  gap: 20px;
-  padding: 10px;
+  gap: 30px;
+  padding: 30px 0px;
   border-left: 1px solid var(--divider-color);
   border-right: 1px solid var(--divider-color);
 }
@@ -17,19 +17,42 @@
   font-weight: 700;
 }
 
-.imageBox {
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  line-height: 30px;
+  font-size: 18px;
+  min-height: calc(100dvh - 100px - 50px);
+  padding: 0px 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 0px 10px;
+  }
+}
+
+.content ul li {
+  list-style: disc;
+  margin-left: 30px;
+}
+
+.content figure {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
 }
 
-.image {
+.content img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .spinnerBox {

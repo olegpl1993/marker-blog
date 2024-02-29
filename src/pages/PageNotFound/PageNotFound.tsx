@@ -6,7 +6,7 @@ function PageNotFound() {
       <div className={styles.imgBox}>
         <img
           className={styles.img}
-          src="./pageNotFound1.jpg"
+          src={"/pageNotFound1.jpg"}
           alt="page not found"
         />
       </div>
