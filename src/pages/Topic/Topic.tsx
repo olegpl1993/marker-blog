@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchMediaLink } from "../../api/mediaLink";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
+import PageNotFound from "../PageNotFound/PageNotFound";
 import styles from "./Topic.module.css";
 
 function Topic() {
@@ -26,6 +27,8 @@ function Topic() {
         <Spinner />
       </div>
     );
+
+  if (queryPost.isError) return <PageNotFound />;
 
   return (
     <div className={styles.topic}>

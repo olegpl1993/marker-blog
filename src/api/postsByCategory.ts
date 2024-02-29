@@ -9,6 +9,7 @@ export const fetchPostsByCategory = async (category: string) => {
   const postsRes = await fetch(
     `${WORDPRESS_BASE_URL}wp-json/wp/v2/posts?categories=${categoryID}`
   );
+  if (postsRes.status !== 200) throw new Error("Failed to fetch posts");
   const posts: PostType[] = await postsRes.json();
   return posts;
 };

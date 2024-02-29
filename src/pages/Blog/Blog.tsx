@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import { fetchPostsByCategory } from "../../api/postsByCategory";
 import Spinner from "../../components/Spinner/Spinner";
+import PageNotFound from "../PageNotFound/PageNotFound";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
 
@@ -22,6 +23,8 @@ function Blog() {
         <Spinner />
       </div>
     );
+
+  if (query.isError) return <PageNotFound />;
 
   return (
     <div className={styles.blog}>
