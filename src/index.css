@@ -1,18 +1,4 @@
-:root {
-  --primary-color: rgb(100, 160, 210);
-  --primary-active-color: rgb(70, 130, 180);
-  --spinner-color: rgba(100, 160, 210, 0.6);
-  --bg-color: rgb(230, 230, 230);
-  --divider-color: rgb(200, 200, 200);
-  --text-color: rgb(50, 50, 50);
-  --text-color-disabled: rgb(100, 100, 100);
-}
-
-body {
-  font-family: "Roboto";
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
+@import url("variables.css");
 
 * {
   padding: 0;
@@ -43,6 +29,9 @@ aside {
 }
 html,
 body {
+  font-family: "Roboto";
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-size: 100%;
   line-height: 1;
   font-size: 14px;

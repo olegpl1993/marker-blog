@@ -8,29 +8,29 @@ import styles from "./Topic.module.css";
 function Topic() {
   const { id } = useParams();
 
-  const queryPost = useQuery({
+  const postQuery = useQuery({
     queryKey: ["postById", id],
     queryFn: () => fetchPostById(id as string),
     enabled: !!id,
   });
 
   const createMarkup = () => {
-    if (!queryPost.data) return;
-    return { __html: queryPost.data?.content.rendered };
+    if (!postQuery.data) return;
+    return { __html: postQuery.data?.content.rendered };
   };
 
-  if (queryPost.isLoading)
+  if (postQuery.isLoading)
     return (
       <div className={styles.spinnerBox}>
         <Spinner />
       </div>
     );
 
-  if (queryPost.isError) return <PageNotFound />;
+  if (postQuery.isError) return <PageNotFound />;
 
   return (
     <div className={styles.topic}>
-      <div className={styles.title}>{queryPost.data?.title.rendered}</div>
+      <div className={styles.title}>{postQuery.data?.title.rendered}</div>
       <div
         className={styles.content}
         dangerouslySetInnerHTML={createMarkup()}
