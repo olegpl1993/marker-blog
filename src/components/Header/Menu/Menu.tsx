@@ -22,7 +22,7 @@ function Menu(props: Props) {
         <li
           className={styles.item}
           key={category.id}
-          onClick={() => handleClick(category.name)}
+          onClick={() => handleClick(category.slug)}
         >
           {category.name}
         </li>

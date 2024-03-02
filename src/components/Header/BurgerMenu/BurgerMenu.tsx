@@ -37,7 +37,7 @@ function BurgerMenu(props: Props) {
             <li
               className={styles.category}
               key={category.id}
-              onClick={() => handleClick(category.name)}
+              onClick={() => handleClick(category.slug)}
             >
               {category.name}
             </li>
