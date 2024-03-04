@@ -14,7 +14,7 @@ function Header() {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logo}>
-        MARKER
+        Marker Game
       </Link>
       <Menu categories={query.data} />
       <BurgerMenu categories={query.data} />

@@ -9,7 +9,7 @@
 }
 
 .burgerIcon {
-  color: var(--primary-color);
+  color: var(--logo-color);
 }
 
 .categories {
@@ -26,10 +26,10 @@
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
-  color: var(--primary-color);
+  color: var(--title-color);
 }
 
 .category:hover {
-  color: var(--primary-active-color);
+  color: var(--title-active-color);
   text-decoration: underline;
 }
