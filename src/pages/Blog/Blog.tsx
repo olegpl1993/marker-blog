@@ -6,6 +6,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
+import Sidebar from "./Sidebar/Sidebar";
 
 function Blog() {
   const { category } = useParams();
@@ -28,11 +29,15 @@ function Blog() {
 
   return (
     <div className={styles.blog}>
-      {query.data?.map((post) => (
-        <div className={styles.post} key={post.id}>
-          <Card post={post} />
-        </div>
-      ))}
+      <div className={styles.content}>
+        {query.data?.map((post) => (
+          <div className={styles.post} key={post.id}>
+            <Card post={post} />
+          </div>
+        ))}
+      </div>
+
+      <Sidebar />
     </div>
   );
 }

@@ -1,12 +1,4 @@
-.burgerMenu {
-  display: none;
-}
 
-@media screen and (max-width: 768px) {
-  .burgerMenu {
-    display: block;
-  }
-}
 
 .burgerIcon {
   color: var(--logo-color);
