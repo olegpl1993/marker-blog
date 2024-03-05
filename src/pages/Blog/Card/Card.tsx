@@ -1,3 +1,5 @@
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchCategories } from "../../../api/categories";
@@ -46,20 +48,47 @@ function Card(props: Props) {
           <p>Loading...</p>
         )}
       </div>
+
       <div className={styles.info}>
-        <Link className={styles.title} to={`/topic/${post.id}`}>
-          {post.title.rendered}
-        </Link>
-        <p className={styles.date}>{post.date.split("T")[0]}</p>
-        {categoriesQuery.isSuccess && (
-          <p className={styles.category}>
-            {createCategoriesString(categoriesQuery.data, post.categories)}
-          </p>
-        )}
-        <div
-          className={styles.content}
-          dangerouslySetInnerHTML={createMarkup()}
-        />
+        <div className={styles.wrapper}>
+          <div className={styles.topRow}>
+            <Link className={styles.title} to={`/topic/${post.id}`}>
+              {post.title.rendered}
+            </Link>
+            <div className={styles.dateBox}>
+              <CalendarMonthIcon fontSize="small" className={styles.icon} />
+              <p className={styles.date}>{post.date.split("T")[0]}</p>
+            </div>
+          </div>
+
+          {categoriesQuery.data && (
+            <p className={styles.category}>
+              {createCategoriesString(categoriesQuery.data, post.categories)}
+            </p>
+          )}
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={createMarkup()}
+          />
+        </div>
+
+        <div className={styles.bottomRow}>
+          <Button
+            variant="outlined"
+            onClick={() => navigate(`/topic/${post.id}`)}
+            sx={{
+              width: "100%",
+              height: "40px",
+              color: "var(--title-color)",
+              borderColor: "var(--title-color)",
+              borderRadius: "10px",
+              fontSize: "15px",
+              fontWeight: "600",
+            }}
+          >
+            читати детальніше
+          </Button>
+        </div>
       </div>
     </div>
   );
