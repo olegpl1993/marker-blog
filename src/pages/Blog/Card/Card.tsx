@@ -61,7 +61,7 @@ function Card(props: Props) {
             </div>
           </div>
 
-          {categoriesQuery.isSuccess && (
+          {categoriesQuery.data && (
             <p className={styles.category}>
               {createCategoriesString(categoriesQuery.data, post.categories)}
             </p>
