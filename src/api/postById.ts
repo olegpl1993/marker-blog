@@ -9,5 +9,6 @@ export const fetchPostById = async (id: string) => {
     return json;
   } catch (error) {
     console.error(error);
+    return [];
   }
 };

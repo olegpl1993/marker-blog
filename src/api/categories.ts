@@ -9,5 +9,6 @@ export const fetchCategories = async () => {
     return json;
   } catch (error) {
     console.error(error);
+    return [];
   }
 };

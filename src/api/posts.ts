@@ -11,5 +11,6 @@ export const fetchPosts = async (queryValue: string | null) => {
     return json;
   } catch (error) {
     console.error(error);
+    return [];
   }
 };

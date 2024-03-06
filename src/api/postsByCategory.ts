@@ -24,5 +24,6 @@ export const fetchPostsByCategory = async (
     return posts;
   } catch (error) {
     console.error(error);
+    return [];
   }
 };
