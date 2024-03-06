@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import { fetchPostsByCategory } from "../../api/postsByCategory";
 import Spinner from "../../components/Spinner/Spinner";
@@ -10,12 +10,14 @@ import Sidebar from "./Sidebar/Sidebar";
 
 function Blog() {
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const queryValue = searchParams.get("search");
 
   const query = useQuery({
-    queryKey: ["posts", category],
+    queryKey: ["posts", category, queryValue],
     queryFn: category
-      ? () => fetchPostsByCategory(category)
-      : () => fetchPosts(),
+      ? () => fetchPostsByCategory(category, queryValue)
+      : () => fetchPosts(queryValue),
   });
 
   if (query.isLoading)
@@ -30,11 +32,15 @@ function Blog() {
   return (
     <div className={styles.blog}>
       <div className={styles.content}>
-        {query.data?.map((post) => (
-          <div className={styles.post} key={post.id}>
-            <Card post={post} />
-          </div>
-        ))}
+        {query.data?.length === 0 ? (
+          <div className={styles.noPosts}>Постів не знайдено</div>
+        ) : (
+          query.data?.map((post) => (
+            <div className={styles.post} key={post.id}>
+              <Card post={post} />
+            </div>
+          ))
+        )}
       </div>
 
       <Sidebar />
