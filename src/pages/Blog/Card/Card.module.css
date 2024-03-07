@@ -96,6 +96,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  min-width: 100px;
 }
 
 .icon {
@@ -110,6 +111,7 @@
 
 .category {
   font-size: 14px;
+  line-height: 18px;
   color: var(--text-color-disabled);
 }
 
