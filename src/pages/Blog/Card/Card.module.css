@@ -5,7 +5,6 @@
   height: 350px;
   width: 100%;
   min-width: 100%;
-  border: 1px solid var(--title-color);
   border-radius: 10px;
   background-color: var(--bg-color-card);
   box-shadow:
@@ -97,6 +96,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  min-width: 100px;
 }
 
 .icon {
@@ -111,6 +111,7 @@
 
 .category {
   font-size: 14px;
+  line-height: 18px;
   color: var(--text-color-disabled);
 }
 

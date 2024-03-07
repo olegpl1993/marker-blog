@@ -1,12 +1,12 @@
 :root {
   --logo-color: rgb(255, 255, 255);
   --primary-color: rgb(25, 35, 75);
-  --title-color: rgb(74, 118, 199);
-  --title-active-color: rgb(72, 80, 224);
-  --spinner-color: rgba(60, 65, 165, 0.5);
+  --title-color: rgb(23, 127, 164);
+  --title-active-color: rgb(20, 100, 130);
+  --spinner-color: rgba(23, 127, 164, 0.5);
   --bg-color: rgb(230, 230, 230);
   --bg-color-card: rgb(235, 235, 235);
-  --shadow-color: rgb(195, 195, 195);
+  --shadow-color: rgb(215, 215, 215);
   --text-color: rgb(50, 50, 50);
   --text-color-disabled: rgb(100, 100, 100);
 }
