@@ -1,9 +1,13 @@
 import { WORDPRESS_BASE_API_URL } from "../constants/urls";
 import { PostType } from "../types/post.types";
 
-export const fetchPosts = async (queryValue: string | null) => {
+export const fetchPostsByCategoryID = async (
+  categoryID: number,
+  queryValue: string | null
+) => {
   try {
     const url = new URL("posts", WORDPRESS_BASE_API_URL);
+    url.searchParams.append("categories", String(categoryID));
     if (queryValue) url.searchParams.append("search", queryValue);
 
     const res = await fetch(url);

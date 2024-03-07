@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchCategories } from "../../api/categories";
 import { fetchPosts } from "../../api/posts";
-import { fetchPostsByCategory } from "../../api/postsByCategory";
+import { fetchPostsByCategoryID } from "../../api/postsByCategoryID";
 import Spinner from "../../components/Spinner/Spinner";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import styles from "./Blog.module.css";
@@ -32,7 +32,7 @@ function Blog() {
 
   const queryCategoryPosts = useQuery({
     queryKey: ["categoryPosts", category, queryValue, categoryID],
-    queryFn: () => fetchPostsByCategory(categoryID!, queryValue),
+    queryFn: () => fetchPostsByCategoryID(categoryID!, queryValue),
     enabled: !!categoryID,
   });
 
