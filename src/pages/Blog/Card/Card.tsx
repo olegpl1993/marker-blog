@@ -37,15 +37,21 @@ function Card(props: Props) {
   return (
     <div className={styles.card}>
       <div className={styles.imageBox}>
-        {!imageQuery.isLoading ? (
+        {imageQuery.isLoading && <p>Loading...</p>}
+        {imageQuery.data === null && (
+          <img
+            className={styles.image}
+            src={"/imageNotFound.jpg"}
+            onClick={imageClick}
+          />
+        )}
+        {imageQuery.data && (
           <img
             className={styles.image}
             src={imageQuery.data?.source_url}
             alt={post.title.rendered}
             onClick={imageClick}
           />
-        ) : (
-          <p>Loading...</p>
         )}
       </div>
 
