@@ -27,28 +27,23 @@ function Search() {
 
   return (
     <div className={styles.search}>
-      <div className={styles.title}>Пошук постів</div>
-      <div className={styles.inputBox}>
-        <div className={styles.inputRow}>
-          <TextField
-            id="outlined-basic"
-            variant="outlined"
-            size="small"
-            placeholder="Знайти"
-            value={searchInput}
-            onChange={handleChangeSearchInput}
-            onKeyDown={handleOnKeyDown}
-            InputProps={{ sx: { paddingRight: "55px" } }}
-          />
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
+          size="small"
+          placeholder="Знайти"
+          value={searchInput}
+          onChange={handleChangeSearchInput}
+          onKeyDown={handleOnKeyDown}
+          InputProps={{ sx: { paddingRight: "55px" } }}
+        />
 
-          <IconButton
-            onClick={handleOnClickSearch}
-            sx={{ position: "absolute", right: "0" }}
-          >
-            <SearchIcon />
-          </IconButton>
-        </div>
-      </div>
+        <IconButton
+          onClick={handleOnClickSearch}
+          sx={{ position: "absolute", right: "0" }}
+        >
+          <SearchIcon />
+        </IconButton>
     </div>
   );
 }

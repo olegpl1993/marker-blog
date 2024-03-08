@@ -1,9 +1,10 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { CategoryType } from "../../../types/category.types";
+import Categories from "../../Categories/Categories";
 import Modal from "../../Modal/Modal";
+import Search from "../../Search/Search";
 import styles from "./BurgerMenu.module.css";
 
 interface Props {
@@ -12,16 +13,10 @@ interface Props {
 
 function BurgerMenu(props: Props) {
   const { categories } = props;
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     setIsOpen(true);
-  };
-
-  const handleClick = (route: string) => {
-    setIsOpen(false);
-    navigate(`blog/${route}`);
   };
 
   if (!categories) return null;
@@ -32,17 +27,10 @@ function BurgerMenu(props: Props) {
         <MenuIcon fontSize="large" className={styles.burgerIcon} />
       </IconButton>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-        <ul className={styles.categories}>
-          {categories.map((category) => (
-            <li
-              className={styles.category}
-              key={category.id}
-              onClick={() => handleClick(category.slug)}
-            >
-              {category.name}
-            </li>
-          ))}
-        </ul>
+        <div className={styles.content}>
+          <Search />
+          <Categories />
+        </div>
       </Modal>
     </div>
   );
