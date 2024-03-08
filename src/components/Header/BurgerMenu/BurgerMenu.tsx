@@ -29,7 +29,7 @@ function BurgerMenu(props: Props) {
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className={styles.content}>
           <Search />
-          <Categories />
+          <Categories setIsOpen={setIsOpen}/>
         </div>
       </Modal>
     </div>

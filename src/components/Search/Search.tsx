@@ -4,7 +4,12 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styles from "./Search.module.css";
 
-function Search() {
+interface Props {
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Search(props: Props) {
+  const { setIsOpen } = props;
   const [, setSearchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState("");
 
@@ -14,36 +19,39 @@ function Search() {
     setSearchInput(event.target.value);
   };
 
-  const handleOnClickSearch = () => {
+  const handleSearch = () => {
     setSearchParams({ search: searchInput });
+    setIsOpen && setIsOpen(false);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleOnKeyDownEnter = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      handleOnClickSearch();
+      handleSearch();
     }
   };
 
   return (
     <div className={styles.search}>
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          size="small"
-          placeholder="Знайти"
-          value={searchInput}
-          onChange={handleChangeSearchInput}
-          onKeyDown={handleOnKeyDown}
-          InputProps={{ sx: { paddingRight: "55px" } }}
-        />
+      <TextField
+        id="outlined-basic"
+        variant="outlined"
+        size="small"
+        placeholder="Знайти"
+        value={searchInput}
+        onChange={handleChangeSearchInput}
+        onKeyDown={handleOnKeyDownEnter}
+        InputProps={{ sx: { paddingRight: "55px" } }}
+      />
 
-        <IconButton
-          onClick={handleOnClickSearch}
-          sx={{ position: "absolute", right: "0" }}
-        >
-          <SearchIcon />
-        </IconButton>
+      <IconButton
+        onClick={handleSearch}
+        sx={{ position: "absolute", right: "0" }}
+      >
+        <SearchIcon />
+      </IconButton>
     </div>
   );
 }
