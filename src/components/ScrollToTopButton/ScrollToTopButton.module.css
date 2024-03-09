@@ -1,0 +1,66 @@
+.scrollToTopButton {
+  position: fixed;
+  right: 2%;
+  bottom: 3%;
+  height: 55px;
+  width: 55px;
+  background: radial-gradient(rgba(0, 125, 208, 0.5) 10%, rgba(0, 74, 124, 0.5) 70%);
+  color: white;
+  transform: rotate(-45deg);
+  padding: 5px;
+  z-index: 5;
+}
+
+@media screen and (max-width: 1200px) {
+  .scrollToTopButton {
+    height: 50px;
+    width: 50px;
+    right: 4%;
+  }
+}
+
+.border {
+  border: 3px solid white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrowBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-45deg);
+}
+
+.arrow {
+  font-size: 20px;
+  animation: arrowAnimation 0.6s infinite alternate;
+  transform: scale(0.9, 1.5) translate(1px, -1px);
+}
+
+@media screen and (max-width: 1200px) {
+  .arrow {
+    font-size: 15px;
+    transform: scale(0.9, 1.5) translate(1px, 0px);
+  }
+}
+
+@keyframes arrowAnimation {
+  0% {
+    color: transparent;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.arrow2 {
+  animation-delay: 0.2s;
+}
+
+.arrow3 {
+  animation-delay: 0.4s;
+}
