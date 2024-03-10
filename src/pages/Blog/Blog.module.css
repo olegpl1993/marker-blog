@@ -1,12 +1,39 @@
 .blog {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 100%;
+  min-height: calc(100dvh - 100px - 50px);
+  padding: 10px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 500;
+  width: 100%;
+  min-width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+}
+
+.category {
+  font-weight: 700;
+}
+
+.wrapper {
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   gap: 15px;
   width: 100%;
   min-width: 100%;
-  padding: 10px;
 }
 
 .content {
@@ -17,7 +44,6 @@
   gap: 15px;
   line-height: 30px;
   font-size: 18px;
-  min-height: calc(100dvh - 100px - 50px);
   width: 100%;
 }
 
