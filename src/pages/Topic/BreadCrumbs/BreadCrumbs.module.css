@@ -1,0 +1,39 @@
+.breadCrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  min-width: 100%;
+  padding: 10px 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .breadCrumbs {
+    padding: 10px 10px;
+  }
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--title-color);
+}

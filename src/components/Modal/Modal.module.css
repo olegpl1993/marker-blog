@@ -27,7 +27,8 @@
   position: relative;
   background-color: white;
   width: 320px;
-  height: 270px;
+  height: 320px;
+  padding: 5px;
   animation-duration: 0.3s;
   animation-name: boxAnime;
   cursor: auto;

@@ -24,6 +24,10 @@ function Blog() {
     (item) => item.slug === category
   )?.id;
 
+  const categoryName = queryCategories.data?.find(
+    (item) => item.slug === category
+  )?.name;
+
   const queryPosts = useQuery({
     queryKey: ["posts", queryValue, category],
     queryFn: () => fetchPosts(queryValue),
@@ -49,19 +53,26 @@ function Blog() {
 
   return (
     <div className={styles.blog}>
-      <div className={styles.content}>
-        {queryResult.data?.length === 0 ? (
-          <div className={styles.noPosts}>Постів не знайдено</div>
-        ) : (
-          queryResult.data?.map((post) => (
-            <div className={styles.post} key={post.id}>
-              <Card post={post} />
-            </div>
-          ))
-        )}
-      </div>
+      {categoryName && (
+        <h1 className={styles.title}>
+          Категорія: <span className={styles.category}>{categoryName}</span>
+        </h1>
+      )}
+      <div className={styles.wrapper}>
+        <div className={styles.content}>
+          {queryResult.data?.length === 0 ? (
+            <div className={styles.noPosts}>Постів не знайдено</div>
+          ) : (
+            queryResult.data?.map((post) => (
+              <div className={styles.post} key={post.id}>
+                <Card post={post} />
+              </div>
+            ))
+          )}
+        </div>
 
-      <Sidebar />
+        <Sidebar />
+      </div>
     </div>
   );
 }

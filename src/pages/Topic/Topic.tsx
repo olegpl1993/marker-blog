@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
 import PageNotFound from "../PageNotFound/PageNotFound";
+import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
 
 function Topic() {
@@ -30,6 +31,10 @@ function Topic() {
 
   return (
     <div className={styles.topic}>
+      <BreadCrumbs
+        categories={postQuery.data?.categories}
+        title={postQuery.data?.title.rendered}
+      />
       <div className={styles.title}>{postQuery.data?.title.rendered}</div>
       <div
         className={styles.content}

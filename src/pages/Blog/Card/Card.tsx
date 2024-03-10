@@ -83,13 +83,15 @@ function Card(props: Props) {
             variant="outlined"
             onClick={() => navigate(`/topic/${post.id}`)}
             sx={{
-              width: "100%",
               height: "40px",
               color: "var(--title-color)",
               borderColor: "var(--title-color)",
-              borderRadius: "10px",
+              borderRadius: "8px",
               fontSize: "15px",
               fontWeight: "600",
+              "@media (max-width: 412px)": {
+                width: "100%",
+              },
             }}
           >
             читати детальніше
