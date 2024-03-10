@@ -11,7 +11,7 @@ function Topic() {
 
   const postQuery = useQuery({
     queryKey: ["postById", id],
-    queryFn: () => fetchPostById(id as string),
+    queryFn: () => fetchPostById(id!),
     enabled: !!id,
   });
 
@@ -27,7 +27,7 @@ function Topic() {
       </div>
     );
 
-  if (postQuery.isError) return <PageNotFound />;
+  if (postQuery.data === null) return <PageNotFound />;
 
   return (
     <div className={styles.topic}>
