@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
   min-width: 100%;
   padding: 10px 20px;
@@ -14,15 +14,6 @@
   .breadCrumbs {
     padding: 10px 10px;
   }
-}
-
-.categories {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 5px;
 }
 
 .category {

@@ -16,34 +16,31 @@ function BreadCrumbs(props: Props) {
     queryFn: () => fetchCategories(),
   });
 
-  if (!categoriesQuery.data || !categories) return null;
+  if (!categoriesQuery.data || !categories || !title) return null;
 
   return (
-    <div className={styles.breadCrumbs}>
+    <span className={styles.breadCrumbs}>
       <Link to={"/"} className={styles.link}>
-        Головна
+        Game Marker
       </Link>
-      <div>{">"}</div>
-
+      <span>{">"}</span>
       <Link to={"/blog"} className={styles.link}>
         Блог
       </Link>
-      <div>{">"}</div>
-      <div className={styles.categories}>
-        {categoriesQuery.data
-          .filter((category) => categories.includes(category.id))
-          .map((category, index, array) => (
-            <div className={styles.category} key={category.id}>
-              <Link to={`/blog/${category.slug}`} className={styles.link}>
-                {category.name}
-              </Link>
-              <p>{index !== array.length - 1 && ", "}</p>
-            </div>
-          ))}
-      </div>
-      <div>{">"}</div>
-      <div>{title}</div>
-    </div>
+      <span>{">"}</span>
+      {categoriesQuery.data
+        .filter((category) => categories.includes(category.id))
+        .map((category, index, array) => (
+          <div className={styles.category} key={category.id}>
+            <Link to={`/blog/${category.slug}`} className={styles.link}>
+              {category.name}
+            </Link>
+            <p>{index !== array.length - 1 && ", "}</p>
+          </div>
+        ))}
+      <span>{">"}</span>
+      <span>{title}</span>
+    </span>
   );
 }
 
