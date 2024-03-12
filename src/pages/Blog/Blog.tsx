@@ -2,20 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchCategories } from "../../api/categories";
 import { fetchPosts } from "../../api/posts";
-import { fetchPostsByCategoryID } from "../../api/postsByCategoryID";
 import Spinner from "../../components/Spinner/Spinner";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
+import PaginationBlog from "./PaginationBlog/PaginationBlog";
 import Sidebar from "./Sidebar/Sidebar";
 
 function Blog() {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
-  const queryValue = searchParams.get("search");
+  const search = searchParams.get("search");
+  const page = searchParams.get("page");
 
   const queryCategories = useQuery({
-    queryKey: ["categories", category],
+    queryKey: ["categories"],
     queryFn: () => fetchCategories(),
     enabled: !!category,
   });
@@ -29,27 +30,21 @@ function Blog() {
   )?.name;
 
   const queryPosts = useQuery({
-    queryKey: ["posts", queryValue, category],
-    queryFn: () => fetchPosts(queryValue),
-    enabled: !category,
+    queryKey: ["posts", categoryID, search, page],
+    queryFn: () => fetchPosts(categoryID, search, page),
+    enabled: category ? !!categoryID : true,
   });
 
-  const queryCategoryPosts = useQuery({
-    queryKey: ["categoryPosts", category, queryValue, categoryID],
-    queryFn: () => fetchPostsByCategoryID(categoryID!, queryValue),
-    enabled: !!categoryID,
-  });
+  const totalPages = queryPosts.data?.headers.get("X-WP-TotalPages");
 
-  const queryResult = category ? queryCategoryPosts : queryPosts;
-
-  if (queryResult.isLoading)
+  if (queryPosts.isLoading)
     return (
       <div className={styles.spinnerBox}>
         <Spinner />
       </div>
     );
 
-  if (queryResult.isError) return <PageNotFound />;
+  if (queryPosts.isError) return <PageNotFound />;
 
   return (
     <div className={styles.blog}>
@@ -60,19 +55,19 @@ function Blog() {
       )}
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          {queryResult.data?.length === 0 ? (
+          {queryPosts.data?.data?.length === 0 ? (
             <div className={styles.noPosts}>Постів не знайдено</div>
           ) : (
-            queryResult.data?.map((post) => (
+            queryPosts.data?.data?.map((post) => (
               <div className={styles.post} key={post.id}>
                 <Card post={post} />
               </div>
             ))
           )}
         </div>
-
         <Sidebar />
       </div>
+      {totalPages && <PaginationBlog totalPages={totalPages} />}
     </div>
   );
 }

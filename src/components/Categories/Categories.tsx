@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchCategories } from "../../api/categories";
 import styles from "./Categories.module.css";
 
@@ -10,6 +10,8 @@ interface Props {
 function Categories(props: Props) {
   const { setIsOpen } = props;
   const navigate = useNavigate();
+  const selectedCategory = useParams().category;
+
   const query = useQuery({
     queryKey: ["categories"],
     queryFn: () => fetchCategories(),
@@ -25,7 +27,9 @@ function Categories(props: Props) {
     <ul className={styles.categories}>
       {query.data.map((category) => (
         <li
-          className={styles.item}
+          className={`${styles.item} ${
+            category.slug === selectedCategory && styles.active
+          }`}
           key={category.id}
           onClick={() => handleClick(category.slug)}
         >
