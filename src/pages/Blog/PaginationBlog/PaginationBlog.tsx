@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import styles from "./PaginationBlog.module.css";
 
 interface Props {
-  totalPages: string;
+  totalPages: number;
 }
 
 const PaginationBlog = memo((props: Props) => {
@@ -23,7 +23,7 @@ const PaginationBlog = memo((props: Props) => {
   return (
     <div className={styles.paginationBlog}>
       <Pagination
-        count={Number(totalPages)}
+        count={totalPages}
         variant="outlined"
         color="primary"
         page={page}

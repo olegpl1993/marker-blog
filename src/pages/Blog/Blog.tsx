@@ -35,7 +35,7 @@ function Blog() {
     enabled: category ? !!categoryID : true,
   });
 
-  const totalPages = queryPosts.data?.headers.get("X-WP-TotalPages");
+  const totalPages = Number(queryPosts.data?.headers.get("X-WP-TotalPages"));
 
   if (queryPosts.isLoading)
     return (
@@ -64,10 +64,12 @@ function Blog() {
               </div>
             ))
           )}
+          {totalPages && totalPages > 1 && (
+            <PaginationBlog totalPages={totalPages} />
+          )}
         </div>
         <Sidebar />
       </div>
-      {totalPages && <PaginationBlog totalPages={totalPages} />}
     </div>
   );
 }
