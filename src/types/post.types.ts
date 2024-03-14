@@ -22,6 +22,10 @@ export interface PostType {
   meta: Meta;
   categories: number[];
   tags: string[];
+  release: string;
+  publisher: string;
+  genre: string;
+  developer: string;
   _links: Links;
 }
 
