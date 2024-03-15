@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { fetchCategories } from "../../api/categories";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
+import { createCategoriesString } from "../../utils/Categories.utils";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
@@ -13,6 +15,11 @@ function Topic() {
     queryKey: ["postById", id],
     queryFn: () => fetchPostById(id!),
     enabled: !!id,
+  });
+
+  const categoriesQuery = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => fetchCategories(),
   });
 
   const createMarkup = () => {
@@ -27,7 +34,7 @@ function Topic() {
       </div>
     );
 
-  if (postQuery.data === null) return <PageNotFound />;
+  if (!postQuery.data) return <PageNotFound />;
 
   return (
     <div className={styles.topic}>
@@ -35,7 +42,44 @@ function Topic() {
         categories={postQuery.data?.categories}
         title={postQuery.data?.title.rendered}
       />
-      <div className={styles.title}>{postQuery.data?.title.rendered}</div>
+      <h1 className={styles.title}>{postQuery.data?.title.rendered}</h1>
+      <div className={styles.strings}>
+        {postQuery.data?.genre && (
+          <span>
+            Жанри:{" "}
+            <span className={styles.string}>{postQuery.data?.genre}</span>
+          </span>
+        )}
+        {categoriesQuery.data && postQuery.data?.categories && (
+          <span>
+            Платформи:{" "}
+            <span className={styles.string}>
+              {createCategoriesString(
+                categoriesQuery.data,
+                postQuery.data?.categories
+              )}
+            </span>
+          </span>
+        )}
+        {postQuery.data?.developer && (
+          <span>
+            Розробник:{" "}
+            <span className={styles.string}>{postQuery.data?.developer}</span>
+          </span>
+        )}
+        {postQuery.data?.release && (
+          <span>
+            Дата видання:{" "}
+            <span className={styles.string}>{postQuery.data?.release}</span>
+          </span>
+        )}
+        {postQuery.data?.publisher && (
+          <span>
+            Видавець:{" "}
+            <span className={styles.string}>{postQuery.data?.publisher}</span>
+          </span>
+        )}
+      </div>
       <div
         className={styles.content}
         dangerouslySetInnerHTML={createMarkup()}
