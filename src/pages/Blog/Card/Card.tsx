@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { fetchCategories } from "../../../api/categories";
 import { fetchMediaLink } from "../../../api/mediaLink";
 import { PostType } from "../../../types/post.types";
-import { createCategoriesString } from "../../../utils/Categories.utils";
+import { createCategoriesString } from "../../../utils/category.utils";
 import styles from "./Card.module.css";
 
 interface Props {

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchCategories } from "../../api/categories";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
-import { createCategoriesString } from "../../utils/Categories.utils";
+import { createCategoriesString } from "../../utils/category.utils";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
