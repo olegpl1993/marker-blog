@@ -86,8 +86,8 @@ const Card = memo((props: Props) => {
             onClick={() => navigate(`/topic/${post.id}`)}
             sx={{
               height: "40px",
-              color: "var(--title-color)",
-              borderColor: "var(--title-color)",
+              color: "var(--secondary-color)",
+              borderColor: "var(--secondary-color)",
               borderRadius: "8px",
               fontSize: "15px",
               fontWeight: "600",

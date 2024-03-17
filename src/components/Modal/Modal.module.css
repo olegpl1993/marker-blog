@@ -54,7 +54,7 @@
   height: 20px;
   --weight: 0.5px;
   --aa: 1px;
-  --color: var(--title-color);
+  --color: var(--secondary-color);
   cursor: pointer;
   background: linear-gradient(
       45deg,
@@ -73,5 +73,5 @@
 }
 
 .modalClose:hover {
-  --color: var(--title-active-color);
+  --color: var(--primary-color);
 }

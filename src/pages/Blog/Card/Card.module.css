@@ -85,10 +85,10 @@
 .title {
   font-size: 25px;
   font-weight: 700;
-  color: var(--title-color);
+  color: var(--secondary-color);
 }
 .title:hover {
-  color: var(--title-active-color);
+  color: var(--primary-color);
 }
 
 .dateBox {
@@ -100,7 +100,7 @@
 }
 
 .icon {
-  color: var(--title-color);
+  color: var(--secondary-color);
 }
 
 .date {

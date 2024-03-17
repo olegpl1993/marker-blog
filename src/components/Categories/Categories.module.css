@@ -18,10 +18,10 @@
   align-items: center;
   justify-content: center;
   user-select: none;
-  color: var(--title-color);
+  color: var(--secondary-color);
 }
 .item:hover {
-  color: var(--title-active-color);
+  color: var(--primary-color);
 }
 
 .active {
