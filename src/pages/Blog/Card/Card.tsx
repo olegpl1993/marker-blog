@@ -1,9 +1,10 @@
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { memo, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchCategories } from "../../../api/categories";
 import { fetchMediaLink } from "../../../api/mediaLink";
+import { CategoryContext } from "../../../contexts/CategoryProvider";
 import { PostType } from "../../../types/post.types";
 import { createCategoriesString } from "../../../utils/category.utils";
 import styles from "./Card.module.css";
@@ -12,18 +13,14 @@ interface Props {
   post: PostType;
 }
 
-function Card(props: Props) {
+const Card = memo((props: Props) => {
   const { post } = props;
   const navigate = useNavigate();
+  const categories = useContext(CategoryContext);
 
   const imageQuery = useQuery({
     queryKey: ["image", post.featured_media],
     queryFn: () => fetchMediaLink(post.featured_media),
-  });
-
-  const categoriesQuery = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
   });
 
   const createMarkup = () => {
@@ -67,9 +64,9 @@ function Card(props: Props) {
             </div>
           </div>
 
-          {categoriesQuery.data && (
+          {categories && (
             <p className={styles.category}>
-              {createCategoriesString(categoriesQuery.data, post.categories)}
+              {createCategoriesString(categories, post.categories)}
             </p>
           )}
           <div
@@ -100,6 +97,6 @@ function Card(props: Props) {
       </div>
     </div>
   );
-}
+});
 
 export default Card;

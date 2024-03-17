@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { fetchCategories } from "../../api/categories";
 import { fetchPosts } from "../../api/posts";
 import Spinner from "../../components/Spinner/Spinner";
+import { CategoryContext } from "../../contexts/CategoryProvider";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
@@ -14,20 +15,10 @@ function Blog() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
   const page = searchParams.get("page");
+  const categories = useContext(CategoryContext);
 
-  const queryCategories = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
-    enabled: !!category,
-  });
-
-  const categoryID = queryCategories.data?.find(
-    (item) => item.slug === category
-  )?.id;
-
-  const categoryName = queryCategories.data?.find(
-    (item) => item.slug === category
-  )?.name;
+  const categoryID = categories?.find((item) => item.slug === category)?.id;
+  const categoryName = categories?.find((item) => item.slug === category)?.name;
 
   const queryPosts = useQuery({
     queryKey: ["posts", categoryID, search, page],

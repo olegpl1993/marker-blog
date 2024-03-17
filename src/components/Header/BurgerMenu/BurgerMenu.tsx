@@ -1,26 +1,19 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
-import { useState } from "react";
-import { CategoryType } from "../../../types/category.types";
+import { memo, useContext, useState } from "react";
+import { CategoryContext } from "../../../contexts/CategoryProvider";
 import Categories from "../../Categories/Categories";
 import Modal from "../../Modal/Modal";
 import Search from "../../Search/Search";
 import styles from "./BurgerMenu.module.css";
 
-interface Props {
-  categories: CategoryType[] | undefined;
-}
-
-function BurgerMenu(props: Props) {
-  const { categories } = props;
+const BurgerMenu = memo(() => {
+  const categories = useContext(CategoryContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
+  const handleOpen = () => setIsOpen(true);
 
   if (!categories) return null;
-
   return (
     <div className={styles.burgerMenu}>
       <IconButton onClick={handleOpen}>
@@ -29,11 +22,11 @@ function BurgerMenu(props: Props) {
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className={styles.content}>
           <Search />
-          <Categories setIsOpen={setIsOpen}/>
+          <Categories setIsOpen={setIsOpen} />
         </div>
       </Modal>
     </div>
   );
-}
+});
 
 export default BurgerMenu;

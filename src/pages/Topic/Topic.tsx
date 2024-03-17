@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { fetchCategories } from "../../api/categories";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
+import { CategoryContext } from "../../contexts/CategoryProvider";
 import { createCategoriesString } from "../../utils/category.utils";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
@@ -10,16 +11,12 @@ import styles from "./Topic.module.css";
 
 function Topic() {
   const { id } = useParams();
+  const categories = useContext(CategoryContext);
 
   const postQuery = useQuery({
     queryKey: ["postById", id],
     queryFn: () => fetchPostById(id!),
     enabled: !!id,
-  });
-
-  const categoriesQuery = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
   });
 
   const createMarkup = () => {
@@ -50,14 +47,11 @@ function Topic() {
             <span className={styles.string}>{postQuery.data?.genre}</span>
           </span>
         )}
-        {categoriesQuery.data && postQuery.data?.categories && (
+        {categories && postQuery.data?.categories && (
           <span>
             Платформи:{" "}
             <span className={styles.string}>
-              {createCategoriesString(
-                categoriesQuery.data,
-                postQuery.data?.categories
-              )}
+              {createCategoriesString(categories, postQuery.data?.categories)}
             </span>
           </span>
         )}

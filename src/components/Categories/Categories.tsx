@@ -1,31 +1,27 @@
-import { useQuery } from "@tanstack/react-query";
+import { memo, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchCategories } from "../../api/categories";
+import { CategoryContext } from "../../contexts/CategoryProvider";
 import styles from "./Categories.module.css";
 
 interface Props {
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Categories(props: Props) {
+const Categories = memo((props: Props) => {
   const { setIsOpen } = props;
   const navigate = useNavigate();
   const selectedCategory = useParams().category;
-
-  const query = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
-  });
+  const categories = useContext(CategoryContext);
 
   const handleClick = (route: string) => {
     navigate(new URL(`/blog/${route}`, window.location.origin).pathname);
     setIsOpen && setIsOpen(false);
   };
 
-  if (!query.data) return null;
+  if (!categories) return null;
   return (
     <ul className={styles.categories}>
-      {query.data.map((category) => (
+      {categories.map((category) => (
         <li
           className={`${styles.item} ${
             category.slug === selectedCategory && styles.active
@@ -38,6 +34,6 @@ function Categories(props: Props) {
       ))}
     </ul>
   );
-}
+});
 
 export default Categories;
