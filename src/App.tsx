@@ -9,9 +9,7 @@ export function App() {
     <div className={styles.app}>
       <Header />
       <main className={styles.main}>
-        <div className={styles.container}>
           <Outlet />
-        </div>
       </main>
       <Footer />
       <ScrollToTopButton />

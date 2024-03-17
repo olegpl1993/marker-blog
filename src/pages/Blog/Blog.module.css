@@ -4,8 +4,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
-  width: 100%;
-  min-width: 100%;
+  max-width: 1600px;
   min-height: calc(100dvh - 100px - 50px);
   padding: 10px;
 }
