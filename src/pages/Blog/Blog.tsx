@@ -10,7 +10,7 @@ import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
 import Sidebar from "./Sidebar/Sidebar";
 
-function Blog() {
+export function Blog() {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
@@ -64,5 +64,3 @@ function Blog() {
     </div>
   );
 }
-
-export default Blog;

@@ -9,7 +9,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
 
-function Topic() {
+export function Topic() {
   const { id } = useParams();
   const categories = useContext(CategoryContext);
 
@@ -81,5 +81,3 @@ function Topic() {
     </div>
   );
 }
-
-export default Topic;

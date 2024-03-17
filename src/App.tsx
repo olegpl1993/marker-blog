@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
 
-function App() {
+export function App() {
   return (
     <div className={styles.app}>
       <Header />
@@ -18,5 +18,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

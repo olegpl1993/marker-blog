@@ -1,30 +1,45 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import Blog from "./pages/Blog/Blog";
-import Topic from "./pages/Topic/Topic";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    lazy: async () => {
+      const { App } = await import("./App");
+      return { Component: App };
+    },
+    errorElement: <PageNotFound />,
     children: [
       {
         path: "/",
-        element: <Blog />,
+        lazy: async () => {
+          const { Blog } = await import("./pages/Blog/Blog");
+          return { Component: Blog };
+        },
+        errorElement: <PageNotFound />,
       },
       {
         path: "blog",
-        element: <Blog />,
+        lazy: async () => {
+          const { Blog } = await import("./pages/Blog/Blog");
+          return { Component: Blog };
+        },
+        errorElement: <PageNotFound />,
       },
       {
         path: "topic/:id",
-        element: <Topic />,
+        lazy: async () => {
+          const { Topic } = await import("./pages/Topic/Topic");
+          return { Component: Topic };
+        },
         errorElement: <PageNotFound />,
       },
       {
         path: "blog/:category",
-        element: <Blog />,
+        lazy: async () => {
+          const { Blog } = await import("./pages/Blog/Blog");
+          return { Component: Blog };
+        },
         errorElement: <PageNotFound />,
       },
       {
