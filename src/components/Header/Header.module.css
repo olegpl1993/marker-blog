@@ -26,6 +26,6 @@
 .logo {
   font-size: 30px;
   font-weight: 700;
-  color: var(--logo-color);
+  color: var(--text-color-secondary);
   cursor: pointer;
 }

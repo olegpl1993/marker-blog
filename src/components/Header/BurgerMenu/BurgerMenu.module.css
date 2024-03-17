@@ -9,7 +9,7 @@
 }
 
 .burgerIcon {
-  color: var(--logo-color);
+  color: var(--text-color-secondary);
 }
 
 .content {

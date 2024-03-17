@@ -1,29 +1,27 @@
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { memo, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchCategories } from "../../../api/categories";
 import { fetchMediaLink } from "../../../api/mediaLink";
+import SpinnerCircle from "../../../components/SpinnerCircle/SpinnerCircle";
+import { CategoryContext } from "../../../contexts/CategoryProvider";
 import { PostType } from "../../../types/post.types";
-import { createCategoriesString } from "../../../utils/Categories.utils";
+import { createCategoriesString } from "../../../utils/category.utils";
 import styles from "./Card.module.css";
 
 interface Props {
   post: PostType;
 }
 
-function Card(props: Props) {
+const Card = memo((props: Props) => {
   const { post } = props;
   const navigate = useNavigate();
+  const categories = useContext(CategoryContext);
 
   const imageQuery = useQuery({
     queryKey: ["image", post.featured_media],
     queryFn: () => fetchMediaLink(post.featured_media),
-  });
-
-  const categoriesQuery = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
   });
 
   const createMarkup = () => {
@@ -37,7 +35,11 @@ function Card(props: Props) {
   return (
     <div className={styles.card}>
       <div className={styles.imageBox}>
-        {imageQuery.isLoading && <p>Loading...</p>}
+        {imageQuery.isLoading && (
+          <div>
+            <SpinnerCircle />
+          </div>
+        )}
         {imageQuery.data === null && (
           <img
             className={styles.image}
@@ -67,11 +69,23 @@ function Card(props: Props) {
             </div>
           </div>
 
-          {categoriesQuery.data && (
-            <p className={styles.category}>
-              {createCategoriesString(categoriesQuery.data, post.categories)}
-            </p>
-          )}
+          <div className={styles.strings}>
+            {post.genre && (
+              <span>
+                Жанри: <span className={styles.string}>{post.genre}</span>
+              </span>
+            )}
+
+            {categories && (
+              <span>
+                Платформи:{" "}
+                <span className={styles.string}>
+                  {createCategoriesString(categories, post.categories)}
+                </span>
+              </span>
+            )}
+          </div>
+
           <div
             className={styles.content}
             dangerouslySetInnerHTML={createMarkup()}
@@ -84,8 +98,8 @@ function Card(props: Props) {
             onClick={() => navigate(`/topic/${post.id}`)}
             sx={{
               height: "40px",
-              color: "var(--title-color)",
-              borderColor: "var(--title-color)",
+              color: "var(--secondary-color)",
+              borderColor: "var(--secondary-color)",
               borderRadius: "8px",
               fontSize: "15px",
               fontWeight: "600",
@@ -100,6 +114,6 @@ function Card(props: Props) {
       </div>
     </div>
   );
-}
+});
 
 export default Card;

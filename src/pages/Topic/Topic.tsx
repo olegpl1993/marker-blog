@@ -1,25 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { fetchCategories } from "../../api/categories";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
-import { createCategoriesString } from "../../utils/Categories.utils";
-import PageNotFound from "../PageNotFound/PageNotFound";
+import { CategoryContext } from "../../contexts/CategoryProvider";
+import { createCategoriesString } from "../../utils/category.utils";
+import { Page404 } from "../Page404/Page404";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
 
-function Topic() {
+export function Topic() {
   const { id } = useParams();
+  const categories = useContext(CategoryContext);
 
   const postQuery = useQuery({
     queryKey: ["postById", id],
     queryFn: () => fetchPostById(id!),
     enabled: !!id,
-  });
-
-  const categoriesQuery = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
   });
 
   const createMarkup = () => {
@@ -34,7 +31,7 @@ function Topic() {
       </div>
     );
 
-  if (!postQuery.data) return <PageNotFound />;
+  if (!postQuery.data) return <Page404 />;
 
   return (
     <div className={styles.topic}>
@@ -50,14 +47,11 @@ function Topic() {
             <span className={styles.string}>{postQuery.data?.genre}</span>
           </span>
         )}
-        {categoriesQuery.data && postQuery.data?.categories && (
+        {categories && postQuery.data?.categories && (
           <span>
             Платформи:{" "}
             <span className={styles.string}>
-              {createCategoriesString(
-                categoriesQuery.data,
-                postQuery.data?.categories
-              )}
+              {createCategoriesString(categories, postQuery.data?.categories)}
             </span>
           </span>
         )}
@@ -87,5 +81,3 @@ function Topic() {
     </div>
   );
 }
-
-export default Topic;

@@ -1,15 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { fetchCategories } from "../../api/categories";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import styles from "./Header.module.css";
 
 function Header() {
   const navigate = useNavigate();
-  const query = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
-  });
 
   const handleClick = () => {
     navigate(new URL(`/`, window.location.origin).pathname);
@@ -23,7 +17,7 @@ function Header() {
         className={styles.logoImg}
         onClick={handleClick}
       />
-      <BurgerMenu categories={query.data} />
+      <BurgerMenu />
     </header>
   );
 }

@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--logo-color);
+  color: var(--text-color-secondary);
   background-color: var(--primary-color);
 }
 

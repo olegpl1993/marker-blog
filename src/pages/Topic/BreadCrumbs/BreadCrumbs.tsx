@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { fetchCategories } from "../../../api/categories";
+import { CategoryContext } from "../../../contexts/CategoryProvider";
 import styles from "./BreadCrumbs.module.css";
 
 interface Props {
@@ -10,14 +10,9 @@ interface Props {
 
 function BreadCrumbs(props: Props) {
   const { categories, title } = props;
+  const categoriesList = useContext(CategoryContext);
 
-  const categoriesQuery = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
-  });
-
-  if (!categoriesQuery.data || !categories || !title) return null;
-
+  if (!categoriesList || !categories || !title) return null;
   return (
     <span className={styles.breadCrumbs}>
       <Link to={"/"} className={styles.link}>
@@ -28,7 +23,7 @@ function BreadCrumbs(props: Props) {
         Блог
       </Link>
       <span>{">"}</span>
-      {categoriesQuery.data
+      {categoriesList
         .filter((category) => categories.includes(category.id))
         .map((category, index, array) => (
           <div className={styles.category} key={category.id}>

@@ -1,33 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { fetchCategories } from "../../api/categories";
 import { fetchPosts } from "../../api/posts";
 import Spinner from "../../components/Spinner/Spinner";
-import PageNotFound from "../PageNotFound/PageNotFound";
+import { CategoryContext } from "../../contexts/CategoryProvider";
+import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
 import Sidebar from "./Sidebar/Sidebar";
 
-function Blog() {
+export function Blog() {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
   const page = searchParams.get("page");
+  const categories = useContext(CategoryContext);
 
-  const queryCategories = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => fetchCategories(),
-    enabled: !!category,
-  });
-
-  const categoryID = queryCategories.data?.find(
-    (item) => item.slug === category
-  )?.id;
-
-  const categoryName = queryCategories.data?.find(
-    (item) => item.slug === category
-  )?.name;
+  const categoryID = categories?.find((item) => item.slug === category)?.id;
+  const categoryName = categories?.find((item) => item.slug === category)?.name;
 
   const queryPosts = useQuery({
     queryKey: ["posts", categoryID, search, page],
@@ -44,7 +35,7 @@ function Blog() {
       </div>
     );
 
-  if (queryPosts.isError) return <PageNotFound />;
+  if (queryPosts.isError) return <Page404 />;
 
   return (
     <div className={styles.blog}>
@@ -64,14 +55,10 @@ function Blog() {
               </div>
             ))
           )}
-          {totalPages && totalPages > 1 && (
-            <PaginationBlog totalPages={totalPages} />
-          )}
+          {totalPages > 1 && <PaginationBlog totalPages={totalPages} />}
         </div>
         <Sidebar />
       </div>
     </div>
   );
 }
-
-export default Blog;
