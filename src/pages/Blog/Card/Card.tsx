@@ -69,11 +69,23 @@ const Card = memo((props: Props) => {
             </div>
           </div>
 
-          {categories && (
-            <p className={styles.category}>
-              {createCategoriesString(categories, post.categories)}
-            </p>
-          )}
+          <div className={styles.strings}>
+            {post.genre && (
+              <span>
+                Жанри: <span className={styles.string}>{post.genre}</span>
+              </span>
+            )}
+
+            {categories && (
+              <span>
+                Платформи:{" "}
+                <span className={styles.string}>
+                  {createCategoriesString(categories, post.categories)}
+                </span>
+              </span>
+            )}
+          </div>
+
           <div
             className={styles.content}
             dangerouslySetInnerHTML={createMarkup()}
