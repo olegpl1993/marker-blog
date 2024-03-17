@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { memo, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchMediaLink } from "../../../api/mediaLink";
+import SpinnerCircle from "../../../components/SpinnerCircle/SpinnerCircle";
 import { CategoryContext } from "../../../contexts/CategoryProvider";
 import { PostType } from "../../../types/post.types";
 import { createCategoriesString } from "../../../utils/category.utils";
@@ -34,7 +35,11 @@ const Card = memo((props: Props) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageBox}>
-        {imageQuery.isLoading && <p>Loading...</p>}
+        {imageQuery.isLoading && (
+          <div>
+            <SpinnerCircle />
+          </div>
+        )}
         {imageQuery.data === null && (
           <img
             className={styles.image}
