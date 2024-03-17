@@ -55,9 +55,7 @@ export function Blog() {
               </div>
             ))
           )}
-          {totalPages && totalPages > 1 && (
-            <PaginationBlog totalPages={totalPages} />
-          )}
+          {totalPages > 1 && <PaginationBlog totalPages={totalPages} />}
         </div>
         <Sidebar />
       </div>
