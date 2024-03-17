@@ -5,7 +5,7 @@ import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { createCategoriesString } from "../../utils/category.utils";
-import PageNotFound from "../PageNotFound/PageNotFound";
+import { Page404 } from "../Page404/Page404";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
 
@@ -31,7 +31,7 @@ export function Topic() {
       </div>
     );
 
-  if (!postQuery.data) return <PageNotFound />;
+  if (!postQuery.data) return <Page404 />;
 
   return (
     <div className={styles.topic}>

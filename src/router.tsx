@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -8,7 +7,6 @@ const router = createBrowserRouter([
       const { App } = await import("./App");
       return { Component: App };
     },
-    errorElement: <PageNotFound />,
     children: [
       {
         path: "/",
@@ -16,7 +14,6 @@ const router = createBrowserRouter([
           const { Blog } = await import("./pages/Blog/Blog");
           return { Component: Blog };
         },
-        errorElement: <PageNotFound />,
       },
       {
         path: "blog",
@@ -24,7 +21,6 @@ const router = createBrowserRouter([
           const { Blog } = await import("./pages/Blog/Blog");
           return { Component: Blog };
         },
-        errorElement: <PageNotFound />,
       },
       {
         path: "topic/:id",
@@ -32,7 +28,6 @@ const router = createBrowserRouter([
           const { Topic } = await import("./pages/Topic/Topic");
           return { Component: Topic };
         },
-        errorElement: <PageNotFound />,
       },
       {
         path: "blog/:category",
@@ -40,11 +35,13 @@ const router = createBrowserRouter([
           const { Blog } = await import("./pages/Blog/Blog");
           return { Component: Blog };
         },
-        errorElement: <PageNotFound />,
       },
       {
         path: "*",
-        element: <PageNotFound />,
+        lazy: async () => {
+          const { Page404 } = await import("./pages/Page404/Page404");
+          return { Component: Page404 };
+        },
       },
     ],
   },

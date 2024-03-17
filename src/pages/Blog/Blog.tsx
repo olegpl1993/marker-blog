@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
-import PageNotFound from "../PageNotFound/PageNotFound";
+import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
@@ -35,7 +35,7 @@ export function Blog() {
       </div>
     );
 
-  if (queryPosts.isError) return <PageNotFound />;
+  if (queryPosts.isError) return <Page404 />;
 
   return (
     <div className={styles.blog}>
