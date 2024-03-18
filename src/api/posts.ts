@@ -3,12 +3,14 @@ import { PostType } from "../types/post.types";
 
 export const fetchPosts = async (
   categoryID: number | undefined,
+  tagsID: number | undefined,
   search: string | null,
   page: string | null
 ) => {
   try {
     const url = new URL("posts", WORDPRESS_BASE_API_URL);
     if (categoryID) url.searchParams.append("categories", String(categoryID));
+    if (tagsID) url.searchParams.append("tags", String(tagsID));
     if (search) url.searchParams.append("search", search);
     if (page) url.searchParams.append("page", page);
 

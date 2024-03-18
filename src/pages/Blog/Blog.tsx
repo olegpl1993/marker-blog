@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
+import { TagContext } from "../../contexts/TagProvider";
 import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
@@ -13,16 +14,21 @@ import Sidebar from "./Sidebar/Sidebar";
 export function Blog() {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
+
   const search = searchParams.get("search");
   const page = searchParams.get("page");
+  const tagsSearchParams = searchParams.get("tags");
+
   const categories = useContext(CategoryContext);
+  const tags = useContext(TagContext);
 
   const categoryID = categories?.find((item) => item.slug === category)?.id;
   const categoryName = categories?.find((item) => item.slug === category)?.name;
+  const tagID = tags?.find((item) => item.slug === tagsSearchParams)?.id;
 
   const queryPosts = useQuery({
-    queryKey: ["posts", categoryID, search, page],
-    queryFn: () => fetchPosts(categoryID, search, page),
+    queryKey: ["posts", categoryID, tagID, search, page],
+    queryFn: () => fetchPosts(categoryID, tagID, search, page),
     enabled: category ? !!categoryID : true,
   });
 

@@ -1,0 +1,29 @@
+.tags {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.item {
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: var(--secondary-color);
+}
+.item:hover {
+  color: var(--primary-color);
+}
+
+.active {
+  text-decoration: underline;
+}
