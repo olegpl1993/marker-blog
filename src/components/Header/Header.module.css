@@ -5,14 +5,17 @@
   width: 100%;
   height: 100px;
   padding-right: 20px;
-  background-color: var(--primary-color);
-  overflow: hidden;
+  background-color: var(--bg-color-secondary);
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logoImg {
   width: 270px;
   height: 230px;
-  transform: rotate(-15deg) translateY(-5px);
+  transform: rotate(-15deg) translateY(5px);
   cursor: pointer;
 }
 
