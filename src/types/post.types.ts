@@ -25,6 +25,7 @@ export interface PostType {
   release: string;
   publisher: string;
   genre: string;
+  platform: string;
   developer: string;
   _links: Links;
 }
