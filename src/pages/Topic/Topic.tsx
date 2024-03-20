@@ -1,17 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchPostById } from "../../api/postById";
 import Spinner from "../../components/Spinner/Spinner";
-import { CategoryContext } from "../../contexts/CategoryProvider";
-import { createCategoriesString } from "../../utils/category.utils";
 import { Page404 } from "../Page404/Page404";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
 
 export function Topic() {
   const { id } = useParams();
-  const categories = useContext(CategoryContext);
 
   const postQuery = useQuery({
     queryKey: ["postById", id],
@@ -47,12 +43,10 @@ export function Topic() {
             <span className={styles.string}>{postQuery.data?.genre}</span>
           </span>
         )}
-        {categories && postQuery.data?.categories && (
+        {postQuery.data?.platform && (
           <span>
             Платформи:{" "}
-            <span className={styles.string}>
-              {createCategoriesString(categories, postQuery.data?.categories)}
-            </span>
+            <span className={styles.string}>{postQuery.data?.platform}</span>
           </span>
         )}
         {postQuery.data?.developer && (

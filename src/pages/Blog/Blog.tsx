@@ -9,6 +9,7 @@ import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
 import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
+import Selected from "./Selected/Selected";
 import Sidebar from "./Sidebar/Sidebar";
 
 export function Blog() {
@@ -23,7 +24,6 @@ export function Blog() {
   const tags = useContext(TagContext);
 
   const categoryID = categories?.find((item) => item.slug === category)?.id;
-  const categoryName = categories?.find((item) => item.slug === category)?.name;
   const tagID = tags?.find((item) => item.slug === tagsSearchParams)?.id;
 
   const queryPosts = useQuery({
@@ -45,11 +45,14 @@ export function Blog() {
 
   return (
     <div className={styles.blog}>
-      {categoryName && (
-        <h1 className={styles.title}>
-          Категорія: <span className={styles.category}>{categoryName}</span>
-        </h1>
+      {(category || tagsSearchParams || search) && (
+        <Selected
+          category={category}
+          tagsSearchParams={tagsSearchParams}
+          search={search}
+        />
       )}
+
       <div className={styles.wrapper}>
         <div className={styles.content}>
           {queryPosts.data?.data?.length === 0 ? (
