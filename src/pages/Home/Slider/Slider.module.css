@@ -1,0 +1,58 @@
+.slider {
+  width: 100%;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  user-select: none;
+}
+
+.swiperSlide {
+  background-position: center;
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .swiperSlide {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.swiperSlide img {
+  display: block;
+  width: 100%;
+}
+
+.string {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--secondary-color);
+  left: 50%;
+  top: 2%;
+  transform: translate(-50%, 0%);
+  cursor: pointer;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s linear;
+}
+
+@media screen and (max-width: 768px) {
+  .string {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .string:hover {
+    color: var(--primary-color);
+    transform: translate(-50%, 0%) scale(1.1);
+  }
+}
