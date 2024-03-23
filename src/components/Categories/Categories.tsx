@@ -14,8 +14,8 @@ const Categories = memo((props: Props) => {
   const categories = useContext(CategoryContext);
 
   const handleClick = (route: string) => {
-    navigate(new URL(`/blog/${route}`, window.location.origin).pathname);
-    setIsOpen && setIsOpen(false);
+    navigate(`/blog/${route}`);
+    if (setIsOpen) setIsOpen(false);
   };
 
   if (!categories) return null;

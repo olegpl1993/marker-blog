@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import styles from "./Header.module.css";
+import Menu from "./Menu/Menu";
 
 function Header() {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ function Header() {
         className={styles.logoImg}
         onClick={handleClick}
       />
+
+      <Menu />
       <BurgerMenu />
     </header>
   );

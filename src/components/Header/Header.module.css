@@ -4,12 +4,17 @@
   justify-content: space-between;
   width: 100%;
   height: 100px;
-  padding-right: 20px;
   background-color: var(--bg-color-secondary);
-  padding: 20px;
+  padding: 0px 30px;
   color: #fff;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0px 10px;
+  }
 }
 
 .logoImg {

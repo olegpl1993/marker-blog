@@ -1,7 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton, TextField } from "@mui/material";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Search.module.css";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 
 function Search(props: Props) {
   const { setIsOpen } = props;
+  const navigate = useNavigate();
   const [, setSearchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState("");
 
@@ -20,8 +21,12 @@ function Search(props: Props) {
   };
 
   const handleSearch = () => {
-    setSearchParams({ search: searchInput });
-    setIsOpen && setIsOpen(false);
+    const isOnBlogPage = /^\/blog(?:\/.*)?$/.test(window.location.pathname);
+    const targetUrl = isOnBlogPage ? null : `/blog?search=${searchInput}`;
+  
+    if (isOnBlogPage) setSearchParams({ search: searchInput });
+    if (targetUrl) navigate(targetUrl);
+    if (setIsOpen) setIsOpen(false);
   };
 
   const handleOnKeyDownEnter = (
