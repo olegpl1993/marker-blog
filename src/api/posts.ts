@@ -2,10 +2,10 @@ import { WORDPRESS_BASE_API_URL } from "../constants/urls";
 import { PostType } from "../types/post.types";
 
 export const fetchPosts = async (
-  categoryID: number | undefined,
-  tagsID: number | undefined,
-  search: string | null,
-  page: string | null
+  categoryID?: number | undefined,
+  tagsID?: number | undefined,
+  search?: string | null | undefined,
+  page?: string | null | undefined
 ) => {
   try {
     const url = new URL("posts", WORDPRESS_BASE_API_URL);
