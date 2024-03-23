@@ -9,6 +9,7 @@ import styles from "./Slider.module.css";
 function Slider() {
   return (
     <div className={styles.slider}>
+      <div className={styles.title}>Виберіть категорію</div>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
