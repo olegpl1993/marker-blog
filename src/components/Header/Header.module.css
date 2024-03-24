@@ -5,7 +5,8 @@
   width: 100%;
   height: 100px;
   background-color: var(--bg-color-secondary);
-  padding: 0px 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   color: #fff;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -13,7 +14,8 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    padding: 0px 10px;
+    padding-left: 10px;
+    padding-right: 20px;
   }
 }
 

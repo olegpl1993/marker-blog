@@ -32,12 +32,19 @@
   height: 400px;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
   .swiperSlide {
     width: 300px;
     height: 300px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .swiperSlide:hover .string {
+    color: var(--primary-color);
   }
 }
 
@@ -53,7 +60,7 @@
   text-align: center;
   color: var(--secondary-color);
   left: 50%;
-  top: 2%;
+  top: 3%;
   transform: translate(-50%, 0%);
   cursor: pointer;
   transition: all 0.1s linear;
@@ -62,12 +69,5 @@
 @media screen and (max-width: 768px) {
   .string {
     font-size: 24px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .string:hover {
-    color: var(--primary-color);
-    transform: translate(-50%, 0%) scale(1.1);
   }
 }

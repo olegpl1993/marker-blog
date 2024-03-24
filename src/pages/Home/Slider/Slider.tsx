@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -7,9 +7,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Slider.module.css";
 
 function Slider() {
+  const navigate = useNavigate();
+
+  const handleClick = (category: string) => {
+    navigate(`/blog/${category}`);
+  };
+
   return (
     <div className={styles.slider}>
-      <div className={styles.title}>Виберіть категорію</div>
+      <div className={styles.title}>Категорії</div>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -27,46 +33,53 @@ function Slider() {
         initialSlide={3}
         className={styles.swiper}
       >
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/mobile" className={styles.string}>
-            Mobile
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("mobile")}
+        >
+          <span className={styles.string}>Mobile</span>
           <img src="/phone.jpg" />
         </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/nintendo-switch" className={styles.string}>
-            Nintendo Switch
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("nintendo-switch")}
+        >
+          <span className={styles.string}>Nintendo Switch</span>
           <img src="/nintendo.jpg" />
         </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/playstation-4" className={styles.string}>
-            PlayStation 4
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("playstation-4")}
+        >
+          <span className={styles.string}>PlayStation 4</span>
           <img src="/ps4.jpg" />
         </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/playstation-5" className={styles.string}>
-            PlayStation 5
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("playstation-5")}
+        >
+          <span className={styles.string}>PlayStation 5</span>
           <img src="/ps5.jpg" />
         </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/windows" className={styles.string}>
-            Windows
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("windows")}
+        >
+          <span className={styles.string}>Windows</span>
           <img src="/pc.jpg" />
         </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/xbox-one" className={styles.string}>
-            Xbox One
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("xbox-one")}
+        >
+          <span className={styles.string}>Xbox One</span>
           <img src="/xboxone.jpg" />
         </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <Link to="blog/xbox-series-x-s" className={styles.string}>
-            Xbox Series X|S
-          </Link>
+        <SwiperSlide
+          className={styles.swiperSlide}
+          onClick={() => handleClick("xbox-series-x-s")}
+        >
+          <span className={styles.string}>Xbox Series X|S</span>
           <img src="/xboxXS.jpg" />
         </SwiperSlide>
       </Swiper>
