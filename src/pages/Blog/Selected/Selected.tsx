@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CategoryContext } from "../../../contexts/CategoryProvider";
 import { TagContext } from "../../../contexts/TagProvider";
 import styles from "./Selected.module.css";
@@ -19,11 +20,35 @@ function Selected(pros: Props) {
 
   return (
     <div className={styles.selected}>
-      {categoryName && <h1 className={styles.title}>{categoryName}</h1>}
-      {categoryName && tagName && <h2 className={styles.title}>{">"}</h2>}
-      {tagName && <h2 className={styles.title}>{tagName}</h2>}
-      {categoryName && search && <h2 className={styles.title}>{">"}</h2>}
-      {search && <h2 className={styles.title}>{search}</h2>}
+      <Link to={"/"} className={styles.link}>
+        Game Marker
+      </Link>
+      <span>{">"}</span>
+      <Link to={"/blog"} className={styles.link}>
+        Блог
+      </Link>
+      {categoryName && (
+        <>
+          <span>{">"}</span>
+          <Link to={`/blog/${category}`} className={styles.link}>
+            {categoryName}
+          </Link>
+        </>
+      )}
+      {tagName && (
+        <>
+          <span>{">"}</span>
+          <Link to={`/blog/?tags=${tagsSearchParams}`} className={styles.link}>
+            {tagName}
+          </Link>
+        </>
+      )}
+      {search && (
+        <>
+          <span>{">"}</span>
+          <span className={styles.title}>{search}</span>
+        </>
+      )}
     </div>
   );
 }

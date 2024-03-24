@@ -45,13 +45,11 @@ export function Blog() {
 
   return (
     <div className={styles.blog}>
-      {(category || tagsSearchParams || search) && (
-        <Selected
-          category={category}
-          tagsSearchParams={tagsSearchParams}
-          search={search}
-        />
-      )}
+      <Selected
+        category={category}
+        tagsSearchParams={tagsSearchParams}
+        search={search}
+      />
 
       <div className={styles.wrapper}>
         <div className={styles.content}>
