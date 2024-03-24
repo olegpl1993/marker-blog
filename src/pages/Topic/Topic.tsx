@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { fetchPostById } from "../../api/postById";
+import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
 import { Page404 } from "../Page404/Page404";
-import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import styles from "./Topic.module.css";
 
 export function Topic() {
