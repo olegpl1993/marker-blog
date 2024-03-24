@@ -6,16 +6,7 @@
   max-width: 1200px;
   min-height: calc(100dvh - 100px - 50px);
   gap: 20px;
-  padding-bottom: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-@media screen and (max-width: 768px) {
-  .topic {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+  padding: 10px;
 }
 
 .title {

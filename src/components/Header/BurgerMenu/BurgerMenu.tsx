@@ -1,6 +1,7 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import { memo, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CategoryContext } from "../../../contexts/CategoryProvider";
 import Categories from "../../Categories/Categories";
 import Modal from "../../Modal/Modal";
@@ -11,6 +12,12 @@ import styles from "./BurgerMenu.module.css";
 const BurgerMenu = memo(() => {
   const categories = useContext(CategoryContext);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = (link: string) => {
+    navigate(new URL(link, window.location.origin).pathname);
+    setIsOpen(false);
+  };
 
   const handleOpen = () => setIsOpen(true);
 
@@ -22,7 +29,13 @@ const BurgerMenu = memo(() => {
       </IconButton>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className={styles.content}>
-          <Search />
+          <div className={styles.link} onClick={() => handleClick("/")}>
+            Головна
+          </div>
+          <div className={styles.link} onClick={() => handleClick("/blog")}>
+            Блог
+          </div>
+          <Search setIsOpen={setIsOpen} />
           <span className={styles.title}>Категорії</span>
           <Categories setIsOpen={setIsOpen} />
           <span className={styles.title}>Теги</span>

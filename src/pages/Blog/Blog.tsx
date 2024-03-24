@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
+import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
+import Card from "../../components/Card/Card";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
 import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
-import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
-import Selected from "./Selected/Selected";
 import Sidebar from "./Sidebar/Sidebar";
 
 export function Blog() {
@@ -45,13 +45,11 @@ export function Blog() {
 
   return (
     <div className={styles.blog}>
-      {(category || tagsSearchParams || search) && (
-        <Selected
-          category={category}
-          tagsSearchParams={tagsSearchParams}
-          search={search}
-        />
-      )}
+      <BreadCrumbs
+        category={category}
+        tagsSearchParams={tagsSearchParams}
+        search={search}
+      />
 
       <div className={styles.wrapper}>
         <div className={styles.content}>
