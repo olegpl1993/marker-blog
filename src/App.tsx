@@ -15,9 +15,9 @@ export function App() {
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/:category" element={<Blog />} />
-          <Route path="topic/:id" element={<Topic />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:category" element={<Blog />} />
+          <Route path="/topic/:id" element={<Topic />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </main>

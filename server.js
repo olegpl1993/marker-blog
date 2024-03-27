@@ -5,10 +5,6 @@ const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || "/";
 
-const templateHtml = isProduction
-  ? await fs.readFile("./dist/client/index.html", "utf-8")
-  : "";
-
 const app = express();
 
 let vite;
@@ -38,15 +34,13 @@ app.use("*", async (req, res) => {
       template = await vite.transformIndexHtml(url, template);
       render = (await vite.ssrLoadModule("/src/entry-server.tsx")).render;
     } else {
-      template = templateHtml;
+      template = await fs.readFile("./dist/client/index.html", "utf-8");
       render = (await import("./dist/server/entry-server.js")).render;
     }
 
     const rendered = await render(url);
 
-    const html = template
-      .replace(`<!--app-head-->`, rendered.head ?? "")
-      .replace(`<!--app-html-->`, rendered.html ?? "");
+    const html = template.replace(`<!--app-html-->`, rendered.html ?? "");
 
     res.status(200).set({ "Content-Type": "text/html" }).send(html);
   } catch (e) {
