@@ -1,4 +1,3 @@
-import SearchIcon from "@mui/icons-material/Search";
 import { IconButton, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -23,7 +22,7 @@ function Search(props: Props) {
   const handleSearch = () => {
     const isOnBlogPage = /^\/blog(?:\/.*)?$/.test(window.location.pathname);
     const targetUrl = isOnBlogPage ? null : `/blog?search=${searchInput}`;
-  
+
     if (isOnBlogPage) setSearchParams({ search: searchInput });
     if (targetUrl) navigate(targetUrl);
     if (setIsOpen) setIsOpen(false);
@@ -53,9 +52,14 @@ function Search(props: Props) {
 
       <IconButton
         onClick={handleSearch}
-        sx={{ position: "absolute", right: "0" }}
+        sx={{
+          position: "absolute",
+          right: "0",
+          fontSize: "16px",
+          color: "var(--secondary-color)",
+        }}
       >
-        <SearchIcon />
+        {"o_O"}
       </IconButton>
     </div>
   );
