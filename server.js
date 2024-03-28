@@ -18,9 +18,14 @@ if (isProduction) {
       const url = req.originalUrl;
       const template = await fs.readFile("./dist/client/index.html", "utf-8");
       const render = (await import("./dist/server/entry-server.js")).render;
-      const rendered = await render(url);
-      const html = template.replace(`<!--app-html-->`, rendered.html ?? "");
-      res.status(200).set({ "Content-Type": "text/html" }).send(html);
+      const HTML = template.split("<!--app-html-->");
+      const stream = await render(url, {
+        onShellReady() {
+          res.write(HTML[0]);
+          stream.pipe(res);
+          res.write(HTML[1]);
+        },
+      });
     } catch (e) {
       console.log(e.stack);
       res.status(500).end(e.stack);
@@ -41,12 +46,14 @@ if (isProduction) {
       let template = await fs.readFile("./index.html", "utf-8");
       const transformHtml = await vite.transformIndexHtml(url, template);
       let render = (await vite.ssrLoadModule("/src/entry-server.tsx")).render;
-      const rendered = await render(url);
-      const html = transformHtml.replace(
-        `<!--app-html-->`,
-        rendered.html ?? ""
-      );
-      res.status(200).set({ "Content-Type": "text/html" }).send(html);
+      const HTML = transformHtml.split("<!--app-html-->");
+      const stream = await render(url, {
+        onShellReady() {
+          res.write(HTML[0]);
+          stream.pipe(res);
+          res.write(HTML[1]);
+        },
+      });
     } catch (e) {
       vite?.ssrFixStacktrace(e);
       console.log(e.stack);

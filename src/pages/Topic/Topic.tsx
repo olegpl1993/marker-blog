@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { fetchPostById } from "../../api/postById";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
-import { Page404 } from "../Page404/Page404";
+import Page404 from "../Page404/Page404";
 import styles from "./Topic.module.css";
 
-export function Topic() {
+function Topic() {
   const { id } = useParams();
 
   const postQuery = useQuery({
@@ -75,3 +75,5 @@ export function Topic() {
     </div>
   );
 }
+
+export default Topic;

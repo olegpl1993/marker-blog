@@ -6,7 +6,7 @@ import styles from "./Home.module.css";
 import Recommended from "./Recommended/Recommended";
 import Slider from "./Slider/Slider";
 
-export function Home() {
+function Home() {
   const categories = useContext(CategoryContext);
   const tags = useContext(TagContext);
 
@@ -24,3 +24,5 @@ export function Home() {
     </div>
   );
 }
+
+export default Home;

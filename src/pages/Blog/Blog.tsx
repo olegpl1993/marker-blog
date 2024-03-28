@@ -7,12 +7,12 @@ import Card from "../../components/Card/Card";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
-import { Page404 } from "../Page404/Page404";
+import Page404 from "../Page404/Page404";
 import styles from "./Blog.module.css";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
 import Sidebar from "./Sidebar/Sidebar";
 
-export function Blog() {
+function Blog() {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
 
@@ -69,3 +69,5 @@ export function Blog() {
     </div>
   );
 }
+
+export default Blog;

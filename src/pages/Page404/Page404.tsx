@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Page404.module.css";
 
-export function Page404() {
+function Page404() {
   return (
     <div className={styles.page404}>
       <Link to={"/"} className={styles.link}>
@@ -17,3 +17,5 @@ export function Page404() {
     </div>
   );
 }
+
+export default Page404;

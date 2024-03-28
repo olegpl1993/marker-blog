@@ -2,11 +2,16 @@ import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import Root from "./Root";
 
-export function render(url: string) {
-  const html = ReactDOMServer.renderToString(
+interface Options {
+  onShellReady: () => void;
+}
+
+export function render(url: string, options: Options) {
+  const stream = ReactDOMServer.renderToPipeableStream(
     <StaticRouter location={url}>
       <Root />
-    </StaticRouter>
+    </StaticRouter>,
+    options
   );
-  return { html };
+  return stream;
 }
