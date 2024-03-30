@@ -19,9 +19,12 @@ if (isProduction) {
       const template = await fs.readFile("./dist/client/index.html", "utf-8");
       const render = (await import("./dist/server/entry-server.js")).render;
       const HTML = template.split("<!--app-html-->");
-      const stream = await render(url, {
+      const { stream, helmetContext } = await render(url, {
         onShellReady() {
-          res.write(HTML[0]);
+          const { helmet } = helmetContext;
+          const helmetHTML = helmet.title.toString() + helmet.meta.toString();
+
+          res.write(HTML[0].replace("<!--app-helmet-->", helmetHTML));
           stream.pipe(res);
           res.write(HTML[1]);
         },
