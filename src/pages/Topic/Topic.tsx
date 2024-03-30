@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { fetchPostById } from "../../api/postById";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
@@ -31,6 +32,30 @@ export function Topic() {
 
   return (
     <div className={styles.topic}>
+      <Helmet>
+        <title>{postQuery.data?.title.rendered} - Game Marker</title>
+        <meta
+          name="description"
+          content={`${postQuery.data?.title.rendered} ${postQuery.data?.release} ${postQuery.data?.genre}`}
+        />
+        <meta
+          name="keywords"
+          content={
+            postQuery.data?.title.rendered +
+            ", " +
+            postQuery.data?.genre +
+            ", " +
+            postQuery.data?.platform +
+            ", " +
+            postQuery.data?.developer +
+            ", " +
+            postQuery.data?.release +
+            ", " +
+            postQuery.data?.publisher
+          }
+        />
+      </Helmet>
+
       <BreadCrumbs
         categories={postQuery.data?.categories}
         title={postQuery.data?.title.rendered}

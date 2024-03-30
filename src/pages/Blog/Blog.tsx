@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
@@ -23,6 +24,8 @@ export function Blog() {
   const categories = useContext(CategoryContext);
   const tags = useContext(TagContext);
 
+  const categoryName = categories?.find((item) => item.slug === category)?.name;
+  const tagName = tags?.find((item) => item.slug === tagsSearchParams)?.name;
   const categoryID = categories?.find((item) => item.slug === category)?.id;
   const tagID = tags?.find((item) => item.slug === tagsSearchParams)?.id;
 
@@ -45,6 +48,20 @@ export function Blog() {
 
   return (
     <div className={styles.blog}>
+      <Helmet>
+        <title>{`${categoryName ? categoryName + " - " : ""} ${
+          tagName ? tagName + " - " : ""
+        } Game Marker Блог`}</title>
+        <meta
+          name="description"
+          content={tags?.map((item) => item.name).join(", ")}
+        />
+        <meta
+          name="keywords"
+          content={categories?.map((item) => item.name).join(", ")}
+        />
+      </Helmet>
+
       <BreadCrumbs
         category={category}
         tagsSearchParams={tagsSearchParams}
