@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom/client";
-import Root from "./Root";
 import { BrowserRouter } from "react-router-dom";
+import { App } from "./App";
 
 ReactDOM.hydrateRoot(
   document.getElementById("root") as HTMLElement,
   <BrowserRouter>
-    <Root />
+    <App />
   </BrowserRouter>
 );

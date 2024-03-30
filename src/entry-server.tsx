@@ -1,6 +1,6 @@
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
-import Root from "./Root";
+import { App } from "./App";
 
 interface Options {
   onShellReady: () => void;
@@ -9,7 +9,7 @@ interface Options {
 export function render(url: string, options: Options) {
   const stream = ReactDOMServer.renderToPipeableStream(
     <StaticRouter location={url}>
-      <Root />
+      <App />
     </StaticRouter>,
     options
   );
