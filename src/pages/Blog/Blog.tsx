@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
@@ -34,38 +35,42 @@ function Blog() {
 
   const totalPages = Number(queryPosts.data?.headers.get("X-WP-TotalPages"));
 
-  if (queryPosts.isLoading)
-    return (
-      <div className={styles.spinnerBox}>
-        <Spinner />
-      </div>
-    );
-
   if (queryPosts.isError) return <Page404 />;
 
   return (
     <div className={styles.blog}>
-      <BreadCrumbs
-        category={category}
-        tagsSearchParams={tagsSearchParams}
-        search={search}
-      />
+      <Helmet>
+        <title>Game Marker | Блог</title>
+      </Helmet>
 
-      <div className={styles.wrapper}>
-        <div className={styles.content}>
-          {queryPosts.data?.data?.length === 0 ? (
-            <div className={styles.noPosts}>Постів не знайдено</div>
-          ) : (
-            queryPosts.data?.data?.map((post) => (
-              <div className={styles.post} key={post.id}>
-                <Card post={post} />
-              </div>
-            ))
-          )}
-          {totalPages > 1 && <PaginationBlog totalPages={totalPages} />}
+      {queryPosts.isLoading ? (
+        <div className={styles.spinnerBox}>
+          <Spinner />
         </div>
-        <Sidebar />
-      </div>
+      ) : (
+        <>
+          <BreadCrumbs
+            category={category}
+            tagsSearchParams={tagsSearchParams}
+            search={search}
+          />
+          <div className={styles.wrapper}>
+            <div className={styles.content}>
+              {queryPosts.data?.data?.length === 0 ? (
+                <div className={styles.noPosts}>Постів не знайдено</div>
+              ) : (
+                queryPosts.data?.data?.map((post) => (
+                  <div className={styles.post} key={post.id}>
+                    <Card post={post} />
+                  </div>
+                ))
+              )}
+              {totalPages > 1 && <PaginationBlog totalPages={totalPages} />}
+            </div>
+            <Sidebar />
+          </div>
+        </>
+      )}
     </div>
   );
 }

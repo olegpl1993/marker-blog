@@ -5,10 +5,10 @@ import styles from "./App.module.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
-import SpinnerCircle from "./components/SpinnerCircle/SpinnerCircle";
 import { CategoryProvider } from "./contexts/CategoryProvider";
 import { TagProvider } from "./contexts/TagProvider";
 import "./styles/index.css";
+import { Helmet } from "react-helmet-async";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Blog = lazy(() => import("./pages/Blog/Blog"));
@@ -23,9 +23,25 @@ export function App() {
       <CategoryProvider>
         <TagProvider>
           <div className={styles.app}>
+            <Helmet>
+              <meta
+                name="description"
+                content="Блог про ігри. Огляди нових і популярних ігор. Публікація новин про ігрову індустрію, анонси майбутніх релізів, оновлень і подій у світі ігор."
+              />
+              <meta
+                name="keywords"
+                content="ігри, огляди ігор, ігрові анонси, ігрова індустрія, games, games reviews, games releases, games news, games events, gaming industry"
+              />
+              <meta property="og:title" content="Game Marker" />
+              <meta
+                property="og:description"
+                content="Блог про ігри. Огляди нових і популярних ігор. Публікація новин про ігрову індустрію, анонси майбутніх релізів, оновлень і подій у світі ігор."
+              />
+              <meta property="og:image" content="/logo-gamepad.png" />
+            </Helmet>
             <Header />
             <main className={styles.main}>
-              <Suspense fallback={<SpinnerCircle />}>
+              <Suspense fallback={null}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/blog" element={<Blog />} />

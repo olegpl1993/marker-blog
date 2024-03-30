@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
@@ -10,17 +11,22 @@ function Home() {
   const categories = useContext(CategoryContext);
   const tags = useContext(TagContext);
 
-  if (!categories || !tags)
-    return (
-      <div className={styles.spinnerBox}>
-        <Spinner />
-      </div>
-    );
-
   return (
     <div className={styles.home}>
-      <Slider />
-      <Recommended />
+      <Helmet>
+        <title>Game Marker</title>
+      </Helmet>
+
+      {!categories || !tags ? (
+        <div className={styles.spinnerBox}>
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          <Slider />
+          <Recommended />
+        </>
+      )}
     </div>
   );
 }

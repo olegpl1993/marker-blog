@@ -43,13 +43,16 @@ if (isProduction) {
   app.use("*", async (req, res) => {
     try {
       const url = req.originalUrl;
-      let template = await fs.readFile("./index.html", "utf-8");
+      const template = await fs.readFile("./index.html", "utf-8");
       const transformHtml = await vite.transformIndexHtml(url, template);
-      let render = (await vite.ssrLoadModule("/src/entry-server.tsx")).render;
+      const render = (await vite.ssrLoadModule("/src/entry-server.tsx")).render;
       const HTML = transformHtml.split("<!--app-html-->");
-      const stream = await render(url, {
+      const { stream, helmetContext } = await render(url, {
         onShellReady() {
-          res.write(HTML[0]);
+          const { helmet } = helmetContext;
+          const helmetHTML = helmet.title.toString() + helmet.meta.toString();
+
+          res.write(HTML[0].replace("<!--app-helmet-->", helmetHTML));
           stream.pipe(res);
           res.write(HTML[1]);
         },
