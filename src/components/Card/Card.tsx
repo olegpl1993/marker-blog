@@ -2,7 +2,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchMediaLink } from "../../api/mediaLink";
 import { PostType } from "../../types/post.types";
 import SpinnerCircle from "../SpinnerCircle/SpinnerCircle";
@@ -14,7 +14,6 @@ interface Props {
 
 const Card = memo((props: Props) => {
   const { post } = props;
-  const navigate = useNavigate();
 
   const imageQuery = useQuery({
     queryKey: ["image", post.featured_media],
@@ -25,13 +24,9 @@ const Card = memo((props: Props) => {
     return { __html: post.excerpt.rendered };
   };
 
-  const selectClick = () => {
-    navigate(`/topic/${post.slug}`);
-  };
-
   return (
     <div className={styles.card}>
-      <div className={styles.imageBox}>
+      <Link className={styles.imageBox} to={`/topic/${post.slug}`}>
         {imageQuery.isLoading && (
           <div>
             <SpinnerCircle />
@@ -41,7 +36,7 @@ const Card = memo((props: Props) => {
           <img
             className={styles.image}
             src={"/imageNotFound.jpg"}
-            onClick={selectClick}
+            alt={"каринка відсутня"}
           />
         )}
         {imageQuery.data && (
@@ -49,17 +44,16 @@ const Card = memo((props: Props) => {
             className={styles.image}
             src={imageQuery.data?.source_url}
             alt={post.title.rendered}
-            onClick={selectClick}
           />
         )}
-      </div>
+      </Link>
 
       <div className={styles.info}>
         <div className={styles.wrapper}>
           <div className={styles.topRow}>
-            <div className={styles.title} onClick={selectClick}>
+            <Link className={styles.title} to={`/topic/${post.slug}`}>
               {post.title.rendered}
-            </div>
+            </Link>
             <div className={styles.dateBox}>
               <CalendarMonthIcon fontSize="small" className={styles.icon} />
               <p className={styles.date}>{post.date.split("T")[0]}</p>
@@ -90,7 +84,7 @@ const Card = memo((props: Props) => {
         <div className={styles.bottomRow}>
           <Button
             variant="outlined"
-            onClick={selectClick}
+            href={`/topic/${post.slug}`}
             sx={{
               height: "40px",
               color: "var(--secondary-color)",

@@ -16,7 +16,7 @@ export function Page404() {
         <img
           className={styles.img}
           src={"/pageNotFound.jpg"}
-          alt="page not found"
+          alt="сторінка не знайдена"
         />
       </div>
     </div>
