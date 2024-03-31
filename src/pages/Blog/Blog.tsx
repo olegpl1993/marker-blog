@@ -46,20 +46,28 @@ export function Blog() {
 
   if (queryPosts.isError) return <Page404 />;
 
+  const description =
+    categoryName || tagName
+      ? `Блог з оглядами нових і популярних ігор ${
+          categoryName ? categoryName : ""
+        } ${tagName ? tagName : ""}.`
+      : `${tags?.map((item) => item.name).join(", ")}`;
+
+  const keywords =
+    categoryName || tagName
+      ? `ігри, огляди ігор, ігрові анонси, ${
+          categoryName ? categoryName : ""
+        } ${tagName ? tagName : ""}.`
+      : `${categories?.map((item) => item.name).join(", ")}`;
+
   return (
     <div className={styles.blog}>
       <Helmet>
         <title>{`${categoryName ? categoryName + " - " : ""} ${
           tagName ? tagName + " - " : ""
         } Game Marker Блог`}</title>
-        <meta
-          name="description"
-          content={tags?.map((item) => item.name).join(", ")}
-        />
-        <meta
-          name="keywords"
-          content={categories?.map((item) => item.name).join(", ")}
-        />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
       </Helmet>
 
       <BreadCrumbs
