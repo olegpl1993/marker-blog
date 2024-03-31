@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "topic/:id",
+        path: "topic/:slug",
         lazy: async () => {
           const { Topic } = await import("./pages/Topic/Topic");
           return { Component: Topic };

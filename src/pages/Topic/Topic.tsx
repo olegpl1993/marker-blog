@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
-import { fetchPostById } from "../../api/postById";
+import { fetchPostBySlug } from "../../api/postBySlug";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
 import { Page404 } from "../Page404/Page404";
 import styles from "./Topic.module.css";
 
 export function Topic() {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const postQuery = useQuery({
-    queryKey: ["postById", id],
-    queryFn: () => fetchPostById(id!),
-    enabled: !!id,
+    queryKey: ["fetchPostBySlug", slug],
+    queryFn: () => fetchPostBySlug(slug!),
+    enabled: !!slug,
   });
 
   const createMarkup = () => {
