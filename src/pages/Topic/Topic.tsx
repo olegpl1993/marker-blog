@@ -36,23 +36,11 @@ export function Topic() {
         <title>{postQuery.data?.title.rendered} - Game Marker</title>
         <meta
           name="description"
-          content={`${postQuery.data?.title.rendered} ${postQuery.data?.release} ${postQuery.data?.genre}`}
+          content={`${postQuery.data?.title.rendered} ${postQuery.data?.release} - ${postQuery.data?.genre}`}
         />
         <meta
           name="keywords"
-          content={
-            postQuery.data?.title.rendered +
-            ", " +
-            postQuery.data?.genre +
-            ", " +
-            postQuery.data?.platform +
-            ", " +
-            postQuery.data?.developer +
-            ", " +
-            postQuery.data?.release +
-            ", " +
-            postQuery.data?.publisher
-          }
+          content={`${postQuery.data?.title.rendered}, ${postQuery.data?.genre}, ${postQuery.data?.developer}, ${postQuery.data?.publisher}`}
         />
       </Helmet>
 

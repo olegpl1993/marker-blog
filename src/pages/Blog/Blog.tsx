@@ -55,7 +55,7 @@ export function Blog() {
 
   const keywords =
     categoryName || tagName
-      ? `ігри, огляди ігор, ігрові анонси, ${
+      ? `Огляди ігор, ігрові анонси, ${
           categoryName ? categoryName : ""
         } ${tagName ? tagName : ""}.`
       : `${categories?.map((item) => item.name).join(", ")}`;
