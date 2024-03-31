@@ -1,5 +1,5 @@
 import { memo, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import styles from "./Categories.module.css";
 
@@ -9,30 +9,29 @@ interface Props {
 
 const Categories = memo((props: Props) => {
   const { setIsOpen } = props;
-  const navigate = useNavigate();
   const selectedCategory = useParams().category;
   const categories = useContext(CategoryContext);
 
-  const handleClick = (route: string) => {
-    navigate(`/blog/${route}`);
+  const handleClose = () => {
     if (setIsOpen) setIsOpen(false);
   };
 
   if (!categories) return null;
   return (
-    <ul className={styles.categories}>
+    <div className={styles.categories}>
       {categories.map((category) => (
-        <li
+        <Link
           className={`${styles.item} ${
             category.slug === selectedCategory && styles.active
           }`}
           key={category.id}
-          onClick={() => handleClick(category.slug)}
+          to={`/blog/${category.slug}`}
+          onClick={handleClose}
         >
           {category.name}
-        </li>
+        </Link>
       ))}
-    </ul>
+    </div>
   );
 });
 

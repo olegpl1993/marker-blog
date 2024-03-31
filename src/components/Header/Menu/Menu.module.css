@@ -15,6 +15,7 @@
 
 .item {
   cursor: pointer;
+  color: var(--text-color-secondary);
 }
 
 .item:hover {

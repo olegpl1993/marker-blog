@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
@@ -23,6 +24,8 @@ export function Blog() {
   const categories = useContext(CategoryContext);
   const tags = useContext(TagContext);
 
+  const categoryName = categories?.find((item) => item.slug === category)?.name;
+  const tagName = tags?.find((item) => item.slug === tagsSearchParams)?.name;
   const categoryID = categories?.find((item) => item.slug === category)?.id;
   const tagID = tags?.find((item) => item.slug === tagsSearchParams)?.id;
 
@@ -43,8 +46,30 @@ export function Blog() {
 
   if (queryPosts.isError) return <Page404 />;
 
+  const description =
+    categoryName || tagName
+      ? `Блог з оглядами нових і популярних ігор ${
+          categoryName ? categoryName : ""
+        } ${tagName ? tagName : ""}.`
+      : `${tags?.map((item) => item.name).join(", ")}`;
+
+  const keywords =
+    categoryName || tagName
+      ? `Огляди ігор, ігрові анонси, ${categoryName ? categoryName : ""} ${
+          tagName ? tagName : ""
+        }.`
+      : `${categories?.map((item) => item.name).join(", ")}`;
+
   return (
     <div className={styles.blog}>
+      <Helmet>
+        <title>{`${categoryName ? categoryName + " - " : ""} ${
+          tagName ? tagName + " - " : ""
+        } Game Marker Блог`}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+      </Helmet>
+
       <BreadCrumbs
         category={category}
         tagsSearchParams={tagsSearchParams}
@@ -52,7 +77,7 @@ export function Blog() {
       />
 
       <div className={styles.wrapper}>
-        <div className={styles.content}>
+        <section className={styles.content}>
           {queryPosts.data?.data?.length === 0 ? (
             <div className={styles.noPosts}>Постів не знайдено</div>
           ) : (
@@ -63,7 +88,7 @@ export function Blog() {
             ))
           )}
           {totalPages > 1 && <PaginationBlog totalPages={totalPages} />}
-        </div>
+        </section>
         <Sidebar />
       </div>
     </div>

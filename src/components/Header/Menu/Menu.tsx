@@ -1,22 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Menu.module.css";
 
 function Menu() {
-  const navigate = useNavigate();
-
-  const handleClick = (link: string) => {
-    navigate(new URL(link, window.location.origin).pathname);
-  };
-
   return (
-    <ul className={styles.menu}>
-      <li className={styles.item} onClick={() => handleClick("/")}>
+    <div className={styles.menu}>
+      <Link className={styles.item} to={"/"}>
         Головна
-      </li>
-      <li className={styles.item} onClick={() => handleClick("/blog")}>
+      </Link>
+      <Link className={styles.item} to={"/blog"}>
         Блог
-      </li>
-    </ul>
+      </Link>
+    </div>
   );
 }
 
