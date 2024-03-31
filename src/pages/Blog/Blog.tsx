@@ -55,9 +55,9 @@ export function Blog() {
 
   const keywords =
     categoryName || tagName
-      ? `Огляди ігор, ігрові анонси, ${
-          categoryName ? categoryName : ""
-        } ${tagName ? tagName : ""}.`
+      ? `Огляди ігор, ігрові анонси, ${categoryName ? categoryName : ""} ${
+          tagName ? tagName : ""
+        }.`
       : `${categories?.map((item) => item.name).join(", ")}`;
 
   return (
@@ -77,7 +77,7 @@ export function Blog() {
       />
 
       <div className={styles.wrapper}>
-        <div className={styles.content}>
+        <section className={styles.content}>
           {queryPosts.data?.data?.length === 0 ? (
             <div className={styles.noPosts}>Постів не знайдено</div>
           ) : (
@@ -88,7 +88,7 @@ export function Blog() {
             ))
           )}
           {totalPages > 1 && <PaginationBlog totalPages={totalPages} />}
-        </div>
+        </section>
         <Sidebar />
       </div>
     </div>

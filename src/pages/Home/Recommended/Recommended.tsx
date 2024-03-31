@@ -22,8 +22,8 @@ function Recommended() {
   if (queryPosts.isError) return null;
 
   return (
-    <div className={styles.recommended}>
-      <div className={styles.title}>Рекомендовані</div>
+    <section className={styles.recommended}>
+      <h2 className={styles.title}>Нові пости</h2>
       <div className={styles.content}>
         {renderPosts &&
           renderPosts.map((post) => (
@@ -32,7 +32,7 @@ function Recommended() {
             </div>
           ))}
       </div>
-    </div>
+    </section>
   );
 }
 
