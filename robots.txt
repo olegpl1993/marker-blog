@@ -1,0 +1,3 @@
+User-agent: *
+Host: marker.cx.ua
+Sitemap: http://marker.cx.ua/sitemap.xml

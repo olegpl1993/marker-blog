@@ -11,5 +11,7 @@ Blog about games. Reviews of new and popular games. Publication of news about th
 - TypeScript
 - CSS Modules
 - react-query
+- swiper
+- react-helmet
 - Material-UI
-- WordPress headless REST API as backend
+- WordPress REST API
