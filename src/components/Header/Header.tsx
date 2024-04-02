@@ -7,7 +7,11 @@ function Header() {
   return (
     <header className={styles.header}>
       <Link to={"/"}>
-        <img src="/logo-gamepad.png" alt="логотип" className={styles.logoImg} />
+        <img
+          src="/logo-gamepad.png"
+          alt="Лого сайту - геймпад з текстом Game Marker"
+          className={styles.logoImg}
+        />
       </Link>
 
       <Menu />
