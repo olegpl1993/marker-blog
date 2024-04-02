@@ -92,6 +92,12 @@
   color: var(--primary-color);
 }
 
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 22px;
+  }
+}
+
 .dateBox {
   display: flex;
   align-items: center;
@@ -117,15 +123,11 @@
   justify-content: center;
   width: 100%;
   min-width: 100%;
-  font-size: 16px;
   line-height: 20px;
 }
 
-@media screen and (max-width: 768px) {
-  .strings {
-    font-size: 14px;
-    line-height: 16px;
-  }
+.subString {
+  font-weight: 500;
 }
 
 .string {
