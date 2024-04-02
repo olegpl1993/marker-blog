@@ -75,6 +75,10 @@
   <priority>0.5</priority>
 </url>
 <url>
+  <loc>https://marker.cx.ua/blog?tags=fighting</loc>
+  <priority>0.5</priority>
+</url>
+<url>
   <loc>https://marker.cx.ua/topic/bayonetta-3</loc>
 </url>
 <url>
@@ -160,5 +164,8 @@
 </url>
 <url>
   <loc>https://marker.cx.ua/topic/cyberpunk-2077</loc>
+</url>
+<url>
+  <loc>https://marker.cx.ua/topic/mortal-kombat-11</loc>
 </url>
 </urlset>
