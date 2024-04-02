@@ -36,7 +36,7 @@ function Modal(props: Props) {
         >
           <button
             type="button"
-            aria-label="Close"
+            aria-label="Кнопка закрити меню"
             className={styles.modalClose}
             onClick={handleClose}
           />
