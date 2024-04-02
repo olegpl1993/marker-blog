@@ -53,6 +53,7 @@ function Search(props: Props) {
 
       <IconButton
         onClick={handleSearch}
+        aria-label="Пошук"
         sx={{ position: "absolute", right: "0" }}
       >
         <SearchIcon />
