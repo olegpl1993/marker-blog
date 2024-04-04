@@ -22,4 +22,10 @@
   font-weight: 500;
   color: var(--secondary-color);
   font-style: italic;
+  line-height: 18px;
+}
+
+.link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
 }

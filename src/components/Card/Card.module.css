@@ -123,11 +123,12 @@
   justify-content: center;
   width: 100%;
   min-width: 100%;
-  line-height: 20px;
+  line-height: 22px;
 }
 
 .subString {
   font-weight: 500;
+  font-size: 14px;
 }
 
 .string {
