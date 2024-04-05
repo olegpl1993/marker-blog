@@ -1,10 +1,10 @@
 :root {
   --primary-color: rgb(44, 62, 133);
-  --secondary-color: rgb(23, 127, 164);
+  --secondary-color: rgb(23, 98, 164);
   --spinner-color: rgba(44, 62, 133, 0.5);
   --bg-color: rgb(230, 230, 230, 0.95);
   --bg-color-secondary: rgb(44, 62, 133, 0.9);
-  --bg-color-card: rgb(235, 235, 235);
+  --bg-color-card: rgb(240, 240, 240);
   --shadow-color: rgb(215, 215, 215);
   --text-color: rgb(20, 20, 20);
   --text-color-disabled: rgb(100, 100, 100);

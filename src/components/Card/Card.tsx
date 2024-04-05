@@ -63,13 +63,14 @@ const Card = memo((props: Props) => {
           <div className={styles.strings}>
             {post.genre && (
               <span>
-                Жанри: <span className={styles.string}>{post.genre}</span>
+                <span className={styles.subString}>Жанри:</span>{" "}
+                <span className={styles.string}>{post.genre}</span>
               </span>
             )}
 
             {post.platform && (
               <span>
-                Платформи:{" "}
+                <span className={styles.subString}>Платформи:</span>{" "}
                 <span className={styles.string}>{post.platform}</span>
               </span>
             )}

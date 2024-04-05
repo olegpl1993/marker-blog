@@ -7,6 +7,7 @@
   min-height: calc(100dvh - 100px - 50px);
   gap: 20px;
   padding: 10px;
+  padding-bottom: 45px;
 }
 
 .title {

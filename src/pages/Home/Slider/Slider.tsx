@@ -30,43 +30,46 @@ function Slider() {
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/mobile`}>
             <span className={styles.string}>Mobile</span>
-            <img src="/phone.jpg" alt="mobile" />
+            <img src="/phone.jpg" alt="Геймерський мобільний телефон" />
           </Link>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/nintendo-switch`}>
             <span className={styles.string}>Nintendo Switch</span>
-            <img src="/nintendo.jpg" alt="nintendo" />
+            <img src="/nintendo.jpg" alt="Ігрова консоль nintendo switch" />
           </Link>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/playstation-4`}>
             <span className={styles.string}>PlayStation 4</span>
-            <img src="/ps4.jpg" alt="playstation 4" />
+            <img src="/ps4.jpg" alt="Ігрова консоль playstation 4" />
           </Link>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/playstation-5`}>
             <span className={styles.string}>PlayStation 5</span>
-            <img src="/ps5.jpg" alt="playstation 5" />
+            <img src="/ps5.jpg" alt="Ігрова консоль playstation 5" />
           </Link>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/windows`}>
             <span className={styles.string}>Windows</span>
-            <img src="/pc.jpg" alt="windows" />
+            <img
+              src="/pc.jpg"
+              alt="Ігровий ноутбук з операційною системою windows"
+            />
           </Link>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/xbox-one`}>
             <span className={styles.string}>Xbox One</span>
-            <img src="/xboxone.jpg" alt="xbox one" />
+            <img src="/xboxone.jpg" alt="Ігрова консоль xbox one" />
           </Link>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/xbox-series-x-s`}>
             <span className={styles.string}>Xbox Series X|S</span>
-            <img src="/xboxXS.jpg" alt="xbox series X|S" />
+            <img src="/xboxXS.jpg" alt="Ігрова консоль xbox series" />
           </Link>
         </SwiperSlide>
       </Swiper>

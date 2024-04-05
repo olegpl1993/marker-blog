@@ -20,8 +20,6 @@
 }
 
 .logoImg {
-  width: 270px;
-  height: 230px;
   transform: rotate(-15deg) translateY(5px);
   cursor: pointer;
 }
@@ -29,7 +27,6 @@
 @media screen and (max-width: 768px) {
   .logoImg {
     width: 230px;
-    height: 190px;
   }
 }
 

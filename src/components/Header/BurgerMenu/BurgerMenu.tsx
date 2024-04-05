@@ -19,7 +19,7 @@ const BurgerMenu = memo(() => {
   if (!categories) return null;
   return (
     <div className={styles.burgerMenu}>
-      <IconButton onClick={handleOpen}>
+      <IconButton onClick={handleOpen} aria-label="Кнопка відкрити меню">
         <MenuIcon fontSize="large" className={styles.burgerIcon} />
       </IconButton>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
