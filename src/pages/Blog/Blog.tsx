@@ -48,26 +48,22 @@ export function Blog() {
 
   const description =
     categoryName || tagName
-      ? `Блог з оглядами нових і популярних ігор ${
-          categoryName ? categoryName : ""
-        } ${tagName ? tagName : ""}.`
-      : `${tags?.map((item) => item.name).join(", ")}`;
-
-  const keywords =
-    categoryName || tagName
-      ? `Огляди ігор, ігрові анонси, ${categoryName ? categoryName : ""} ${
-          tagName ? tagName : ""
-        }.`
-      : `${categories?.map((item) => item.name).join(", ")}`;
+      ? `Блог з оглядами нових і популярних ігор та анонсами ${
+          categoryName ? "у категорії " + categoryName : ""
+        } ${tagName ? "жанру " + tagName : ""}`
+      : `Блог з оглядами ігрових новин та популярних ігор у жанрах: 3D-шутери, тактичні шутери, слешери, аркади, стелс-екшн, симулятори, економічні, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри.`;
 
   return (
     <div className={styles.blog}>
       <Helmet>
         <title>{`${categoryName ? categoryName + " - " : ""} ${
           tagName ? tagName + " - " : ""
-        } Game Marker Блог`}</title>
+        } Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`}</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
+        <meta
+          name="keywords"
+          content="3D шутери, тактичні шутери, слешери, аркади, стелс, симулятори, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри"
+        />
       </Helmet>
 
       <BreadCrumbs
