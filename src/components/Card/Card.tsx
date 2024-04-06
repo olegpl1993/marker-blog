@@ -20,10 +20,6 @@ const Card = memo((props: Props) => {
     queryFn: () => fetchMediaLink(post.featured_media),
   });
 
-  const createMarkup = () => {
-    return { __html: post.excerpt.rendered };
-  };
-
   return (
     <div className={styles.card}>
       <Link className={styles.imageBox} to={`/topic/${post.slug}`}>
@@ -78,7 +74,7 @@ const Card = memo((props: Props) => {
 
           <div
             className={styles.content}
-            dangerouslySetInnerHTML={createMarkup()}
+            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
           />
         </div>
 

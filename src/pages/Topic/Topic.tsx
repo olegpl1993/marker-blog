@@ -16,9 +16,10 @@ export function Topic() {
     enabled: !!slug,
   });
 
-  const createMarkup = () => {
-    if (!postQuery.data) return;
-    return { __html: postQuery.data?.content.rendered };
+  const createDescription = (html: string) => {
+    const element = document.createElement("div");
+    element.innerHTML = html;
+    return element.innerText.split(".")[0] + ".";
   };
 
   if (postQuery.isLoading)
@@ -33,10 +34,10 @@ export function Topic() {
   return (
     <div className={styles.topic}>
       <Helmet>
-        <title>{postQuery.data?.title.rendered} - Game Marker</title>
+        <title>Огляд {postQuery.data?.title.rendered} - Game Marker</title>
         <meta
           name="description"
-          content={`${postQuery.data?.title.rendered} ${postQuery.data?.release} - ${postQuery.data?.genre}`}
+          content={createDescription(postQuery.data?.excerpt.rendered)}
         />
         <meta
           name="keywords"
@@ -83,7 +84,7 @@ export function Topic() {
       </div>
       <div
         className={styles.content}
-        dangerouslySetInnerHTML={createMarkup()}
+        dangerouslySetInnerHTML={{ __html: postQuery.data?.content.rendered }}
       />
     </div>
   );

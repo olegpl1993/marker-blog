@@ -7,7 +7,7 @@ export function Page404() {
     <div className={styles.page404}>
       <Helmet>
         <title>Error Page - Game Marker</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <Link to={"/"} className={styles.link}>
