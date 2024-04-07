@@ -60,6 +60,11 @@ export function Blog() {
         } Game Marker Блог`
       : `Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`;
 
+  const h1 =
+    "Ігрові новини та огляди" +
+    (categoryName ? " у категорії " + categoryName : "") +
+    (tagName ? " жанру " + tagName : "");
+
   return (
     <div className={styles.blog}>
       <Helmet>
@@ -76,6 +81,8 @@ export function Blog() {
         tagsSearchParams={tagsSearchParams}
         search={search}
       />
+
+      <h1 className={styles.title}>{h1}</h1>
 
       <div className={styles.wrapper}>
         <section className={styles.content}>

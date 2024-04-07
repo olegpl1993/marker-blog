@@ -23,7 +23,7 @@ function Recommended() {
 
   return (
     <section className={styles.recommended}>
-      <h2 className={styles.title}>Нові пости</h2>
+      <h1 className={styles.title}>Ігрові новини та огляди популярних ігор</h1>
       <div className={styles.content}>
         {renderPosts &&
           renderPosts.map((post) => (
