@@ -74,6 +74,7 @@ export function Blog() {
           name="keywords"
           content="3D шутери, тактичні шутери, слешери, аркади, стелс, симулятори, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри"
         />
+        <link rel="canonical" href={"https://marker.cx.ua/blog" + (category ? "/" + category : "")} />
       </Helmet>
 
       <BreadCrumbs
