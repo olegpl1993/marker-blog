@@ -53,12 +53,17 @@ export function Blog() {
         } ${tagName ? "жанру " + tagName : ""}`
       : `Блог з оглядами ігрових новин та популярних ігор у жанрах: 3D-шутери, тактичні шутери, слешери, аркади, стелс-екшн, симулятори, економічні, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри.`;
 
+  const title =
+    categoryName || tagName
+      ? `${categoryName ? categoryName + " - " : ""} ${
+          tagName ? tagName + " - " : ""
+        } Game Marker Блог`
+      : `Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`;
+
   return (
     <div className={styles.blog}>
       <Helmet>
-        <title>{`${categoryName ? categoryName + " - " : ""} ${
-          tagName ? tagName + " - " : ""
-        } Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`}</title>
+        <title>{title}</title>
         <meta name="description" content={description} />
         <meta
           name="keywords"
