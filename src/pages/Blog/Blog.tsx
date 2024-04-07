@@ -57,7 +57,7 @@ export function Blog() {
     categoryName || tagName
       ? `${categoryName ? categoryName + " - " : ""} ${
           tagName ? tagName + " - " : ""
-        } Game Marker Блог`
+        } Game Marker - Ігрові огляди`
       : `Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`;
 
   const h1 =
