@@ -8,7 +8,7 @@ function Header() {
     <header className={styles.header}>
       <Link to={"/"}>
         <img
-          src="/logo-gamepad.png"
+          src="/logo-gamepad.webp"
           alt="Лого сайту - геймпад з текстом Game Marker"
           className={styles.logoImg}
         />

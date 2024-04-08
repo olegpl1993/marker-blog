@@ -31,7 +31,7 @@ const Card = memo((props: Props) => {
         {imageQuery.data === null && (
           <img
             className={styles.image}
-            src={"/imageNotFound.jpg"}
+            src={"/imageNotFound.webp"}
             alt={"каринка відсутня"}
           />
         )}

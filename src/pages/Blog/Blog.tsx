@@ -61,7 +61,7 @@ export function Blog() {
       : `Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`;
 
   const h1 =
-    "Ігрові новини та огляди" +
+    "Ігрові статті" +
     (categoryName ? " у категорії " + categoryName : "") +
     (tagName ? " жанру " + tagName : "");
 

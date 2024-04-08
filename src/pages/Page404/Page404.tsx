@@ -17,7 +17,7 @@ export function Page404() {
       <div className={styles.imgBox}>
         <img
           className={styles.img}
-          src={"/pageNotFound.jpg"}
+          src={"/pageNotFound.webp"}
           alt="сторінка не знайдена"
         />
       </div>
