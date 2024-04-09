@@ -30,6 +30,7 @@ export function Home() {
         />
         <link rel="canonical" href="https://marker.cx.ua" />
       </Helmet>
+
       <Slider />
       <Recommended />
     </div>

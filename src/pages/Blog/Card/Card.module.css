@@ -41,9 +41,11 @@
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   cursor: pointer;
+  transition: 0.3s ease-in-out opacity;
+  opacity: 0.9;
 }
 .image:hover {
-  opacity: 0.9;
+  opacity: 1;
 }
 
 @media screen and (max-width: 768px) {

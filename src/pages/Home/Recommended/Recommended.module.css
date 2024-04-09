@@ -29,6 +29,22 @@
   min-width: 100%;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  min-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
 .spinnerBox {
   display: flex;
   align-items: center;

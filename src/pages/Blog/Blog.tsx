@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet-async";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
-import Card from "../../components/Card/Card";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
 import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
+import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
 import Sidebar from "./Sidebar/Sidebar";
 
