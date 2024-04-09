@@ -11,7 +11,6 @@
     5px 2px 5px var(--shadow-color),
     -5px -2px 5px var(--shadow-color);
 }
-
 @media screen and (max-width: 768px) {
   .card {
     flex-direction: column;
@@ -26,7 +25,6 @@
   width: 500px;
   height: 100%;
 }
-
 @media screen and (max-width: 768px) {
   .imageBox {
     width: 100%;
@@ -41,18 +39,17 @@
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   cursor: pointer;
-  transition: 0.3s ease-in-out opacity;
   opacity: 0.9;
 }
 .image:hover {
   opacity: 1;
 }
-
 @media screen and (max-width: 768px) {
   .image {
     border-radius: 0px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    opacity: 1;
   }
 }
 
@@ -93,7 +90,6 @@
 .title:hover {
   color: var(--primary-color);
 }
-
 @media screen and (max-width: 768px) {
   .title {
     font-size: 22px;
@@ -143,7 +139,6 @@
   font-size: 18px;
   line-height: 22px;
 }
-
 @media screen and (max-width: 968px) {
   .content {
     font-size: 16px;
