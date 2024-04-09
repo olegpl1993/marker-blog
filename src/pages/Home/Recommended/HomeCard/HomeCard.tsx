@@ -42,7 +42,7 @@ function HomeCard(props: Props) {
 
       <div className={styles.content}>
         <div className={styles.row}>
-          <h3 className={styles.title}>{post.title.rendered}</h3>
+          <h2 className={styles.title}>{post.title.rendered}</h2>
           <div className={styles.dateBox}>
             <CalendarMonthIcon fontSize="small" className={styles.icon} />
             <p className={styles.date}>{post.date.split("T")[0]}</p>
