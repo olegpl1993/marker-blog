@@ -48,22 +48,33 @@ export function Blog() {
 
   const description =
     categoryName || tagName
-      ? `Блог з оглядами нових і популярних ігор та анонсами ${
+      ? `Блог з оглядами нових і популярних ігор та анонсами ігрових релізів ${
           categoryName ? "у категорії " + categoryName : ""
         } ${tagName ? "жанру " + tagName : ""}`
       : `Блог з оглядами ігрових новин та популярних ігор у жанрах: 3D-шутери, тактичні шутери, слешери, аркади, стелс-екшн, симулятори, економічні, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри.`;
 
+  const title =
+    categoryName || tagName
+      ? `${categoryName ? categoryName + " - " : ""} ${
+          tagName ? tagName + " - " : ""
+        } Game Marker - Ігрові огляди`
+      : `Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`;
+
+  const h1 =
+    "Ігрові статті" +
+    (categoryName ? " у категорії " + categoryName : "") +
+    (tagName ? " жанру " + tagName : "");
+
   return (
     <div className={styles.blog}>
       <Helmet>
-        <title>{`${categoryName ? categoryName + " - " : ""} ${
-          tagName ? tagName + " - " : ""
-        } Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`}</title>
+        <title>{title}</title>
         <meta name="description" content={description} />
         <meta
           name="keywords"
           content="3D шутери, тактичні шутери, слешери, аркади, стелс, симулятори, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри"
         />
+        <link rel="canonical" href={"https://marker.cx.ua/blog" + (category ? "/" + category : "")} />
       </Helmet>
 
       <BreadCrumbs
@@ -71,6 +82,8 @@ export function Blog() {
         tagsSearchParams={tagsSearchParams}
         search={search}
       />
+
+      <h1 className={styles.title}>{h1}</h1>
 
       <div className={styles.wrapper}>
         <section className={styles.content}>

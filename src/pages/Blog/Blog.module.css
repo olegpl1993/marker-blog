@@ -21,6 +21,17 @@
   min-width: 100%;
 }
 
+.title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;

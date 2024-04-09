@@ -43,6 +43,7 @@ export function Topic() {
           name="keywords"
           content={`${postQuery.data?.title.rendered}, ${postQuery.data?.genre}, ${postQuery.data?.developer}, ${postQuery.data?.publisher}`}
         />
+        <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
       </Helmet>
 
       <BreadCrumbs
