@@ -3,9 +3,9 @@ import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { fetchMediaLink } from "../../api/mediaLink";
-import { PostType } from "../../types/post.types";
-import SpinnerCircle from "../SpinnerCircle/SpinnerCircle";
+import { fetchMediaLink } from "../../../api/mediaLink";
+import SpinnerCircle from "../../../components/SpinnerCircle/SpinnerCircle";
+import { PostType } from "../../../types/post.types";
 import styles from "./Card.module.css";
 
 interface Props {

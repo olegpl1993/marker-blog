@@ -44,7 +44,7 @@ function BreadCrumbs(props: Props) {
       {tagName && (
         <>
           <span>{">"}</span>
-          <Link to={`/blog/?tags=${tagsSearchParams}`} className={styles.link}>
+          <Link to={`/blog?tags=${tagsSearchParams}`} className={styles.link}>
             {tagName}
           </Link>
         </>

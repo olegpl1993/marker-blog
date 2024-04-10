@@ -9,7 +9,7 @@ import styles from "./Slider.module.css";
 function Slider() {
   return (
     <section className={styles.slider}>
-      <h2 className={styles.title}>Категорії</h2>
+      <div className={styles.title}>Категорії</div>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

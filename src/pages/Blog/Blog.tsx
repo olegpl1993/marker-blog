@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet-async";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchPosts } from "../../api/posts";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
-import Card from "../../components/Card/Card";
 import Spinner from "../../components/Spinner/Spinner";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
 import { Page404 } from "../Page404/Page404";
 import styles from "./Blog.module.css";
+import Card from "./Card/Card";
 import PaginationBlog from "./PaginationBlog/PaginationBlog";
 import Sidebar from "./Sidebar/Sidebar";
 
@@ -51,14 +51,14 @@ export function Blog() {
       ? `Блог з оглядами нових і популярних ігор та анонсами ігрових релізів ${
           categoryName ? "у категорії " + categoryName : ""
         } ${tagName ? "жанру " + tagName : ""}`
-      : `Блог з оглядами ігрових новин та популярних ігор у жанрах: 3D-шутери, тактичні шутери, слешери, аркади, стелс-екшн, симулятори, економічні, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри.`;
+      : `Ігрові новини та огляди популярних ігор у жанрах: 3D-шутери, тактичні шутери, слешери, аркади, стелс-екшн, симулятори, економічні, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри.`;
 
   const title =
     categoryName || tagName
       ? `${categoryName ? categoryName + " - " : ""} ${
           tagName ? tagName + " - " : ""
-        } Game Marker - Ігрові огляди`
-      : `Game Marker Блог - Оглядаемо відео ігри, новини ігрових релізів.`;
+        } Game Marker - Огляди ігор українською.`
+      : `Game Marker Блог - Ігрові огляди та анонси українською.`;
 
   const h1 =
     "Ігрові статті" +
@@ -70,11 +70,14 @@ export function Blog() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta
-          name="keywords"
-          content="3D шутери, тактичні шутери, слешери, аркади, стелс, симулятори, стратегії, пригоди, рольові ігри, тактичні РПГ, головоломки, онлайнові ігри"
+        <link
+          rel="canonical"
+          href={
+            "https://marker.cx.ua/blog" +
+            (category ? "/" + category : "") +
+            (tagsSearchParams ? "?tags=" + tagsSearchParams : "")
+          }
         />
-        <link rel="canonical" href={"https://marker.cx.ua/blog" + (category ? "/" + category : "")} />
       </Helmet>
 
       <BreadCrumbs
