@@ -14,6 +14,9 @@
   opacity: 1;
   transform: scale(1.05);
 }
+.homeCard:hover .content {
+  bottom: 0;
+}
 
 @media screen and (max-width: 1024px) {
   .homeCard {
@@ -47,9 +50,16 @@
   gap: 10px;
   position: absolute;
   z-index: 1;
-  bottom: 0px;
+  bottom: -100%;
+  transition: 0.3s ease-in-out bottom;
   background-color: rgba(0, 0, 0, 0.7);
   color: var(--text-color-secondary);
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    bottom: 0px;
+  }
 }
 
 .row {
@@ -61,18 +71,23 @@
 }
 
 .title {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
 }
+@media screen and (max-width: 1200px) {
+  .title {
+    font-size: 18px;
+  }
+}
 @media screen and (max-width: 1024px) {
   .title {
-    font-size: 20px;
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 768px) {
   .title {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
