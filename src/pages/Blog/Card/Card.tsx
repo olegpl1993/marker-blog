@@ -40,6 +40,7 @@ const Card = memo((props: Props) => {
             className={styles.image}
             src={imageQuery.data?.source_url}
             alt={post.title.rendered}
+            loading="lazy"
           />
         )}
       </Link>
