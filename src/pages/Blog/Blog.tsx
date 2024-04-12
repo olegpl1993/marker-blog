@@ -61,8 +61,8 @@ export function Blog() {
       : `Ігрові новини та огляди українською | Game Marker`;
 
   const h1 =
-    "Новини та огляди" +
-    (categoryName ? "категорії " + categoryName : "") +
+    "Новини та огляди ігор " +
+    (categoryName ? categoryName : "") +
     (tagName ? " жанру " + tagName : "");
 
   return (
