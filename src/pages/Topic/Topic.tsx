@@ -34,14 +34,12 @@ export function Topic() {
   return (
     <div className={styles.topic}>
       <Helmet>
-        <title>Огляд {postQuery.data?.title.rendered} - Game Marker</title>
+        <title>
+          Відео гра {postQuery.data?.title.rendered} Огляд українською
+        </title>
         <meta
           name="description"
           content={createDescription(postQuery.data?.excerpt.rendered)}
-        />
-        <meta
-          name="keywords"
-          content={`${postQuery.data?.title.rendered}, ${postQuery.data?.genre}, ${postQuery.data?.developer}, ${postQuery.data?.publisher}`}
         />
         <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
       </Helmet>
