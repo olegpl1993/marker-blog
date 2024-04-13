@@ -1,12 +1,19 @@
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Slider.module.css";
 
 function Slider() {
+  const swiperNavNextRef = useRef(null);
+  const swiperNavPrevRef = useRef(null);
+
   return (
     <section className={styles.slider}>
       <div className={styles.title}>Категорії</div>
@@ -15,6 +22,13 @@ function Slider() {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onInit={(swiper: any) => {
+          swiper.params.navigation.prevEl = swiperNavPrevRef.current;
+          swiper.params.navigation.nextEl = swiperNavNextRef.current;
+          swiper.navigation.init();
+          swiper.navigation.update();
+        }}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -23,10 +37,19 @@ function Slider() {
           slideShadows: true,
         }}
         pagination={true}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[EffectCoverflow, Pagination, Navigation]}
         initialSlide={3}
         className={styles.swiper}
       >
+        <div className={styles.navigation}>
+          <button className={styles.navigationButton} ref={swiperNavPrevRef}>
+            <NavigateBeforeIcon fontSize="large" />
+          </button>
+          <button className={styles.navigationButton} ref={swiperNavNextRef}>
+            <NavigateNextIcon fontSize="large" />
+          </button>
+        </div>
+
         <SwiperSlide className={styles.swiperSlide}>
           <Link to={`/blog/mobile`}>
             <span className={styles.string}>Mobile</span>

@@ -11,7 +11,6 @@
   top: 20px;
   z-index: 2;
 }
-
 @media screen and (max-width: 768px) {
   .title {
     font-size: 18px;
@@ -25,6 +24,32 @@
   user-select: none;
 }
 
+.navigation {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  z-index: 11;
+}
+
+.navigationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+}
+.navigationButton:disabled {
+  color: transparent;
+  cursor: default;
+}
+
 .swiperSlide {
   background-position: center;
   background-size: cover;
@@ -34,14 +59,12 @@
   overflow: hidden;
   cursor: pointer;
 }
-
 @media screen and (max-width: 768px) {
   .swiperSlide {
     width: 300px;
     height: 300px;
   }
 }
-
 @media screen and (min-width: 768px) {
   .swiperSlide:hover .string {
     color: var(--primary-color);
@@ -65,7 +88,6 @@
   cursor: pointer;
   transition: all 0.1s linear;
 }
-
 @media screen and (max-width: 768px) {
   .string {
     font-size: 22px;
