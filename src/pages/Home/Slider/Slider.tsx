@@ -43,10 +43,10 @@ function Slider() {
       >
         <div className={styles.navigation}>
           <button className={styles.navigationButton} ref={swiperNavPrevRef}>
-            <NavigateBeforeIcon fontSize="large" />
+            <NavigateBeforeIcon sx={{ height: "45px", width: "45px" }} />
           </button>
           <button className={styles.navigationButton} ref={swiperNavNextRef}>
-            <NavigateNextIcon fontSize="large" />
+            <NavigateNextIcon sx={{ height: "45px", width: "45px" }} />
           </button>
         </div>
 
