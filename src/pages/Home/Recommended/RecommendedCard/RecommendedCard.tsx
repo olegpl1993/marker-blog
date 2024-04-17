@@ -1,5 +1,6 @@
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useQuery } from "@tanstack/react-query";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { fetchMediaLink } from "../../../../api/mediaLink";
 import SpinnerCircle from "../../../../components/SpinnerCircle/SpinnerCircle";
@@ -10,7 +11,7 @@ interface Props {
   post: PostType;
 }
 
-function RecommendedCard(props: Props) {
+const RecommendedCard = memo((props: Props) => {
   const { post } = props;
 
   const imageQuery = useQuery({
@@ -52,6 +53,6 @@ function RecommendedCard(props: Props) {
       </div>
     </Link>
   );
-}
+});
 
 export default RecommendedCard;

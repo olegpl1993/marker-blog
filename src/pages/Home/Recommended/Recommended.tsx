@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { PostType } from "../../../types/post.types";
 import styles from "./Recommended.module.css";
 import RecommendedCard from "./RecommendedCard/RecommendedCard";
@@ -6,7 +7,7 @@ interface Props {
   posts: PostType[];
 }
 
-function Recommended(props: Props) {
+const Recommended = memo((props: Props) => {
   const { posts } = props;
 
   const renderPosts = posts.slice(0, 8);
@@ -36,6 +37,6 @@ function Recommended(props: Props) {
       </div>
     </section>
   );
-}
+});
 
 export default Recommended;

@@ -1,5 +1,6 @@
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useQuery } from "@tanstack/react-query";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { fetchMediaLink } from "../../../../api/mediaLink";
 import SpinnerCircle from "../../../../components/SpinnerCircle/SpinnerCircle";
@@ -11,7 +12,7 @@ interface Props {
   post: PostType;
 }
 
-function SelectedCard(props: Props) {
+const SelectedCard = memo((props: Props) => {
   const { post } = props;
 
   const imageQuery = useQuery({
@@ -21,7 +22,7 @@ function SelectedCard(props: Props) {
 
   return (
     <Link className={styles.selectedCard} to={`/topic/${post.slug}`}>
-      <div className={styles.imageBox} >
+      <div className={styles.imageBox}>
         {imageQuery.isLoading && (
           <div>
             <SpinnerCircle />
@@ -46,9 +47,7 @@ function SelectedCard(props: Props) {
 
       <div className={styles.content}>
         <div className={styles.row}>
-          <div className={styles.title}>
-            {post.title.rendered}
-          </div>
+          <div className={styles.title}>{post.title.rendered}</div>
           <div className={styles.dateBox}>
             <CalendarMonthIcon fontSize="small" className={styles.icon} />
             <p className={styles.date}>{post.date.split("T")[0]}</p>
@@ -60,6 +59,6 @@ function SelectedCard(props: Props) {
       </div>
     </Link>
   );
-}
+});
 
 export default SelectedCard;
