@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../api/postBySlug";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
+import { getFirstParagraph } from "../../utils/getFirstParagraph";
 import { Page404 } from "../Page404/Page404";
 import styles from "./Topic.module.css";
 
@@ -15,12 +16,6 @@ export function Topic() {
     queryFn: () => fetchPostBySlug(slug!),
     enabled: !!slug,
   });
-
-  const createDescription = (html: string) => {
-    const element = document.createElement("div");
-    element.innerHTML = html;
-    return element.innerText.split(".")[0] + ".";
-  };
 
   if (postQuery.isLoading)
     return (
@@ -39,7 +34,7 @@ export function Topic() {
         </title>
         <meta
           name="description"
-          content={createDescription(postQuery.data?.excerpt.rendered)}
+          content={getFirstParagraph(postQuery.data?.excerpt.rendered)}
         />
         <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
       </Helmet>

@@ -5,7 +5,8 @@ export const fetchPosts = async (
   categoryID?: number | undefined,
   tagsID?: number | undefined,
   search?: string | null | undefined,
-  page?: string | null | undefined
+  page?: string | null | undefined,
+  perPage?: number | null | undefined
 ) => {
   try {
     const url = new URL("posts", WORDPRESS_BASE_API_URL);
@@ -13,6 +14,7 @@ export const fetchPosts = async (
     if (tagsID) url.searchParams.append("tags", String(tagsID));
     if (search) url.searchParams.append("search", search);
     if (page) url.searchParams.append("page", page);
+    if (perPage) url.searchParams.append("per_page", String(perPage));
 
     const res = await fetch(url);
     if (!res.ok) throw new Error("Failed to fetch posts");
