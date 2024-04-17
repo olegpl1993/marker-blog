@@ -42,10 +42,18 @@ function Slider() {
         className={styles.swiper}
       >
         <div className={styles.navigation}>
-          <button className={styles.navigationButton} ref={swiperNavPrevRef}>
+          <button
+            className={styles.navigationButton}
+            ref={swiperNavPrevRef}
+            title="Попередній слайд"
+          >
             <NavigateBeforeIcon sx={{ height: "45px", width: "45px" }} />
           </button>
-          <button className={styles.navigationButton} ref={swiperNavNextRef}>
+          <button
+            className={styles.navigationButton}
+            ref={swiperNavNextRef}
+            title="Наступний слайд"
+          >
             <NavigateNextIcon sx={{ height: "45px", width: "45px" }} />
           </button>
         </div>
