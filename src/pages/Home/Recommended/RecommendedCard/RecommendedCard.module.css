@@ -11,19 +11,21 @@
   position: relative;
   background-color: var(--bg-color-card);
 }
-.recommendedCard:hover .image {
-  opacity: 1;
-  transform: scale(1.05);
-}
-.recommendedCard:hover .content {
-  bottom: 0;
-}
-
 @media screen and (max-width: 1024px) {
   .recommendedCard {
     height: 300px;
   }
 }
+@media screen and (min-width: 768px) {
+  .recommendedCard:hover .image {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  .recommendedCard:hover .content {
+    bottom: 0;
+  }
+}
+
 
 .image {
   width: 100%;

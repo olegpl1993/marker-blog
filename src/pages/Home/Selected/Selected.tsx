@@ -8,7 +8,7 @@ interface Props {
 function Selected(props: Props) {
   const { posts } = props;
 
-  const renderPosts = posts.slice(5, 15);
+  const renderPosts = posts.slice(8);
 
   return (
     <div className={styles.selected}>

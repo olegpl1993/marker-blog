@@ -1,6 +1,6 @@
 import { PostType } from "../../../types/post.types";
-import RecommendedCard from "./RecommendedCard/RecommendedCard";
 import styles from "./Recommended.module.css";
+import RecommendedCard from "./RecommendedCard/RecommendedCard";
 
 interface Props {
   posts: PostType[];
@@ -9,7 +9,7 @@ interface Props {
 function Recommended(props: Props) {
   const { posts } = props;
 
-  const renderPosts = posts.slice(0, 5);
+  const renderPosts = posts.slice(0, 8);
 
   return (
     <section className={styles.recommended}>
@@ -20,11 +20,16 @@ function Recommended(props: Props) {
             <div className={styles.row}>
               <RecommendedCard key={renderPosts[0].id} post={renderPosts[0]} />
               <RecommendedCard key={renderPosts[1].id} post={renderPosts[1]} />
+              <RecommendedCard key={renderPosts[2].id} post={renderPosts[2]} />
             </div>
             <div className={styles.row}>
-              <RecommendedCard key={renderPosts[0].id} post={renderPosts[2]} />
-              <RecommendedCard key={renderPosts[1].id} post={renderPosts[3]} />
-              <RecommendedCard key={renderPosts[2].id} post={renderPosts[4]} />
+              <RecommendedCard key={renderPosts[3].id} post={renderPosts[3]} />
+              <RecommendedCard key={renderPosts[4].id} post={renderPosts[4]} />
+            </div>
+            <div className={styles.row}>
+              <RecommendedCard key={renderPosts[5].id} post={renderPosts[5]} />
+              <RecommendedCard key={renderPosts[6].id} post={renderPosts[6]} />
+              <RecommendedCard key={renderPosts[7].id} post={renderPosts[7]} />
             </div>
           </>
         )}
