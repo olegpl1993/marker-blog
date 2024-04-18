@@ -6,8 +6,7 @@
   max-width: 1200px;
   min-height: calc(100dvh - 100px - 50px);
   gap: 20px;
-  padding: 10px;
-  padding-bottom: 45px;
+  padding: 10px 5px 45px 5px;
 }
 
 .title {
