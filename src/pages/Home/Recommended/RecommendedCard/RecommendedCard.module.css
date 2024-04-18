@@ -1,4 +1,4 @@
-.homeCard {
+.recommendedCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,20 +9,23 @@
   overflow: hidden;
   border-radius: 8px;
   position: relative;
+  background-color: var(--bg-color-card);
 }
-.homeCard:hover .image {
-  opacity: 1;
-  transform: scale(1.05);
-}
-.homeCard:hover .content {
-  bottom: 0;
-}
-
 @media screen and (max-width: 1024px) {
-  .homeCard {
+  .recommendedCard {
     height: 300px;
   }
 }
+@media screen and (min-width: 768px) {
+  .recommendedCard:hover .image {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  .recommendedCard:hover .content {
+    bottom: 0;
+  }
+}
+
 
 .image {
   width: 100%;

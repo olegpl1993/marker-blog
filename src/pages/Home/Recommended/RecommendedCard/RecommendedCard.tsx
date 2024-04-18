@@ -1,16 +1,17 @@
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useQuery } from "@tanstack/react-query";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { fetchMediaLink } from "../../../../api/mediaLink";
 import SpinnerCircle from "../../../../components/SpinnerCircle/SpinnerCircle";
 import { PostType } from "../../../../types/post.types";
-import styles from "./HomeCard.module.css";
+import styles from "./RecommendedCard.module.css";
 
 interface Props {
   post: PostType;
 }
 
-function HomeCard(props: Props) {
+const RecommendedCard = memo((props: Props) => {
   const { post } = props;
 
   const imageQuery = useQuery({
@@ -19,7 +20,7 @@ function HomeCard(props: Props) {
   });
 
   return (
-    <Link className={styles.homeCard} to={`/topic/${post.slug}`}>
+    <Link className={styles.recommendedCard} to={`/topic/${post.slug}`}>
       {imageQuery.isLoading && (
         <div>
           <SpinnerCircle />
@@ -52,6 +53,6 @@ function HomeCard(props: Props) {
       </div>
     </Link>
   );
-}
+});
 
-export default HomeCard;
+export default RecommendedCard;

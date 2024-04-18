@@ -1,46 +1,42 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchPosts } from "../../../api/posts";
-import SpinnerCircle from "../../../components/SpinnerCircle/SpinnerCircle";
-import HomeCard from "./HomeCard/HomeCard";
+import { memo } from "react";
+import { PostType } from "../../../types/post.types";
 import styles from "./Recommended.module.css";
+import RecommendedCard from "./RecommendedCard/RecommendedCard";
 
-function Recommended() {
-  const queryPosts = useQuery({
-    queryKey: ["RecommendedPosts"],
-    queryFn: () => fetchPosts(),
-  });
+interface Props {
+  posts: PostType[];
+}
 
-  const renderPosts = queryPosts.data?.data?.slice(0, 5);
+const Recommended = memo((props: Props) => {
+  const { posts } = props;
 
-  if (queryPosts.isLoading)
-    return (
-      <div className={styles.spinnerBox}>
-        <SpinnerCircle />
-      </div>
-    );
-
-  if (queryPosts.isError) return null;
+  const renderPosts = posts.slice(0, 8);
 
   return (
     <section className={styles.recommended}>
-      <h1 className={styles.title}>Ігрові новини та огляди</h1>
+      <h1 className={styles.title}>Останні ігрові новини</h1>
       <div className={styles.content}>
         {renderPosts && (
           <>
             <div className={styles.row}>
-              <HomeCard key={renderPosts[0].id} post={renderPosts[0]} />
-              <HomeCard key={renderPosts[1].id} post={renderPosts[1]} />
+              <RecommendedCard key={renderPosts[0].id} post={renderPosts[0]} />
+              <RecommendedCard key={renderPosts[1].id} post={renderPosts[1]} />
+              <RecommendedCard key={renderPosts[2].id} post={renderPosts[2]} />
             </div>
             <div className={styles.row}>
-              <HomeCard key={renderPosts[0].id} post={renderPosts[2]} />
-              <HomeCard key={renderPosts[1].id} post={renderPosts[3]} />
-              <HomeCard key={renderPosts[2].id} post={renderPosts[4]} />
+              <RecommendedCard key={renderPosts[3].id} post={renderPosts[3]} />
+              <RecommendedCard key={renderPosts[4].id} post={renderPosts[4]} />
+            </div>
+            <div className={styles.row}>
+              <RecommendedCard key={renderPosts[5].id} post={renderPosts[5]} />
+              <RecommendedCard key={renderPosts[6].id} post={renderPosts[6]} />
+              <RecommendedCard key={renderPosts[7].id} post={renderPosts[7]} />
             </div>
           </>
         )}
       </div>
     </section>
   );
-}
+});
 
 export default Recommended;

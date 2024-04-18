@@ -1,3 +1,5 @@
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { memo, useContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { TagContext } from "../../contexts/TagProvider";
@@ -27,14 +29,20 @@ const Tags = memo((props: Props) => {
   return (
     <ul className={styles.tags}>
       {tags.map((tag) => (
-        <li
-          className={`${styles.item} ${
-            tag.slug === tagsSearchParams && styles.active
-          }`}
-          key={tag.id}
-          onClick={() => handleClick(tag.slug)}
-        >
-          {tag.name}
+        <li className={styles.row} key={tag.id}>
+          {tag.slug === tagsSearchParams && (
+            <KeyboardDoubleArrowRightIcon
+              sx={{ color: "var(--primary-color)", fontSize: "16px" }}
+            />
+          )}
+          <span className={styles.item} onClick={() => handleClick(tag.slug)}>
+            {tag.name}
+          </span>
+          {tag.slug === tagsSearchParams && (
+            <KeyboardDoubleArrowLeftIcon
+              sx={{ color: "var(--primary-color)", fontSize: "16px" }}
+            />
+          )}
         </li>
       ))}
     </ul>

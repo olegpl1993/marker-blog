@@ -1,15 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
+import { fetchPosts } from "../../api/posts";
 import Spinner from "../../components/Spinner/Spinner";
+import SpinnerCircle from "../../components/SpinnerCircle/SpinnerCircle";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
 import styles from "./Home.module.css";
 import Recommended from "./Recommended/Recommended";
+import Selected from "./Selected/Selected";
 import Slider from "./Slider/Slider";
 
 export function Home() {
   const categories = useContext(CategoryContext);
   const tags = useContext(TagContext);
+
+  const queryPosts = useQuery({
+    queryKey: ["HomePosts"],
+    queryFn: () => fetchPosts(undefined, undefined, undefined, undefined, 20),
+  });
 
   if (!categories || !tags)
     return (
@@ -32,7 +41,19 @@ export function Home() {
       </Helmet>
 
       <Slider />
-      <Recommended />
+
+      {queryPosts.isLoading && (
+        <div className={styles.spinnerBox}>
+          <SpinnerCircle />
+        </div>
+      )}
+
+      {queryPosts.data && (
+        <>
+          <Recommended posts={queryPosts.data.data} />
+          <Selected posts={queryPosts.data.data} />
+        </>
+      )}
     </div>
   );
 }

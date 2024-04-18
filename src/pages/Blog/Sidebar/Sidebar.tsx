@@ -1,10 +1,11 @@
+import { memo } from "react";
 import Categories from "../../../components/Categories/Categories";
 import Search from "../../../components/Search/Search";
 import Genres from "../../../components/Tags/Tags";
 import styles from "./Sidebar.module.css";
 import SidebarCard from "./SidebarCard/SidebarCard";
 
-function Sidebar() {
+const Sidebar = memo(() => {
   return (
     <aside className={styles.sidebar}>
       <SidebarCard title="Пошук">
@@ -18,6 +19,6 @@ function Sidebar() {
       </SidebarCard>
     </aside>
   );
-}
+});
 
 export default Sidebar;

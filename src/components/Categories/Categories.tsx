@@ -1,3 +1,5 @@
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { memo, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CategoryContext } from "../../contexts/CategoryProvider";
@@ -18,20 +20,29 @@ const Categories = memo((props: Props) => {
 
   if (!categories) return null;
   return (
-    <div className={styles.categories}>
+    <ul className={styles.categories}>
       {categories.map((category) => (
-        <Link
-          className={`${styles.item} ${
-            category.slug === selectedCategory && styles.active
-          }`}
-          key={category.id}
-          to={`/blog/${category.slug}`}
-          onClick={handleClose}
-        >
-          {category.name}
-        </Link>
+        <li key={category.id} className={styles.row}>
+          {category.slug === selectedCategory && (
+            <KeyboardDoubleArrowRightIcon
+              sx={{ color: "var(--primary-color)", fontSize: "16px" }}
+            />
+          )}
+          <Link
+            className={styles.item}
+            to={`/blog/${category.slug}`}
+            onClick={handleClose}
+          >
+            {category.name}
+          </Link>
+          {category.slug === selectedCategory && (
+            <KeyboardDoubleArrowLeftIcon
+              sx={{ color: "var(--primary-color)", fontSize: "16px" }}
+            />
+          )}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 });
 
