@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../../contexts/CategoryProvider";
 import { TagContext } from "../../contexts/TagProvider";
@@ -12,7 +12,7 @@ interface Props {
   search?: string | null | undefined;
 }
 
-function BreadCrumbs(props: Props) {
+const BreadCrumbs = memo((props: Props) => {
   const { categories, title, category, tagsSearchParams, search } = props;
   const categoriesList = useContext(CategoryContext);
   const tags = useContext(TagContext);
@@ -81,6 +81,6 @@ function BreadCrumbs(props: Props) {
       )}
     </span>
   );
-}
+});
 
 export default BreadCrumbs;

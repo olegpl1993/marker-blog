@@ -1,6 +1,6 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -10,7 +10,7 @@ import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Slider.module.css";
 
-function Slider() {
+const Slider = memo(() => {
   const swiperNavNextRef = useRef(null);
   const swiperNavPrevRef = useRef(null);
 
@@ -106,6 +106,6 @@ function Slider() {
       </Swiper>
     </section>
   );
-}
+});
 
 export default Slider;
