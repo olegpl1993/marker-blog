@@ -6,6 +6,7 @@ import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
 import { getFirstParagraph } from "../../utils/getFirstParagraph";
 import { Page404 } from "../Page404/Page404";
+import RecommendedTopic from "./RecommendedTopic/RecommendedTopic";
 import styles from "./Topic.module.css";
 
 export function Topic() {
@@ -79,6 +80,12 @@ export function Topic() {
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: postQuery.data?.content.rendered }}
+      />
+
+      <RecommendedTopic
+        categories={postQuery.data?.categories}
+        tags={postQuery.data?.tags}
+        id={postQuery.data?.id}
       />
     </div>
   );

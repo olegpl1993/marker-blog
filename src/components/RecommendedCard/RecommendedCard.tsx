@@ -2,9 +2,9 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useQuery } from "@tanstack/react-query";
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { fetchMediaLink } from "../../../../api/mediaLink";
-import SpinnerCircle from "../../../../components/SpinnerCircle/SpinnerCircle";
-import { PostType } from "../../../../types/post.types";
+import { fetchMediaLink } from "../../api/mediaLink";
+import { PostType } from "../../types/post.types";
+import SpinnerCircle from "../SpinnerCircle/SpinnerCircle";
 import styles from "./RecommendedCard.module.css";
 
 interface Props {

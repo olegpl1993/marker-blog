@@ -21,7 +21,7 @@ export interface PostType {
   format: string;
   meta: Meta;
   categories: number[];
-  tags: string[];
+  tags: number[];
   release: string;
   publisher: string;
   genre: string;
