@@ -97,6 +97,10 @@ const Card = memo((props: Props) => {
               borderRadius: "8px",
               fontSize: "15px",
               fontWeight: "600",
+              "@media (max-width: 1200px)": {
+                fontSize: "14px",
+                height: "36px",
+              },
               "@media (max-width: 412px)": {
                 width: "100%",
               },
