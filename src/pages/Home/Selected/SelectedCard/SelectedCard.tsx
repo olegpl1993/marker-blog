@@ -49,7 +49,11 @@ const SelectedCard = memo((props: Props) => {
         <div className={styles.row}>
           <div className={styles.title}>{post.title.rendered}</div>
           <div className={styles.dateBox}>
-            <CalendarMonthIcon fontSize="small" className={styles.icon} />
+            <CalendarMonthIcon
+              fontSize="small"
+              sx={{ color: "var(--secondary-color)" }}
+              className={styles.icon}
+            />
             <p className={styles.date}>{post.date.split("T")[0]}</p>
           </div>
         </div>
