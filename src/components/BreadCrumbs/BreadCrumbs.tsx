@@ -10,10 +10,11 @@ interface Props {
   category?: string | undefined;
   tagsSearchParams?: string | null;
   search?: string | null | undefined;
+  game?: string | null | undefined;
 }
 
 const BreadCrumbs = memo((props: Props) => {
-  const { categories, title, category, tagsSearchParams, search } = props;
+  const { categories, title, category, tagsSearchParams, search, game } = props;
   const categoriesList = useContext(CategoryContext);
   const tags = useContext(TagContext);
 
@@ -73,10 +74,10 @@ const BreadCrumbs = memo((props: Props) => {
         </>
       )}
 
-      {title && (
+      {(title || game) && (
         <>
           <span>{">"}</span>
-          <span>{title}</span>
+          <span>{game ? game : title}</span>
         </>
       )}
     </span>

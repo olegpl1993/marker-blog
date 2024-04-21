@@ -30,9 +30,7 @@ export function Topic() {
   return (
     <div className={styles.topic}>
       <Helmet>
-        <title>
-          Відео гра {postQuery.data?.title.rendered} Огляд українською
-        </title>
+        <title>Відео гра {postQuery.data?.game} Огляд українською</title>
         <meta
           name="description"
           content={getFirstParagraph(postQuery.data?.excerpt.rendered)}
@@ -43,33 +41,45 @@ export function Topic() {
       <BreadCrumbs
         categories={postQuery.data?.categories}
         title={postQuery.data?.title.rendered}
+        game={postQuery.data?.game}
       />
       <h1 className={styles.title}>{postQuery.data?.title.rendered}</h1>
       <div className={styles.strings}>
-        {postQuery.data?.genre && (
+        {postQuery.data?.game && (
           <span>
-            Жанри:{" "}
-            <span className={styles.string}>{postQuery.data?.genre}</span>
+            Назва гри:{" "}
+            <span className={styles.string}>{postQuery.data?.game}</span>
           </span>
         )}
-        {postQuery.data?.platform && (
-          <span>
-            Платформи:{" "}
-            <span className={styles.string}>{postQuery.data?.platform}</span>
-          </span>
-        )}
-        {postQuery.data?.developer && (
-          <span>
-            Розробник:{" "}
-            <span className={styles.string}>{postQuery.data?.developer}</span>
-          </span>
-        )}
+
         {postQuery.data?.release && (
           <span>
             Дата видання:{" "}
             <span className={styles.string}>{postQuery.data?.release}</span>
           </span>
         )}
+
+        {postQuery.data?.genre && (
+          <span>
+            Жанри:{" "}
+            <span className={styles.string}>{postQuery.data?.genre}</span>
+          </span>
+        )}
+
+        {postQuery.data?.platform && (
+          <span>
+            Платформи:{" "}
+            <span className={styles.string}>{postQuery.data?.platform}</span>
+          </span>
+        )}
+
+        {postQuery.data?.developer && (
+          <span>
+            Розробник:{" "}
+            <span className={styles.string}>{postQuery.data?.developer}</span>
+          </span>
+        )}
+
         {postQuery.data?.publisher && (
           <span>
             Видавець:{" "}
@@ -77,6 +87,7 @@ export function Topic() {
           </span>
         )}
       </div>
+
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: postQuery.data?.content.rendered }}

@@ -2,6 +2,7 @@ export interface PostType {
   id: number;
   date: string;
   date_gmt: string;
+  game: string;
   guid: Guid;
   modified: string;
   modified_gmt: string;

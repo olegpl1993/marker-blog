@@ -58,6 +58,13 @@ const Card = memo((props: Props) => {
           </div>
 
           <div className={styles.strings}>
+            {post.game && (
+              <span>
+                <span className={styles.subString}>Назва гри:</span>{" "}
+                <span className={styles.string}>{post.game}</span>
+              </span>
+            )}
+
             {post.genre && (
               <span>
                 <span className={styles.subString}>Жанри:</span>{" "}

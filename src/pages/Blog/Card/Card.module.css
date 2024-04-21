@@ -84,8 +84,9 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
+  line-height: 22px;
   color: var(--secondary-color);
   cursor: pointer;
 }
@@ -123,7 +124,7 @@
   justify-content: center;
   width: 100%;
   min-width: 100%;
-  line-height: 22px;
+  line-height: 16px;
 }
 
 .subString {
