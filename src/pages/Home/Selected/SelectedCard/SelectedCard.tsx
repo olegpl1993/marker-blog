@@ -20,6 +20,8 @@ const SelectedCard = memo((props: Props) => {
     queryFn: () => fetchMediaLink(post.featured_media),
   });
 
+  console.log(post.title.rendered);
+
   return (
     <Link className={styles.selectedCard} to={`/topic/${post.slug}`}>
       <div className={styles.imageBox}>
@@ -32,7 +34,7 @@ const SelectedCard = memo((props: Props) => {
           <img
             className={styles.image}
             src={"/imageNotFound.webp"}
-            alt={"каринка відсутня"}
+            alt={"картинка відсутня"}
           />
         )}
         {imageQuery.data && (

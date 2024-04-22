@@ -30,7 +30,7 @@ export function Topic() {
   return (
     <div className={styles.topic}>
       <Helmet>
-        <title>Відео гра {postQuery.data?.game} Огляд українською</title>
+        <title>{postQuery.data?.title.rendered}</title>
         <meta
           name="description"
           content={getFirstParagraph(postQuery.data?.excerpt.rendered)}
