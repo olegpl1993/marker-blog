@@ -67,10 +67,11 @@
 
 .row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   min-width: 100%;
+  gap: 3px;
 }
 
 .title {
@@ -98,11 +99,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 2px;
   min-width: 100px;
 }
 
 .date {
   margin-top: 2px;
-  font-size: 14px;
+  font-size: 12px;
 }

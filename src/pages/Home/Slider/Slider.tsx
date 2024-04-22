@@ -16,7 +16,7 @@ const Slider = memo(() => {
 
   return (
     <section className={styles.slider}>
-      <div className={styles.title}>Категорії</div>
+      <div className={styles.title}>Ігрові платформи</div>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

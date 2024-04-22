@@ -1,7 +1,7 @@
 import { memo } from "react";
+import RecommendedCard from "../../../components/RecommendedCard/RecommendedCard";
 import { PostType } from "../../../types/post.types";
 import styles from "./Recommended.module.css";
-import RecommendedCard from "./RecommendedCard/RecommendedCard";
 
 interface Props {
   posts: PostType[];

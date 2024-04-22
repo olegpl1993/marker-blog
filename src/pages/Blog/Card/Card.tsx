@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { fetchMediaLink } from "../../../api/mediaLink";
 import SpinnerCircle from "../../../components/SpinnerCircle/SpinnerCircle";
 import { PostType } from "../../../types/post.types";
+import { decodeHtmlEntities } from "../../../utils/decodeHtmlEntities";
 import styles from "./Card.module.css";
 
 interface Props {
@@ -19,6 +20,8 @@ const Card = memo((props: Props) => {
     queryKey: ["image", post.featured_media],
     queryFn: () => fetchMediaLink(post.featured_media),
   });
+
+  const title = post.title.rendered && decodeHtmlEntities(post.title.rendered);
 
   return (
     <div className={styles.card}>
@@ -39,7 +42,7 @@ const Card = memo((props: Props) => {
           <img
             className={styles.image}
             src={imageQuery.data?.source_url}
-            alt={post.title.rendered}
+            alt={title}
             loading="lazy"
           />
         )}
@@ -49,7 +52,7 @@ const Card = memo((props: Props) => {
         <div className={styles.wrapper}>
           <div className={styles.topRow}>
             <Link className={styles.title} to={`/topic/${post.slug}`}>
-              {post.title.rendered}
+              {title}
             </Link>
             <div className={styles.dateBox}>
               <CalendarMonthIcon fontSize="small" className={styles.icon} />
@@ -58,6 +61,13 @@ const Card = memo((props: Props) => {
           </div>
 
           <div className={styles.strings}>
+            {post.game && (
+              <span>
+                <span className={styles.subString}>Назва гри:</span>{" "}
+                <span className={styles.string}>{post.game}</span>
+              </span>
+            )}
+
             {post.genre && (
               <span>
                 <span className={styles.subString}>Жанри:</span>{" "}
@@ -90,6 +100,10 @@ const Card = memo((props: Props) => {
               borderRadius: "8px",
               fontSize: "15px",
               fontWeight: "600",
+              "@media (max-width: 1200px)": {
+                fontSize: "14px",
+                height: "36px",
+              },
               "@media (max-width: 412px)": {
                 width: "100%",
               },

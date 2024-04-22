@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../api/postBySlug";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
-import { getFirstParagraph } from "../../utils/getFirstParagraph";
+import { decodeHtmlEntities } from "../../utils/decodeHtmlEntities";
+import { getFirstSentence } from "../../utils/getFirstSentence";
 import { Page404 } from "../Page404/Page404";
+import RecommendedTopic from "./RecommendedTopic/RecommendedTopic";
 import styles from "./Topic.module.css";
 
 export function Topic() {
@@ -16,6 +18,10 @@ export function Topic() {
     queryFn: () => fetchPostBySlug(slug!),
     enabled: !!slug,
   });
+
+  const title =
+    postQuery.data?.title.rendered &&
+    decodeHtmlEntities(postQuery.data?.title.rendered);
 
   if (postQuery.isLoading)
     return (
@@ -29,46 +35,56 @@ export function Topic() {
   return (
     <div className={styles.topic}>
       <Helmet>
-        <title>
-          Відео гра {postQuery.data?.title.rendered} Огляд українською
-        </title>
+        <title>{title}</title>
         <meta
           name="description"
-          content={getFirstParagraph(postQuery.data?.excerpt.rendered)}
+          content={getFirstSentence(postQuery.data?.excerpt.rendered)}
         />
         <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
       </Helmet>
 
       <BreadCrumbs
         categories={postQuery.data?.categories}
-        title={postQuery.data?.title.rendered}
+        title={title}
+        game={postQuery.data?.game}
       />
-      <h1 className={styles.title}>{postQuery.data?.title.rendered}</h1>
+      <h1 className={styles.title}>{title}</h1>
       <div className={styles.strings}>
-        {postQuery.data?.genre && (
+        {postQuery.data?.game && (
           <span>
-            Жанри:{" "}
-            <span className={styles.string}>{postQuery.data?.genre}</span>
+            Назва гри:{" "}
+            <span className={styles.string}>{postQuery.data?.game}</span>
           </span>
         )}
-        {postQuery.data?.platform && (
-          <span>
-            Платформи:{" "}
-            <span className={styles.string}>{postQuery.data?.platform}</span>
-          </span>
-        )}
-        {postQuery.data?.developer && (
-          <span>
-            Розробник:{" "}
-            <span className={styles.string}>{postQuery.data?.developer}</span>
-          </span>
-        )}
+
         {postQuery.data?.release && (
           <span>
             Дата видання:{" "}
             <span className={styles.string}>{postQuery.data?.release}</span>
           </span>
         )}
+
+        {postQuery.data?.genre && (
+          <span>
+            Жанри:{" "}
+            <span className={styles.string}>{postQuery.data?.genre}</span>
+          </span>
+        )}
+
+        {postQuery.data?.platform && (
+          <span>
+            Платформи:{" "}
+            <span className={styles.string}>{postQuery.data?.platform}</span>
+          </span>
+        )}
+
+        {postQuery.data?.developer && (
+          <span>
+            Розробник:{" "}
+            <span className={styles.string}>{postQuery.data?.developer}</span>
+          </span>
+        )}
+
         {postQuery.data?.publisher && (
           <span>
             Видавець:{" "}
@@ -76,9 +92,16 @@ export function Topic() {
           </span>
         )}
       </div>
+
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: postQuery.data?.content.rendered }}
+      />
+
+      <RecommendedTopic
+        categories={postQuery.data?.categories}
+        tags={postQuery.data?.tags}
+        id={postQuery.data?.id}
       />
     </div>
   );
