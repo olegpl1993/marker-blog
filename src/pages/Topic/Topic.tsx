@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../api/postBySlug";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../components/Spinner/Spinner";
-import { getFirstParagraph } from "../../utils/getFirstParagraph";
+import { decodeHtmlEntities } from "../../utils/decodeHtmlEntities";
+import { getFirstSentence } from "../../utils/getFirstSentence";
 import { Page404 } from "../Page404/Page404";
 import RecommendedTopic from "./RecommendedTopic/RecommendedTopic";
 import styles from "./Topic.module.css";
@@ -18,6 +19,10 @@ export function Topic() {
     enabled: !!slug,
   });
 
+  const title =
+    postQuery.data?.title.rendered &&
+    decodeHtmlEntities(postQuery.data?.title.rendered);
+
   if (postQuery.isLoading)
     return (
       <div className={styles.spinnerBox}>
@@ -30,20 +35,20 @@ export function Topic() {
   return (
     <div className={styles.topic}>
       <Helmet>
-        <title>{postQuery.data?.title.rendered}</title>
+        <title>{title}</title>
         <meta
           name="description"
-          content={getFirstParagraph(postQuery.data?.excerpt.rendered)}
+          content={getFirstSentence(postQuery.data?.excerpt.rendered)}
         />
         <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
       </Helmet>
 
       <BreadCrumbs
         categories={postQuery.data?.categories}
-        title={postQuery.data?.title.rendered}
+        title={title}
         game={postQuery.data?.game}
       />
-      <h1 className={styles.title}>{postQuery.data?.title.rendered}</h1>
+      <h1 className={styles.title}>{title}</h1>
       <div className={styles.strings}>
         {postQuery.data?.game && (
           <span>

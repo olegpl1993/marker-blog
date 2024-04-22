@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { fetchMediaLink } from "../../../../api/mediaLink";
 import SpinnerCircle from "../../../../components/SpinnerCircle/SpinnerCircle";
 import { PostType } from "../../../../types/post.types";
-import { getFirstParagraph } from "../../../../utils/getFirstParagraph";
+import { decodeHtmlEntities } from "../../../../utils/decodeHtmlEntities";
+import { getFirstSentence } from "../../../../utils/getFirstSentence";
 import styles from "./SelectedCard.module.css";
 
 interface Props {
@@ -20,7 +21,7 @@ const SelectedCard = memo((props: Props) => {
     queryFn: () => fetchMediaLink(post.featured_media),
   });
 
-  console.log(post.title.rendered);
+  const title = post.title.rendered && decodeHtmlEntities(post.title.rendered);
 
   return (
     <Link className={styles.selectedCard} to={`/topic/${post.slug}`}>
@@ -41,7 +42,7 @@ const SelectedCard = memo((props: Props) => {
           <img
             className={styles.image}
             src={imageQuery.data?.source_url}
-            alt={post.title.rendered}
+            alt={title}
             loading="lazy"
           />
         )}
@@ -49,7 +50,7 @@ const SelectedCard = memo((props: Props) => {
 
       <div className={styles.content}>
         <div className={styles.row}>
-          <div className={styles.title}>{post.title.rendered}</div>
+          <div className={styles.title}>{title}</div>
           <div className={styles.dateBox}>
             <CalendarMonthIcon
               fontSize="small"
@@ -59,9 +60,7 @@ const SelectedCard = memo((props: Props) => {
             <p className={styles.date}>{post.date.split("T")[0]}</p>
           </div>
         </div>
-        <p className={styles.text}>
-          {getFirstParagraph(post.excerpt.rendered)}
-        </p>
+        <p className={styles.text}>{getFirstSentence(post.excerpt.rendered)}</p>
       </div>
     </Link>
   );
