@@ -34,12 +34,6 @@ function Modal(props: Props) {
           className={styles.modalBox}
           onClick={(event) => event.stopPropagation()}
         >
-          <button
-            type="button"
-            aria-label="Кнопка закрити меню"
-            className={styles.modalClose}
-            onClick={handleClose}
-          />
           {children}
         </div>
       </div>,
