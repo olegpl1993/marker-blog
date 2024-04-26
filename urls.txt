@@ -13,6 +13,7 @@ https://marker.cx.ua/blog?tags=action-adventure
 https://marker.cx.ua/blog?tags=fighting
 https://marker.cx.ua/blog?tags=first-person-shooter
 https://marker.cx.ua/blog?tags=hack-and-slash
+https://marker.cx.ua/blog?tags=racing
 https://marker.cx.ua/blog?tags=role-playing
 https://marker.cx.ua/blog?tags=platform
 https://marker.cx.ua/blog?tags=social-simulation
