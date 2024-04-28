@@ -18,8 +18,7 @@ const Selected = memo((props: Props) => {
 
   const queryPosts = useQuery({
     queryKey: ["NextPosts", postsPage],
-    queryFn: () =>
-      fetchPosts(undefined, undefined, undefined, String(postsPage), 10),
+    queryFn: () => fetchPosts({ page: postsPage, perPage: 10 }),
     enabled: postsPage > 2,
   });
 
