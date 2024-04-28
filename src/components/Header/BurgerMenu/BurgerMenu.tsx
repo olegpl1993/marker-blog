@@ -1,4 +1,3 @@
-import { IconButton } from "@mui/material";
 import { memo, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../../../contexts/CategoryProvider";
@@ -18,17 +17,17 @@ const BurgerMenu = memo(() => {
   if (!categories) return null;
   return (
     <div className={styles.burgerMenu}>
-      <IconButton
+      <button
         onClick={isOpen ? handleClose : handleOpen}
-        aria-label="Кнопка відкрити меню"
-        sx={{ height: "60px", width: "60px" }}
+        title="Кнопка відкрити меню"
+        className={styles.burgerButton}
       >
-        <div className={`${styles.burgerIcon} ${isOpen && styles.open}`}>
-          <div className={styles.bar}></div>
-          <div className={styles.bar}></div>
-          <div className={styles.bar}></div>
-        </div>
-      </IconButton>
+        <ul className={`${styles.burgerIcon} ${isOpen && styles.open}`}>
+          <li className={styles.bar}></li>
+          <li className={styles.bar}></li>
+          <li className={styles.bar}></li>
+        </ul>
+      </button>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className={styles.content}>
           <Link className={styles.link} to={"/"} onClick={handleClose}>
