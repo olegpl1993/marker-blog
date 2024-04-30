@@ -1,0 +1,22 @@
+.share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+}
+
+.svg {
+  fill: var(--secondary-color);
+}
+
+@media screen and (min-width: 768px) {
+  .svg:hover {
+    fill: var(--primary-color);
+  }
+}
