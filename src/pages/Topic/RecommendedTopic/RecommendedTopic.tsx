@@ -48,7 +48,6 @@ const RecommendedTopic = memo((props: Props) => {
   if (!renderData) return null;
   return (
     <div className={styles.recommendedTopic}>
-      <span className={styles.title}>Схожі новини</span>
       <div className={styles.row}>
         {renderData &&
           renderData.map((post) => (

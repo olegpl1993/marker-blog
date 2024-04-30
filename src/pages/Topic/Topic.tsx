@@ -42,31 +42,6 @@ export function Topic() {
           content={getFirstSentence(postQuery.data?.excerpt.rendered)}
         />
         <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
-
-        {/* TEST OG META */}
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={title} />
-        <meta
-          property="og:description"
-          content={getFirstSentence(postQuery.data?.excerpt.rendered)}
-        />
-        <meta
-          property="og:image"
-          content="https://wp.marker.cx.ua/wp-content/uploads/2024/04/1662320177173925581.webp"
-        />
-        <meta property="twitter:url" content={window.location.href} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta
-          name="twitter:description"
-          content={getFirstSentence(postQuery.data?.excerpt.rendered)}
-        />
-        <meta
-          name="twitter:image:src"
-          content="https://wp.marker.cx.ua/wp-content/uploads/2024/04/1662320177173925581.webp"
-        />
-        {/* TEST OG META */}
       </Helmet>
 
       <BreadCrumbs
