@@ -26,13 +26,13 @@ export function Blog() {
 
   const categoryName = categories?.find((item) => item.slug === category)?.name;
   const tagName = tags?.find((item) => item.slug === tagsSearchParams)?.name;
-  const categoryID = categories?.find((item) => item.slug === category)?.id;
-  const tagID = tags?.find((item) => item.slug === tagsSearchParams)?.id;
+  const categoryId = categories?.find((item) => item.slug === category)?.id;
+  const tagId = tags?.find((item) => item.slug === tagsSearchParams)?.id;
 
   const queryPosts = useQuery({
-    queryKey: ["posts", categoryID, tagID, search, page],
-    queryFn: () => fetchPosts(categoryID, tagID, search, page),
-    enabled: category ? !!categoryID : true,
+    queryKey: ["posts", categoryId, tagId, search, page],
+    queryFn: () => fetchPosts({ categoryId, tagId, search, page }),
+    enabled: category ? !!categoryId : true,
   });
 
   const totalPages = Number(queryPosts.data?.headers.get("X-WP-TotalPages"));

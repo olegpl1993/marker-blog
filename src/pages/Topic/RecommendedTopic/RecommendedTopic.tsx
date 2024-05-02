@@ -15,15 +15,20 @@ const RecommendedTopic = memo((props: Props) => {
 
   const recommendedTopicQuery = useQuery({
     queryKey: ["RecommendedQuery", categories, tags],
-    queryFn: () => fetchPosts(categories, tags, undefined, undefined, 2, id),
+    queryFn: () =>
+      fetchPosts({
+        categoryId: categories,
+        tagId: tags,
+        perPage: 2,
+        excludeId: id,
+      }),
     enabled: categories.length > 0 || tags.length > 0,
   });
   const recommendedPosts = recommendedTopicQuery.data?.data;
 
   const additionalQuery = useQuery({
     queryKey: ["AdditionalQuery", recommendedPosts],
-    queryFn: () =>
-      fetchPosts(undefined, undefined, undefined, undefined, 20, id),
+    queryFn: () => fetchPosts({ perPage: 20, excludeId: id }),
     enabled: !!recommendedPosts,
   });
   const randomAdditionalPosts = additionalQuery.data?.data.sort(
@@ -43,7 +48,6 @@ const RecommendedTopic = memo((props: Props) => {
   if (!renderData) return null;
   return (
     <div className={styles.recommendedTopic}>
-      <span className={styles.title}>Схожі новини</span>
       <div className={styles.row}>
         {renderData &&
           renderData.map((post) => (

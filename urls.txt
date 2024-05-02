@@ -13,6 +13,7 @@ https://marker.cx.ua/blog?tags=action-adventure
 https://marker.cx.ua/blog?tags=fighting
 https://marker.cx.ua/blog?tags=first-person-shooter
 https://marker.cx.ua/blog?tags=hack-and-slash
+https://marker.cx.ua/blog?tags=racing
 https://marker.cx.ua/blog?tags=role-playing
 https://marker.cx.ua/blog?tags=platform
 https://marker.cx.ua/blog?tags=social-simulation
@@ -63,3 +64,6 @@ https://marker.cx.ua/topic/doom-eternal
 https://marker.cx.ua/topic/shadow-of-the-tomb-raider
 https://marker.cx.ua/topic/gears-5
 https://marker.cx.ua/topic/dark-souls-iii
+https://marker.cx.ua/topic/need-for-speed-unbound
+https://marker.cx.ua/topic/crysis-remastered-trilogy
+https://marker.cx.ua/topic/dead-island-2

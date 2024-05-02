@@ -8,6 +8,7 @@ import { decodeHtmlEntities } from "../../utils/decodeHtmlEntities";
 import { getFirstSentence } from "../../utils/getFirstSentence";
 import { Page404 } from "../Page404/Page404";
 import RecommendedTopic from "./RecommendedTopic/RecommendedTopic";
+import Share from "./Share/Share";
 import styles from "./Topic.module.css";
 
 export function Topic() {
@@ -48,6 +49,7 @@ export function Topic() {
         title={title}
         game={postQuery.data?.game}
       />
+
       <h1 className={styles.title}>{title}</h1>
       <div className={styles.strings}>
         {postQuery.data?.game && (
@@ -97,6 +99,8 @@ export function Topic() {
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: postQuery.data?.content.rendered }}
       />
+
+      <Share textToShare={title} />
 
       <RecommendedTopic
         categories={postQuery.data?.categories}

@@ -17,7 +17,7 @@ export function Home() {
 
   const queryPosts = useQuery({
     queryKey: ["HomePosts"],
-    queryFn: () => fetchPosts(undefined, undefined, undefined, undefined, 20),
+    queryFn: () => fetchPosts({ perPage: 20 }),
   });
 
   if (!categories || !tags)
