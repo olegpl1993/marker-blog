@@ -24,6 +24,7 @@ const PaginationBlog = memo((props: Props) => {
     <div className={styles.paginationBlog}>
       <Pagination
         count={totalPages}
+        siblingCount={0}
         variant="outlined"
         color="primary"
         page={page}
