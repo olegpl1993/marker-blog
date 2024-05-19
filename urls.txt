@@ -7,20 +7,6 @@ https://marker.cx.ua/blog/playstation-5
 https://marker.cx.ua/blog/windows
 https://marker.cx.ua/blog/xbox-one
 https://marker.cx.ua/blog/xbox-series-x-s
-https://marker.cx.ua/blog?tags=action
-https://marker.cx.ua/blog?tags=action-role-playing
-https://marker.cx.ua/blog?tags=action-adventure
-https://marker.cx.ua/blog?tags=fighting
-https://marker.cx.ua/blog?tags=first-person-shooter
-https://marker.cx.ua/blog?tags=hack-and-slash
-https://marker.cx.ua/blog?tags=racing
-https://marker.cx.ua/blog?tags=roguelike
-https://marker.cx.ua/blog?tags=role-playing
-https://marker.cx.ua/blog?tags=platform
-https://marker.cx.ua/blog?tags=social-simulation
-https://marker.cx.ua/blog?tags=stealth
-https://marker.cx.ua/blog?tags=survival-horror
-https://marker.cx.ua/blog?tags=third-person-shooter
 https://marker.cx.ua/topic/bayonetta-3
 https://marker.cx.ua/topic/honkai-star-rail
 https://marker.cx.ua/topic/diablo-ii-resurrected
@@ -70,3 +56,6 @@ https://marker.cx.ua/topic/crysis-remastered-trilogy
 https://marker.cx.ua/topic/dead-island-2
 https://marker.cx.ua/topic/forza-horizon-5
 https://marker.cx.ua/topic/hades
+https://marker.cx.ua/topic/hellblade-senuas-sacrifice
+https://marker.cx.ua/topic/prey
+https://marker.cx.ua/topic/ori-and-the-blind-forest
