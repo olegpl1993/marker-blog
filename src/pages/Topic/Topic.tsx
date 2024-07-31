@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { DiscussionEmbed } from "disqus-react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../api/postBySlug";
@@ -101,6 +102,18 @@ export function Topic() {
       />
 
       <Share textToShare={title} />
+
+      <div className={styles.disqus}>
+        <DiscussionEmbed
+          shortname="game-marker-1"
+          config={{
+            url: `https://marker.cx.ua/topic/${slug}`,
+            identifier: slug,
+            title: title,
+            language: "ua",
+          }}
+        />
+      </div>
 
       <RecommendedTopic
         categories={postQuery.data?.categories}
