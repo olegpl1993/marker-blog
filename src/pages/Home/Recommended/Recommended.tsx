@@ -1,6 +1,6 @@
 import { memo } from "react";
-import RecommendedCard from "../../../components/RecommendedCard/RecommendedCard";
-import { PostType } from "../../../types/post.types";
+import RecommendedCard from "../../../shared/components/RecommendedCard/RecommendedCard";
+import { PostType } from "../../../shared/types/post.types";
 import styles from "./Recommended.module.css";
 
 interface Props {

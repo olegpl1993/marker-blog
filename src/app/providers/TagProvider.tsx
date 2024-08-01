@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createContext, ReactNode } from "react";
-import { fetchTags } from "../api/tags";
-import { TagType } from "../types/tags.types";
+import { fetchTags } from "../../shared/api/tags";
+import { TagType } from "../../shared/types/tags.types";
 
 export const TagContext = createContext<TagType[] | undefined>(undefined);
 

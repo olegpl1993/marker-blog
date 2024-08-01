@@ -2,7 +2,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { memo, useContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { TagContext } from "../../contexts/TagProvider";
+import { TagContext } from "../../../app/providers/TagProvider";
 import styles from "./Tags.module.css";
 
 interface Props {
