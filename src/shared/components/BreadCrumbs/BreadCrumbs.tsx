@@ -1,7 +1,7 @@
 import { memo, useContext } from "react";
 import { Link } from "react-router-dom";
-import { CategoryContext } from "../../contexts/CategoryProvider";
-import { TagContext } from "../../contexts/TagProvider";
+import { CategoryContext } from "../../../app/providers/CategoryProvider";
+import { TagContext } from "../../../app/providers/TagProvider";
 import styles from "./BreadCrumbs.module.css";
 
 interface Props {

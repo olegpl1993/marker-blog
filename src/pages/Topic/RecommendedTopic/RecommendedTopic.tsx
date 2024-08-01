@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { memo } from "react";
-import { fetchPosts } from "../../../api/posts";
-import RecommendedCard from "../../../components/RecommendedCard/RecommendedCard";
+import { fetchPosts } from "../../../shared/api/posts";
+import RecommendedCard from "../../../shared/components/RecommendedCard/RecommendedCard";
 import styles from "./RecommendedTopic.module.css";
 
 interface Props {

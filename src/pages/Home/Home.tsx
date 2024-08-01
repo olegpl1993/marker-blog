@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { fetchPosts } from "../../api/posts";
-import Spinner from "../../components/Spinner/Spinner";
-import SpinnerCircle from "../../components/SpinnerCircle/SpinnerCircle";
-import { CategoryContext } from "../../contexts/CategoryProvider";
-import { TagContext } from "../../contexts/TagProvider";
+import { CategoryContext } from "../../app/providers/CategoryProvider";
+import { TagContext } from "../../app/providers/TagProvider";
+import { fetchPosts } from "../../shared/api/posts";
+import Spinner from "../../shared/components/Spinner/Spinner";
+import SpinnerCircle from "../../shared/components/SpinnerCircle/SpinnerCircle";
 import styles from "./Home.module.css";
 import Recommended from "./Recommended/Recommended";
 import Selected from "./Selected/Selected";

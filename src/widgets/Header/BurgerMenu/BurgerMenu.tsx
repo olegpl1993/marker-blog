@@ -1,10 +1,10 @@
 import { memo, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { CategoryContext } from "../../../contexts/CategoryProvider";
-import Categories from "../../Categories/Categories";
-import Modal from "../../Modal/Modal";
-import Search from "../../Search/Search";
-import Tags from "../../Tags/Tags";
+import { CategoryContext } from "../../../app/providers/CategoryProvider";
+import Categories from "../../../shared/components/Categories/Categories";
+import Modal from "../../../shared/components/Modal/Modal";
+import Search from "../../../shared/components/Search/Search";
+import Tags from "../../../shared/components/Tags/Tags";
 import styles from "./BurgerMenu.module.css";
 
 const BurgerMenu = memo(() => {

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createContext, ReactNode } from "react";
-import { fetchCategories } from "../api/categories";
-import { CategoryType } from "../types/category.types";
+import { fetchCategories } from "../../shared/api/categories";
+import { CategoryType } from "../../shared/types/category.types";
 
 export const CategoryContext = createContext<CategoryType[] | undefined>(
   undefined

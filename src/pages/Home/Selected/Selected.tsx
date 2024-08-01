@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { memo, useEffect, useState } from "react";
-import { fetchPosts } from "../../../api/posts";
-import SpinnerCircle from "../../../components/SpinnerCircle/SpinnerCircle";
-import { PostType } from "../../../types/post.types";
+import { fetchPosts } from "../../../shared/api/posts";
+import SpinnerCircle from "../../../shared/components/SpinnerCircle/SpinnerCircle";
+import { PostType } from "../../../shared/types/post.types";
 import styles from "./Selected.module.css";
 import SelectedCard from "./SelectedCard/SelectedCard";
 
