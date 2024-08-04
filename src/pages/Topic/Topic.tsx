@@ -20,6 +20,15 @@ export function Topic() {
     enabled: !!slug,
   });
 
+  const dataFields = [
+    { label: "Назва гри", value: postQuery.data?.game },
+    { label: "Дата видання", value: postQuery.data?.release },
+    { label: "Жанри", value: postQuery.data?.genre },
+    { label: "Платформи", value: postQuery.data?.platform },
+    { label: "Розробник", value: postQuery.data?.developer },
+    { label: "Видавець", value: postQuery.data?.publisher },
+  ];
+
   const title =
     postQuery.data?.title.rendered &&
     decodeHtmlEntities(postQuery.data?.title.rendered);
@@ -44,47 +53,16 @@ export function Topic() {
       />
 
       <h1 className={styles.title}>{title}</h1>
+
       <div className={styles.strings}>
-        {postQuery.data?.game && (
-          <span>
-            Назва гри:{" "}
-            <span className={styles.string}>{postQuery.data?.game}</span>
-          </span>
-        )}
-
-        {postQuery.data?.release && (
-          <span>
-            Дата видання:{" "}
-            <span className={styles.string}>{postQuery.data?.release}</span>
-          </span>
-        )}
-
-        {postQuery.data?.genre && (
-          <span>
-            Жанри:{" "}
-            <span className={styles.string}>{postQuery.data?.genre}</span>
-          </span>
-        )}
-
-        {postQuery.data?.platform && (
-          <span>
-            Платформи:{" "}
-            <span className={styles.string}>{postQuery.data?.platform}</span>
-          </span>
-        )}
-
-        {postQuery.data?.developer && (
-          <span>
-            Розробник:{" "}
-            <span className={styles.string}>{postQuery.data?.developer}</span>
-          </span>
-        )}
-
-        {postQuery.data?.publisher && (
-          <span>
-            Видавець:{" "}
-            <span className={styles.string}>{postQuery.data?.publisher}</span>
-          </span>
+        {dataFields.map(
+          (field, index) =>
+            field.value && (
+              <span key={index}>
+                {field.label}:{" "}
+                <span className={styles.string}>{field.value}</span>
+              </span>
+            )
         )}
       </div>
 
