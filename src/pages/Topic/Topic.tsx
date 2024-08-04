@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { DiscussionEmbed } from "disqus-react";
-import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../shared/api/postBySlug";
 import BreadCrumbs from "../../shared/components/BreadCrumbs/BreadCrumbs";
 import Spinner from "../../shared/components/Spinner/Spinner";
 import { decodeHtmlEntities } from "../../shared/utils/decodeHtmlEntities";
-import { getFirstSentence } from "../../shared/utils/getFirstSentence";
 import { Page404 } from "../Page404/Page404";
 import RecommendedTopic from "./RecommendedTopic/RecommendedTopic";
+import { SeoTopic } from "./SeoTopic";
 import Share from "./Share/Share";
 import styles from "./Topic.module.css";
 
@@ -36,14 +35,7 @@ export function Topic() {
 
   return (
     <div className={styles.topic}>
-      <Helmet>
-        <title>{title}</title>
-        <meta
-          name="description"
-          content={getFirstSentence(postQuery.data?.excerpt.rendered)}
-        />
-        <link rel="canonical" href={`https://marker.cx.ua/topic/${slug}`} />
-      </Helmet>
+      <SeoTopic title={title} slug={slug} />
 
       <BreadCrumbs
         categories={postQuery.data?.categories}
