@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { DiscussionEmbed } from "disqus-react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../shared/api/postBySlug";
 import BreadCrumbs from "../../shared/components/BreadCrumbs/BreadCrumbs";
+import Modal from "../../shared/components/Modal/Modal";
 import Spinner from "../../shared/components/Spinner/Spinner";
 import { decodeHtmlEntities } from "../../shared/utils/decodeHtmlEntities";
 import { Page404 } from "../Page404/Page404";
@@ -13,6 +15,9 @@ import styles from "./Topic.module.css";
 
 export function Topic() {
   const { slug } = useParams();
+
+  const [openImage, setOpenImage] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
 
   const postQuery = useQuery({
     queryKey: ["fetchPostBySlug", slug],
@@ -32,6 +37,27 @@ export function Topic() {
   const title =
     postQuery.data?.title.rendered &&
     decodeHtmlEntities(postQuery.data?.title.rendered);
+
+  const refContent = useRef<HTMLDivElement>(null);
+
+  const imageClickHandler = (event: MouseEvent) => {
+    if (event.target instanceof HTMLImageElement) {
+      setOpenImage(true);
+      setImageUrl(event.target.src);
+    }
+  };
+
+  useEffect(() => {
+    const refContentCurrent = refContent.current;
+
+    if (refContentCurrent)
+      refContentCurrent.addEventListener("click", imageClickHandler);
+
+    return () => {
+      if (refContentCurrent)
+        refContentCurrent.removeEventListener("click", imageClickHandler);
+    };
+  }, [postQuery.data?.content.rendered]);
 
   if (postQuery.isLoading)
     return (
@@ -68,6 +94,7 @@ export function Topic() {
 
       <div
         className={styles.content}
+        ref={refContent}
         dangerouslySetInnerHTML={{ __html: postQuery.data?.content.rendered }}
       />
 
@@ -90,6 +117,16 @@ export function Topic() {
         tags={postQuery.data?.tags}
         id={postQuery.data?.id}
       />
+
+      <Modal isOpen={openImage} setIsOpen={setOpenImage}>
+        <img
+          src={imageUrl}
+          alt={title}
+          loading="lazy"
+          onClick={() => setOpenImage(false)}
+          className={styles.image}
+        />
+      </Modal>
     </div>
   );
 }
