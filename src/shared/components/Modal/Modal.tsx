@@ -8,10 +8,11 @@ interface Props {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: JSX.Element;
+  burger?: boolean;
 }
 
 function Modal(props: Props) {
-  const { isOpen, setIsOpen, children } = props;
+  const { isOpen, setIsOpen, children, burger } = props;
   const element = document.createElement("div");
 
   useEffect(() => {
@@ -23,15 +24,13 @@ function Modal(props: Props) {
     };
   }, [isOpen, element]);
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const handleClose = () => setIsOpen(false);
 
   if (isOpen) {
     return createPortal(
-      <div className={styles.modalWrapper} onClick={handleClose}>
+      <div className={`${styles.modalWrapper} ${(burger && styles.modalWrapperBurger)}`} onClick={handleClose}>
         <div
-          className={styles.modalBox}
+          className={burger ? styles.modalBoxBurger : styles.modalBox}
           onClick={(event) => event.stopPropagation()}
         >
           {children}
