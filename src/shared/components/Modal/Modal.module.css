@@ -3,7 +3,8 @@
   z-index: 7;
   left: 0;
   top: 0;
-  height: 100dvh;
+  height: 100lvh;
+  overflow: auto;
   width: 100%;
   background-color: black;
   display: flex;
@@ -19,6 +20,7 @@
   justify-content: flex-end;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.5);
+  height: 100dvh;
 }
 
 @keyframes wrapperAnime {
@@ -34,17 +36,11 @@
   position: relative;
   width: fit-content;
   background-color: black;
-  height: 100%;
+  height: 100svh;
   padding: 5px;
   animation-duration: 0.3s;
   animation-name: boxAnime;
   cursor: auto;
-}
-
-@media screen and (max-width: 768px) {
-  .modalBox {
-    height: auto;
-  }
 }
 
 @keyframes boxAnime {
