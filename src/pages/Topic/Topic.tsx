@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../../shared/api/postBySlug";
 import BreadCrumbs from "../../shared/components/BreadCrumbs/BreadCrumbs";
-import Modal from "../../shared/components/Modal/Modal";
 import Spinner from "../../shared/components/Spinner/Spinner";
 import { decodeHtmlEntities } from "../../shared/utils/decodeHtmlEntities";
 import { Page404 } from "../Page404/Page404";
@@ -12,12 +11,14 @@ import RecommendedTopic from "./RecommendedTopic/RecommendedTopic";
 import { SeoTopic } from "./SeoTopic";
 import Share from "./Share/Share";
 import styles from "./Topic.module.css";
+import ImagesGallery from "../../shared/components/ImagesGallery/ImagesGallery";
 
 export function Topic() {
   const { slug } = useParams();
 
   const [openImage, setOpenImage] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [imageArr, setImageArr] = useState<string[]>([]);
 
   const postQuery = useQuery({
     queryKey: ["fetchPostBySlug", slug],
@@ -39,6 +40,15 @@ export function Topic() {
     decodeHtmlEntities(postQuery.data?.title.rendered);
 
   const refContent = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!postQuery.data?.content.rendered) return;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(postQuery.data?.content.rendered, 'text/html');
+    const imgTags = doc.querySelectorAll('img');
+    const srcArray = Array.from(imgTags).map(img => img.src);
+    setImageArr(srcArray);
+  }, [postQuery.data?.content.rendered]);
 
   const imageClickHandler = (event: MouseEvent) => {
     if (event.target instanceof HTMLImageElement) {
@@ -118,15 +128,7 @@ export function Topic() {
         id={postQuery.data?.id}
       />
 
-      <Modal isOpen={openImage} setIsOpen={setOpenImage}>
-        <img
-          src={imageUrl}
-          alt={title}
-          loading="lazy"
-          onClick={() => setOpenImage(false)}
-          className={styles.image}
-        />
-      </Modal>
+      <ImagesGallery isOpen={openImage} setIsOpen={setOpenImage} imageArr={imageArr} imageUrl={imageUrl} />
     </div>
   );
 }
