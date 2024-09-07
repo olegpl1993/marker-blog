@@ -1,21 +1,13 @@
 .modalWrapper {
   position: fixed;
-  z-index: 7;
   left: 0;
   top: 0;
-  height: 100lvh;
   overflow: auto;
   width: 100%;
-  background-color: black;
   display: flex;
-  align-items: center;
-  justify-content: center;
   animation-duration: 0.2s;
   animation-name: wrapperAnime;
   cursor: pointer;
-}
-
-.modalWrapperBurger {
   align-items: flex-start;
   justify-content: flex-end;
   z-index: 5;
@@ -34,42 +26,22 @@
 
 .modalBox {
   position: relative;
-  width: fit-content;
-  background-color: black;
-  height: 100svh;
+  background-color: white;
+  width: 400px;
+  height: 100%;
   padding: 5px;
   animation-duration: 0.3s;
   animation-name: boxAnime;
   cursor: auto;
 }
 
-@keyframes boxAnime {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-.modalBoxBurger {
-  position: relative;
-  background-color: white;
-  width: 400px;
-  height: 100%;
-  padding: 5px;
-  animation-duration: 0.3s;
-  animation-name: burgerAnime;
-  cursor: auto;
-}
-
 @media screen and (max-width: 768px) {
-  .modalBoxBurger {
+  .modalBox {
     width: 100%;
   }
 }
 
-@keyframes burgerAnime {
+@keyframes boxAnime {
   from {
     width: 0px;
   }
@@ -79,7 +51,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  @keyframes burgerAnime {
+  @keyframes boxAnime {
     from {
       width: 0px;
     }

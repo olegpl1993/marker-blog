@@ -29,7 +29,7 @@ const BurgerMenu = memo(() => {
         </ul>
       </button>
 
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} burger>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className={styles.content}>
           <Link className={styles.link} to={"/"} onClick={handleClose}>
             Головна
